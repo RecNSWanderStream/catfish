@@ -1,9 +1,22 @@
 WanderStream::Application.routes.draw do
+  resources :activity_categories
+
+  resources :asset_activities
+
+  resources :activity_types
+
+  get "search/search"
+  get "search/result"
+  resources :asset_types
+
+  resources :assets
+
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  #root 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

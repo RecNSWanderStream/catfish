@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  asset_id: 1
+  activity_type_id: 1
+  duration: 
+  difficulty: MyString
+  quality: MyText
+  season: MyString
+  general_information: MyText
+  safety_information: MyText
+  alerts: MyText
+
+two:
+  asset_id: 1
+  activity_type_id: 1
+  duration: 
+  difficulty: MyString
+  quality: MyText
+  season: MyString
+  general_information: MyText
+  safety_information: MyText
+  alerts: MyText
