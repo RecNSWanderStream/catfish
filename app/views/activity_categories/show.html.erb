@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Asset type:</strong>
+  <%= @activity_category.asset_type_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @activity_category.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @activity_category.description %>
+</p>
+
+<%= link_to 'Edit', edit_activity_category_path(@activity_category) %> |
+<%= link_to 'Back', activity_categories_path %>

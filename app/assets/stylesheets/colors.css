@@ -1,0 +1,72 @@
+/* Bootstrap Default Buttons */
+
+.btn-primary {
+    background-color: rgba( 63, 19, 94, 0.75);
+    border: 0px;   
+    color: #FFFFFF;
+}
+
+.btn-primary:hover,.btn-primary:focus,.btn-primary:active {
+    border: 0px;     
+    background-color: rgba( 63, 19, 94, 0.95);
+    color: #FFFFFF;
+}
+
+
+/* Links */
+a {
+    color: #72AE4D;
+}
+
+.si i {
+	color: #72AE4D;
+}
+
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+ background-color: #f7f7f7;
+    color: #72AE4D;
+    font-weight: 500;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+color: #72AE4D;
+ background-color: #fff;
+}
+
+.btn-theme {
+  background-color: #3498db;
+}
+
+.tabbable .nav-stacked > li:active, li:focus, li.active h4 {
+	color: #72AE4D;
+}
+
+p.capitalize:first-letter {
+	background: #3498db; 
+}
+
+.team-info {
+  background: #3498db;
+}
+
+#black i {
+	color: #3498db;
+}
+
+.progress-bar-theme {
+  background-color: #3498db;
+}
+
+.team-stat i {
+	color: #3498db;
+}
+
+.pricing-table-plan {
+	border-top: 4px solid #3498db;
+}
+
+.blog-post blockquote {
+  border-left: 4px solid #3498db;
+}
+

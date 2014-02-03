@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  asset_type_id: 1
+  profile_id: 1
+  region_id: 1
+  name: MyString
+  description: MyText
+  lat: 9.99
+  lng: 9.99
+  created_by: 1
+  updated_by: 1
+
+two:
+  asset_type_id: 1
+  profile_id: 1
+  region_id: 1
+  name: MyString
+  description: MyText
+  lat: 9.99
+  lng: 9.99
+  created_by: 1
+  updated_by: 1

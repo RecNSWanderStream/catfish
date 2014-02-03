@@ -11,10 +11,67 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121181435) do
+ActiveRecord::Schema.define(version: 20140203100532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activity_categories", force: true do |t|
+    t.integer  "asset_type_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activity_categories", ["name"], name: "index_activity_categories_on_name", unique: true, using: :btree
+
+  create_table "activity_types", force: true do |t|
+    t.integer  "activity_category_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activity_types", ["name"], name: "index_activity_types_on_name", unique: true, using: :btree
+
+  create_table "asset_activities", force: true do |t|
+    t.integer  "asset_id"
+    t.integer  "activity_type_id"
+    t.integer  "duration"
+    t.string   "difficulty"
+    t.text     "quality"
+    t.string   "season"
+    t.text     "general_information"
+    t.text     "safety_information"
+    t.text     "alerts"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "asset_types", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "asset_types", ["name"], name: "index_asset_types_on_name", unique: true, using: :btree
+
+  create_table "assets", force: true do |t|
+    t.integer  "asset_type_id"
+    t.integer  "profile_id"
+    t.integer  "region_id"
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "lat",           precision: 6, scale: 0
+    t.decimal  "lng",           precision: 6, scale: 0
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

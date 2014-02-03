@@ -1,0 +1,53 @@
+<%= form_for(@asset_activity) do |f| %>
+  <% if @asset_activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@asset_activity.errors.count, "error") %> prohibited this asset_activity from being saved:</h2>
+
+      <ul>
+      <% @asset_activity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :asset_id %><br>
+    <%= f.number_field :asset_id %>
+  </div>
+  <div class="field">
+    <%= f.label :activity_type_id %><br>
+    <%= f.number_field :activity_type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :duration %><br>
+    <%= f.text_field :duration %>
+  </div>
+  <div class="field">
+    <%= f.label :difficulty %><br>
+    <%= f.text_field :difficulty %>
+  </div>
+  <div class="field">
+    <%= f.label :quality %><br>
+    <%= f.text_area :quality %>
+  </div>
+  <div class="field">
+    <%= f.label :season %><br>
+    <%= f.text_field :season %>
+  </div>
+  <div class="field">
+    <%= f.label :general_information %><br>
+    <%= f.text_area :general_information %>
+  </div>
+  <div class="field">
+    <%= f.label :safety_information %><br>
+    <%= f.text_area :safety_information %>
+  </div>
+  <div class="field">
+    <%= f.label :alerts %><br>
+    <%= f.text_area :alerts %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
