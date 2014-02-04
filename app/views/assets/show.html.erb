@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Asset type:</strong>
+  <%= @asset.asset_type_id %>
+</p>
+
+<p>
+  <strong>Profile:</strong>
+  <%= @asset.profile_id %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @asset.region_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @asset.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @asset.description %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @asset.lat %>
+</p>
+
+<p>
+  <strong>Lng:</strong>
+  <%= @asset.lng %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @asset.created_by %>
+</p>
+
+<p>
+  <strong>Updated by:</strong>
+  <%= @asset.updated_by %>
+</p>
+
+<%= link_to 'Edit', edit_asset_path(@asset) %> |
+<%= link_to 'Back', assets_path %>
