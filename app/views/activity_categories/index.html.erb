@@ -1,0 +1,31 @@
+<h1>Listing activity_categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Asset type</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @activity_categories.each do |activity_category| %>
+      <tr>
+        <td><%= activity_category.asset_type_id %></td>
+        <td><%= activity_category.name %></td>
+        <td><%= activity_category.description %></td>
+        <td><%= link_to 'Show', activity_category %></td>
+        <td><%= link_to 'Edit', edit_activity_category_path(activity_category) %></td>
+        <td><%= link_to 'Destroy', activity_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Activity category', new_activity_category_path %>

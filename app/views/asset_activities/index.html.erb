@@ -1,0 +1,43 @@
+<h1>Listing asset_activities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Asset</th>
+      <th>Activity type</th>
+      <th>Duration</th>
+      <th>Difficulty</th>
+      <th>Quality</th>
+      <th>Season</th>
+      <th>General information</th>
+      <th>Safety information</th>
+      <th>Alerts</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @asset_activities.each do |asset_activity| %>
+      <tr>
+        <td><%= asset_activity.asset_id %></td>
+        <td><%= asset_activity.activity_type_id %></td>
+        <td><%= asset_activity.duration %></td>
+        <td><%= asset_activity.difficulty %></td>
+        <td><%= asset_activity.quality %></td>
+        <td><%= asset_activity.season %></td>
+        <td><%= asset_activity.general_information %></td>
+        <td><%= asset_activity.safety_information %></td>
+        <td><%= asset_activity.alerts %></td>
+        <td><%= link_to 'Show', asset_activity %></td>
+        <td><%= link_to 'Edit', edit_asset_activity_path(asset_activity) %></td>
+        <td><%= link_to 'Destroy', asset_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Asset activity', new_asset_activity_path %>
