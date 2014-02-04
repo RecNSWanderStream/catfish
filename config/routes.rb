@@ -1,4 +1,6 @@
 WanderStream::Application.routes.draw do
+  get "search/index"
+  get "search/result"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
