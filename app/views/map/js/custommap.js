@@ -8,6 +8,9 @@
     });
   }
 
+//var points=$.load(http://0.0.0.0:3000/assets.json);
+//var markerpoints=points;
+
 var markerpoints=[44.64850, -63.57566, 44.85704, -63.58930, 44.50392, -63.78921, 44.343523, -65.193912];
 
 
