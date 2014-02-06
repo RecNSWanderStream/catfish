@@ -3,5 +3,6 @@ class SearchController < ApplicationController
   end
 
   def result
+    @results = Asset.all
   end
 end

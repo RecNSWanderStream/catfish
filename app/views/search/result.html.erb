@@ -1,2 +1,38 @@
-<h1>Search#result</h1>
-<p>Find me in app/views/search/result.html.erb</p>
+<h1>Listing assets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Asset type</th>
+      <th>Profile</th>
+      <th>Region</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Lat</th>
+      <th>Lng</th>
+      <th>Created by</th>
+      <th>Updated by</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.asset_type_id %></td>
+        <td><%= result.profile_id %></td>
+        <td><%= result.region_id %></td>
+        <td><%= result.name %></td>
+        <td><%= result.description %></td>
+        <td><%= result.lat %></td>
+        <td><%= result.lng %></td>
+        <td><%= result.created_by %></td>
+        <td><%= result.updated_by %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
