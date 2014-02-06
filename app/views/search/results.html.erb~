@@ -1,0 +1,43 @@
+<h1>Listing assets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Asset type</th>
+      <th>Profile</th>
+      <th>Region</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Lat</th>
+      <th>Lng</th>
+      <th>Created by</th>
+      <th>Updated by</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @result.each do |asset| %>
+      <tr>
+        <td><%= asset.asset_type_id %></td>
+        <td><%= asset.profile_id %></td>
+        <td><%= asset.region_id %></td>
+        <td><%= asset.name %></td>
+        <td><%= asset.description %></td>
+        <td><%= asset.lat %></td>
+        <td><%= asset.lng %></td>
+        <td><%= asset.created_by %></td>
+        <td><%= asset.updated_by %></td>
+        <td><%= link_to 'Show', asset %></td>
+        <td><%= link_to 'Edit', edit_asset_path(asset) %></td>
+        <td><%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Asset', new_asset_path %>
