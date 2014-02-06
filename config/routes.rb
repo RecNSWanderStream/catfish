@@ -1,4 +1,5 @@
 WanderStream::Application.routes.draw do
+  get "search/index"
   resources :activity_categories
 
   resources :asset_activities
