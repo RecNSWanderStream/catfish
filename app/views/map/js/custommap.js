@@ -8,7 +8,7 @@
     });
   }
 
-//var points=$.load(http://0.0.0.0:3000/assets.json);
+//var points=$.load('http://0.0.0.0:3000/assets.json');
 //var markerpoints=points;
 
 var markerpoints=[44.64850, -63.57566, 44.85704, -63.58930, 44.50392, -63.78921, 44.343523, -65.193912];
@@ -31,6 +31,7 @@ for(var i=0; i<markerpoints.length; i+=2){
 
 
 	var markerLatlng= new google.maps.LatLng(markerpoints[i], markerpoints[i+1]);
+  var clicked=false;
 
 	var marker = new google.maps.Marker({
       position: markerLatlng,
@@ -45,21 +46,29 @@ for(var i=0; i<markerpoints.length; i+=2){
       '</div>'+
       '</div>';
 
-
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+  var infowindow = new google.maps.InfoWindow();
+    google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
       return function(){
-        var infowindow = new google.maps.InfoWindow({
-      content: contentString});
-      
-      infowindow.open(map,marker);
+        infowindow.setContent(contentString);
+        infowindow.open(map,marker);
       }
+
   })(marker, i));
-}
-
-
-}
-
   
+  google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
+      return function(){
+        infowindow.close();}}));
+
+
+}
+
+
+
+}
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+
