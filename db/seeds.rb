@@ -21,16 +21,16 @@ activity_categories = ActivityCategory.create([{name: 'hiking', description: 'Ac
 
 
 types = { 
-  "Hiking"         => [
+  "hiking"         => [
                        {activity_category_id: -1, name: "trail running", description: "Running on the trail"},
                        {activity_category_id: -1, name: "snow shoeing", description: "Walking the trail with snowshoes"},
                        {activity_category_id: -1, name: "walking", description: "Walking the trail"},
                       ],
-  "Boating"       => [
+  "boating"       => [
                       {activity_category_id: -1, name: "canoeing", description: "Boating with a canoe"},
                       {activity_category_id: -1, name: "kayaking", description: "Boating with a kayak"},
                      ],
-  "Winter sports" => [
+  "winter sports" => [
                       {activity_category_id: -1, name: "ice skating", description: "Skating on ice"}
                      ]
 }

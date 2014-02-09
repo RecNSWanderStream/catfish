@@ -2,6 +2,7 @@ WanderStream::Application.routes.draw do
 
   get "map/index"
   get "search/index"
+  get "search/result"
 
   resources :activity_categories
 
