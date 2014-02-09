@@ -48,13 +48,13 @@ test:
   encoding: unicode
   database: wander_stream_test
   pool: 5
-  username: postgres
-  password: Jennifer1
+  username: railsdev
+  password: 
 
 production:
   adapter: postgresql
   encoding: unicode
   database: wander_stream_production
   pool: 5
-  username: postgres
-  password: Jennifer1
+  username: railsdev
+  password: 
