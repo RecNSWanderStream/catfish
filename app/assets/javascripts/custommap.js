@@ -8,10 +8,21 @@
     });
   }
 
-//var points=$.load('http://0.0.0.0:3000/assets.json');
-//var markerpoints=points;
 
-var markerpoints=[44.64850, -63.57566, 44.85704, -63.58930, 44.50392, -63.78921, 44.343523, -65.193912];
+
+
+
+var markerpoints= [];
+$(document).ready(function(){
+
+
+$('table > tbody > tr').each(function(){
+  var name= $('.name', this).text();
+  var lat= $('.lat', this).text();
+  var lng= $('.long', this).text();
+  markerpoints.push([name, lat, lng]);
+});
+});
 
 
 function initialize() {
@@ -27,29 +38,22 @@ var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions)
 
  
 
-for(var i=0; i<markerpoints.length; i+=2){
+for(var i=0; i<markerpoints.length; i++){
 
 
-	var markerLatlng= new google.maps.LatLng(markerpoints[i], markerpoints[i+1]);
-  var clicked=false;
+	var markerLatlng= new google.maps.LatLng(markerpoints[i][1], markerpoints[i][2]);
 
 	var marker = new google.maps.Marker({
       position: markerLatlng,
-      map: map,
-      title:'Nova Scotia '+markerLatlng
+      map: map
   	});
   
-  var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<p>'+markerLatlng+'</p>'+
-      '</div>'+
-      '</div>';
+
 
   var infowindow = new google.maps.InfoWindow();
     google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
       return function(){
-        infowindow.setContent(contentString);
+        infowindow.setContent(markerpoints[i][0]);
         infowindow.open(map,marker);
       }
 
