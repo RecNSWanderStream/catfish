@@ -1,6 +1,6 @@
 <div class="results">
 <h1>Listing assets</h1>
-
+<% if @results.any? %>
 <table>
   <thead>
     <tr>
@@ -21,6 +21,7 @@
 
   <tbody>
     <% @results.each do |result| %>
+       
       <tr>
         <td class="asset_type_id"><%= result.asset_type_id %></td>
         <td class="profile_id"><%= result.profile_id %></td>
@@ -32,9 +33,13 @@
         <td class="created_by"><%= result.created_by %></td>
         <td class="updated_by"><%= result.updated_by %></td>
       </tr>
-    <% end %>
+      <% end %>
+   
   </tbody>
 </table>
-
+<% else %>
+         <h3><%= "Sorry, your search didn't return a result" %></h3>
+ <% end %>
 <br>
 </div>
+
