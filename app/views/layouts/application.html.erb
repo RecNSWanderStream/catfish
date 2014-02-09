@@ -16,7 +16,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">   <img class="img-responsive" src="assets/img/logo-wanderstream.png" alt="">  </a>
+          <a class="navbar-brand" href="#">
+	    <%= image_tag "logo-wanderstream.png", :class => "img-responsive" %>
+	  </a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -57,6 +59,333 @@
 
 
 <%= yield %>
+
+
+
+<! ========== ABOUT =======>    
+<section id="about-intro" class="">
+  <div class="container">
+    
+    
+    <div class="row mt">
+      <div class="col-lg-12 centered">
+        <h4>WanderStream</h4>
+        <p>A Wiki of Trails and Outdoor Spaces Across Nova Scotia Built and Maintained By and For The Community.</p>
+        <button class="btn btn-orange" type="button">SIGN UP <i class="fa fa-chevron-right"></i> </button>
+      </div>
+      
+      
+      
+    </div><!-- /row -->
+    
+  </div><!-- /containter -->
+</section>
+
+<! ========== ACTIVITY TILES =======>    
+
+<section id="activity-tiles" class="">
+  <div class="container">
+    <div class="row mt centered">
+      
+      <h2>Popular Activities</h2>
+      
+      <div class="col-lg-4 centered ">
+        <a href="#" class="hiking-bg-cb">
+          <h2>Hiking</h2>
+          <p><i class="fa fa-map-marker"></i> Skyline Trail, Cape Breton</p>
+        </a> 
+      </div><!-- /col --> 
+      
+      
+      <div class="col-lg-4 centered">
+        <a href="#" class="kayaking-bg-lunenburg">
+          <h2>Kayaking</h2>
+          <p><i class="fa fa-map-marker"></i> Lunenburg, South Shore</p>
+        </a>
+      </div><!-- /col -->
+      
+      <div class="col-lg-4 centered">
+        <a href="#" class="surfing-bg-lawrencetown">
+          <h2>Surfing</h2>
+          <p><i class="fa fa-map-marker"></i> Lawrencetown Beach</p>
+        </a>
+      </div><!-- /col -->
+      
+      
+      <div class="col-lg-4 centered">
+        <a href="#" class="kayaking-bg-lunenburg">
+          <h2>Kayaking</h2>
+          <p><i class="fa fa-map-marker"></i> Lunenburg, South Shore</p>
+        </a>
+      </div><!-- /col -->
+      
+      <div class="col-lg-4 centered">
+        <a href="#" class="surfing-bg-lawrencetown"> 
+          <h2>Surfing</h2>
+          <p><i class="fa fa-map-marker"></i> Lawrencetown Beach</p>
+        </a>
+      </div><!-- /col -->
+      
+      <div class="col-lg-4 centered">
+        <a href="#" class="hiking-bg-cb"> 
+          <h2>Hiking</h2>
+          <p><i class="fa fa-map-marker"></i> Skyline Trail, Cape Breton</p>
+        </a>
+      </div><!-- /col -->
+      
+      
+      
+    </div><!-- /row -->
+  </div><!-- /container -->
+</section>
+
+<! ========== ABOUT - TABS =======>    
+
+
+<section id="about-tabs"  class="">
+  
+  <div class="container">
+    <div class="row mt centered ">
+      <div class="col-lg-4 col-lg-offset-4">
+	<h3>About WanderStream</h3>
+	
+      </div><!-- /col-lg-4 -->
+    </div><!-- /row -->
+    
+    <div class="row">
+      
+      <div class="col-lg-3 col-lg-offset-1">
+	<div class="tabbable">
+	  <ul class="nav nav-stacked" id="myTab">
+	    <li class="active"><a href="#tab1">
+		<h4><i class="fa fa-angle-right"></i> Community</h4></a></li>
+	    
+	    <li class=""><a href="#tab2">
+		<h4><i class="fa fa-angle-right"></i> Events</h4></a></li>
+	    
+	    <li class=""><a href="#tab3">
+		<h4><i class="fa fa-angle-right"></i> Stories</h4></a></li>
+	    
+	  </ul> <!-- /tabs -->
+	</div><!-- /tabbable -->
+      </div><!--/col-lg-3 -->
+      
+      <div class="col-lg-7">
+	<div class="tab-content">
+	  <div class="tab-pane active" id="tab1">
+	    <div class="tab-mod">
+	      <p>Join the Outdoor Community here in Nova Scotia.  If you are a visitor, a recent move or someone that has lived here your whole life you will find something on WanderStream for you.  Nova Scotia has a wealth of natural resources and more importantly vibrant community of volunteers and professionals that want to see you out in nature enjoying all of what this Province has to offer.  Sign Up today and get tapped in.</p>
+              <button class="btn btn-orange" type="button">GET STARTED <i class="fa fa-chevron-right"></i> </button>
+	    </div><!-- /tab-mod -->
+	  </div><!--/tab1 -->
+	  
+	  <div class="tab-pane" id="tab2">
+	    <div class="tab-mod">
+	      <p>The rich diversity of natural resources that Nova Scotia has to offer lends itself to be a perfect spot for numerious outdoor events that take place across the Province.  These events range from community driven festivals, walks and games to professional sporting events.</p>
+              <p>WanderStream builds community by encouraging members to host events and partner up to promote and leverage our great assets and genuine Nova Scotian hospitality.</p>
+              <button class="btn btn-orange" type="button">SEE EVENTS <i class="fa fa-chevron-right"></i> </button>
+	    </div><!-- /tab-mod -->
+	  </div><!--/tab1 -->
+	  
+	  <div class="tab-pane" id="tab3">
+	    <div class="tab-mod">
+	      <p>Stories are the way we give meaning to our experiences. They connect us together and connect to the places that together make memories that last a life time</p>
+              <p>Read stories and share your own.  See all of the stories through out time on a timeline.  Contribute to building the History of what we cherish and love, the experiemces we ahve, who we have them with and where we have them.</p>
+              <button class="btn btn-orange" type="button">READ STORIES<i class="fa fa-chevron-right"></i> </button>
+	    </div><!-- /tab-mod -->
+	  </div><!--/tab1 -->
+	</div><!--/Tab-content
+		  </div><!-/col-lg-9-->
+	
+      </div><!--/row -->
+    </div><!-- /container -->
+</section><!-- /white -->
+
+<! ========== CALL TO ACTION 2 ============>    
+<div id="cta01">
+  <div class="container">
+    <div class="row">
+    			<div class="col-lg-10 col-lg-offset-1">
+    			  <h2>Where's your favourite trail in Nova Scotia?</h2>
+    			  <button type="button" class="btn btn-green btn-lg">Add it to the directory <i class="fa fa-chevron-right"></i>
+</button></button>
+</div>
+</div><!-- /row -->
+</div><!-- /container -->
+</div><!--/cta02 -->
+
+<! ========== SPONSORS & SUPPORTERS ==========>    
+<section id="sponsors-logo">
+  <div class="container">
+    <div class="row centered ">
+      <div class="col-lg-4 col-lg-offset-4">
+	<h3>Sponsors &amp; Partners</h3>
+	
+      </div><!-- /col-lg-4 -->
+    </div><!-- /row -->
+    
+    <div class="row centered logos">
+      
+      <div class="col-lg-6">
+	
+        <div class="col-lg-3 ">
+	  <%= image_tag "logo-redballoon.jpg", :class => "img-responsive" %>
+        </div><!-- /col -->
+	
+        <div class="col-lg-3 ">
+	   <%= image_tag "logo-volta.png", :class => "img-responsive" %>
+        </div><!-- /col -->
+	
+        <div class="col-lg-3 ">
+	  <%= image_tag "logo-nscc.png", :class => "img-responsive" %>
+        </div><!-- /col -->
+	
+        <div class="col-lg-3">
+	  <%= image_tag "logo-thehub.jpg", :class => "img-responsive" %>
+        </div><!-- /col -->
+      </div><!-- /col -->
+      
+      
+      <div class="col-lg-6 ">
+	<div class="col-lg-3 ">
+	  <%= image_tag "logo-recreationns.jpg", :class => "img-responsive" %>
+        </div><!-- /col -->
+	
+        <div class="col-lg-3 ">
+	  <%= image_tag "logo-mec.jpg", :class => "img-responsive" %>
+        </div><!-- /col -->
+	
+        <div class="col-lg-3 ">
+	  <%= image_tag "logo-ns.png", :class => "img-responsive" %>
+        </div><!-- /col -->
+	
+        <div class="col-lg-3 ">
+	  <%= image_tag "logo-sage.jpg", :class => "img-responsive" %>
+        </div><!-- /col -->
+
+      </div><!-- /col -->
+      
+      
+    </div><!-- /row -->
+    
+  </div><!-- /container -->
+</section>
+
+<! ========== CALL TO ACTION BAR ==========>    
+<div id="cta-bar">
+  <div class="container">
+    <div class="row centered">
+      <a href="#"><h4>Join WanderStream today and help build Nova Scotia's primary resource for finding trails and activities outdoors. </h4></a>
+    </div>
+  </div><!-- /container -->
+</div><!-- /cta-bar -->
+
+<! ========== FOOTER ====================>    
+
+<div id="footer">
+  <div class="container">
+    <div class="row">
+      <!-- ADDRESS -->
+      <div class="col-lg-4">
+	<h4>Recreation Nova Scotia</h4>
+	<p>
+	  5516 Spring Garden Rd. Suite 309<br/>
+	  Halifax, Nova Scotia<br/>
+	  B3J 1G6<br/>
+	</p>
+	<p>
+	  <i class="fa fa-phone"></i> (902) 425 1128<br/>
+	  <i class="fa fa-envelope-o"></i> info@recreation.ns.ca
+	</p>
+      </div><!--/col-lg-4 -->
+      
+      <!-- TWEETS -->
+      <div class="col-lg-4">
+	<h4>Recent Tweets</h4>
+	<div id="showtweets"></div>
+	<script>
+	  twitterFetcher.fetch('258157205101088768', 'showtweets', 2, true, false, false, '', false, handleTweets, false);
+	  
+	  function handleTweets(tweets){
+	  var x = tweets.length;
+	  var n = 0;
+	  var element = document.getElementById('showtweets');
+	  var html = '<ul>';
+	    while(n < x) {
+		      html += '<li>' + tweets[n] + '</li>';
+		      n++;
+		      }
+		      html += '</ul>';
+		      element.innerHTML = html;
+		      }					
+		      </script>
+	<p>Follow us <b>@wanderstream</b></p>
+      </div><!-- /col-lg-4 -->
+      
+      <!-- LATEST POSTS -->
+      <div class="col-lg-4">
+	<h4><a href="#"> About Us</a></h4>
+	<p>
+	  <i class="fa fa-angle-right"></i><a href="#"> Partners</a><br/>
+	  <i class="fa fa-angle-right"></i> <a href="#"> Sponsors</a><br/>
+          <i class="fa fa-angle-right"></i> <a href="#"> Board</a><br/>
+          <i><!-- AddThis Follow BEGIN -->
+	    <p>Follow</p>
+	    <div class="addthis_toolbox addthis_32x32_style addthis_default_style">
+	      <a class="addthis_button_facebook_follow" addthis:userid="wanderstream"></a>
+	      <a class="addthis_button_twitter_follow" addthis:userid="wanderstream"></a>
+	      <a class="addthis_button_youtube_follow" addthis:userid="wanderstream"></a>
+	      <a class="addthis_button_instagram_follow" addthis:userid="wanderstream"></a>
+	    </div>
+	    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=timbereslwebsite"></script>
+	    <!-- AddThis Follow END -->
+	  </i>
+	</p>
+      </div><!-- /col-lg-4 -->
+      
+      
+      
+    </div><!--/row -->
+  </div><!-- /container -->
+</div><!-- /footer -->
+
+<!-- AddThis Button BEGIN -->
+<!-- <div class="addthis_toolbox addthis_floating_style addthis_32x32_style" style="left:50px;top:50px;">
+     <a class="addthis_button_preferred_1"></a>
+     <a class="addthis_button_preferred_2"></a>
+     <a class="addthis_button_preferred_3"></a>
+     <a class="addthis_button_preferred_4"></a>
+     <a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=timbereslwebsite"></script> -->
+<!-- AddThis Button END -->
+
+<!-- Bootstrap core JavaScript
+     ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/retina.js"></script>
+<script>
+  $(window).scroll(function() {
+  $('.si').each(function(){
+  var imagePos = $(this).offset().top;
+  
+  var topOfWindow = $(window).scrollTop();
+  if (imagePos < topOfWindow+400) {
+		 $(this).addClass("slideUp");
+		 }
+		 });
+		 });
+		 </script>    
+<script>
+  $('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+  })
+</script>  
+
+
 
 </body>
 </html>
