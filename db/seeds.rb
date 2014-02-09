@@ -6,30 +6,33 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-asset_types = AssetType.create([{name: 'Venue' }, 
-                                {name: 'Place'}, 
-                                {name: 'Trail'}
+asset_types = AssetType.create([{name: 'venue' }, 
+                                {name: 'place'}, 
+                                {name: 'trail'}
                                 ])
 
-trail = AssetType.find_by name: "Trail"
-place = AssetType.find_by name: "Place"
+trail = AssetType.find_by name: "trail"
+place = AssetType.find_by name: "place"
 
-activity_categories = ActivityCategory.create([{name: 'Hiking', description: 'Activities on trails', asset_type_id: trail.id},
-                                               {name: 'Boating', description: 'Activities using boats', asset_type_id: trail.id},
-                                               {name: 'Winter sports', description: 'Winter outdoor activities', asset_type_id: place.id},
+activity_categories = ActivityCategory.create([{name: 'hiking', description: 'Activities on trails', asset_type_id: trail.id},
+                                               {name: 'boating', description: 'Activities using boats', asset_type_id: trail.id},
+                                               {name: 'winter sports', description: 'Winter outdoor activities', asset_type_id: place.id},
                                               ])
 
 
-types = { "Hiking" => [
-                       {activity_category_id: -1, name: "Trail running", description: "Running on the trail"},
-                       {activity_category_id: -1, name: "Snow shoeing", description: "Walking the trail with snowshoes"},
-                       {activity_category_id: -1, name: "Walking", description: "Walking the trail"},
+types = { 
+  "Hiking"         => [
+                       {activity_category_id: -1, name: "trail running", description: "Running on the trail"},
+                       {activity_category_id: -1, name: "snow shoeing", description: "Walking the trail with snowshoes"},
+                       {activity_category_id: -1, name: "walking", description: "Walking the trail"},
                       ],
-          "Boating" => [
-                        {activity_category_id: -1, name: "Canoeing", description: "Boating with a canoe"},
-                        {activity_category_id: -1, name: "Kayaking", description: "Boating with a kayak"},
-                       ],
-          "Winter sports" => [{activity_category_id: -1, name: "Ice skating", description: "Skating on ice"}]
+  "Boating"       => [
+                      {activity_category_id: -1, name: "canoeing", description: "Boating with a canoe"},
+                      {activity_category_id: -1, name: "kayaking", description: "Boating with a kayak"},
+                     ],
+  "Winter sports" => [
+                      {activity_category_id: -1, name: "ice skating", description: "Skating on ice"}
+                     ]
 }
 
 activity_categories.each do |category|
@@ -39,12 +42,12 @@ activity_categories.each do |category|
   end
 end
 
-point_pleasant_and_bluff_type = AssetType.find_by name: "Trail"
-the_oval_type = AssetType.find_by name: "Place"
+point_pleasant_and_bluff_type = AssetType.find_by name: "trail"
+the_oval_type = AssetType.find_by name: "place"
 
-walking = ActivityType.find_by name: "Walking"
-trail_running = ActivityType.find_by name: "Trail running"
-ice_skating = ActivityType.find_by name: "Ice skating"
+walking = ActivityType.find_by name: "walking"
+trail_running = ActivityType.find_by name: "trail running"
+ice_skating = ActivityType.find_by name: "ice skating"
 
 point_pleasant = Asset.create({asset_type_id: point_pleasant_and_bluff_type.id,
                           profile_id: 0,
