@@ -1,4 +1,3 @@
 class ActivityType < ActiveRecord::Base
-  belongs_to :asset_activity
-  belongs_to :activity_category
+  has_many :assets, :through => :asset_activities
 end

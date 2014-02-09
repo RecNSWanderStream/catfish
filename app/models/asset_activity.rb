@@ -1,3 +1,5 @@
 class AssetActivity < ActiveRecord::Base
-  has_one :activity_type
+  belongs_to :activity_type
+  belongs_to :asset
+  belongs_to :acttivity_category
 end
