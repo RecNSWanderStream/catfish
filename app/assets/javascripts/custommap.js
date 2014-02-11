@@ -35,9 +35,9 @@ $('table > tbody > tr').each(function(){
 
 //Function initializing the map
 function initialize() {
-  var myLatlng = new google.maps.LatLng(45.000, -63.000);
+  var myLatlng = new google.maps.LatLng(45.500, -63.000);
   var mapOptions = {
-    zoom: 8,
+    zoom: 7,
     center: myLatlng
   };
 
