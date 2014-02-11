@@ -28,7 +28,7 @@ $(document).ready(function(){
 $('table > tbody > tr').each(function(){
   var name= $('.name', this).text();
   var lat= $('.lat', this).text();
-  var lng= $('.long', this).text();
+  var lng= $('.lng', this).text();
   markerpoints.push([name, lat, lng]);
 });
 });
