@@ -5,7 +5,7 @@ class Asset < ActiveRecord::Base
 
   #method to querey the database, put code inside class, it works better
   def self.search_by_activity_type(activity)
-    self.joins(:asset_activities).joins(:activity_types).joins(:activity_categories).where("activity_types.name = '#{activity}' OR assets.name LIKE '%#{activity}%'")
+    self.joins(:asset_activities).joins(:activity_types).joins(:activity_categories).where("activity_types.name LIKE '%#{activity}%' OR assets.name LIKE '%#{activity}%' OR activity_categories.name LIKE '%#{activity}%'")
   end
   
 end
