@@ -1,6 +1,6 @@
 <div class="results">
 <h1>Listing assets</h1>
-
+<% if @results.any? %>
 <table>
   <thead>
     <tr>
@@ -21,20 +21,27 @@
 
   <tbody>
     <% @results.each do |result| %>
-      <tr>
-        <td name="asset_type_id"><%= result.asset_type_id %></td>
-        <td name="profile_id"><%= result.profile_id %></td>
-        <td name="region_id"><%= result.region_id %></td>
-        <td name="name"><%= result.name %></td>
-        <td name="description"><%= result.description %></td>
-        <td name="lat"><%= result.lat %></td>
-        <td name="lng"><%= result.lng %></td>
-        <td name="created_by"><%= result.created_by %></td>
-        <td name="updated_by"><%= result.updated_by %></td>
+       
+      <tr id='<%= result.id %>'>
+        <td class="asset_type_id"><%= result.asset_type_id %></td>
+        <td class="profile_id"><%= result.profile_id %></td>
+        <td class="region_id"><%= result.region_id %></td>
+        <td class="name"><%= result.name %></td>
+        <td class="description"><%= result.description %></td>
+        <td class="lat"><%= result.lat %></td>
+        <td class="lng"><%= result.lng %></td>
+        <td class="created_by"><%= result.created_by %></td>
+        <td class="updated_by"><%= result.updated_by %></td>
       </tr>
-    <% end %>
+      <% end %>
+   
   </tbody>
 </table>
-
+<% else %>
+         <h3><%= "Sorry, your search didn't return a result" %></h3>
+ <% end %>
 <br>
 </div>
+
+<div id="map-canvas"></div>
+
