@@ -6,8 +6,8 @@ class CreateAssets < ActiveRecord::Migration
       t.integer :region_id
       t.string :name
       t.text :description
-      t.decimal :lat, :precision => 9, :precision => 6
-      t.decimal :lng, :precision => 9, :precision => 6
+      t.decimal :lat, :precision => 9, :scale => 6
+      t.decimal :lng, :precision => 9, :scale => 6
       t.integer :created_by
       t.integer :updated_by
 

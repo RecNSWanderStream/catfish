@@ -43,6 +43,7 @@ activity_categories.each do |category|
 end
 
 point_pleasant_and_bluff_type = AssetType.find_by name: "trail"
+kejimkujik_type = AssetType.find_by name: "trail"
 the_oval_type = AssetType.find_by name: "place"
 
 walking = ActivityType.find_by name: "walking"
@@ -63,6 +64,19 @@ point_pleasant = Asset.create({asset_type_id: point_pleasant_and_bluff_type.id,
 
 point_pleasant.asset_activities.create({activity_type_id: walking.id, duration: 3600, difficulty: "easy", quality: "excellent", season: "all"})
 
+kejimkujik = Asset.create({asset_type_id: kejimkujik_type.id,
+                          profile_id: 0,
+                          region_id: 0,
+                          name: "Kejimkujik",
+                          description: "A nice camping and hiking area.",
+                          lat: '44.343523',
+                          lng: '-65.193912',
+                          created_by: 0,
+                          updated_by: 0
+                        })
+
+kejimkujik.asset_activities.create({activity_type_id: walking.id, duration: 4500, difficulty: "easy", quality: "great", season: "summer"})
+
 the_oval = Asset.create({asset_type_id: the_oval_type.id,
                           profile_id: 0,
                           region_id: 0,
@@ -76,6 +90,20 @@ the_oval = Asset.create({asset_type_id: the_oval_type.id,
 
 
 the_oval.asset_activities.create({activity_type_id: ice_skating.id, duration: 7200, difficulty: "medium", quality: "excellent", season: "winter"})
+
+the_halifax_forum = Asset.create({asset_type_id: the_oval.id,
+                          profile_id: 0,
+                          region_id: 0,
+                          name: "Halifax Forum",
+                          description: "The Halifax Forum is a place to skate.",
+                          lat: '44.655031',
+                          lng: '-63.604119',
+                          created_by: 0,
+                          updated_by: 0
+                        })
+the_halifax_forum.asset_activities.create({activity_type_id: ice_skating.id, duration: 7200, difficulty: "medium", quality: "excellent", season: "winter"})
+
+
 
 bluff_wilderness = Asset.create({asset_type_id: point_pleasant_and_bluff_type.id,
                           profile_id: 0,
