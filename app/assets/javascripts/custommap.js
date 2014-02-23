@@ -27,9 +27,9 @@ $(document).ready(function(){
 
 
 $('table > tbody > tr').each(function(){
-  var name= $('.name', this).text();
-  var lat= $('.lat', this).text();
-  var lng= $('.lng', this).text();
+  var name= $(this).attr('data-name')
+  var lat= $(this).attr('data-lat');
+  var lng= $(this).attr('data-lng');
   var id= $(this).attr('id');
   markerpoints.push([name, lat, lng, id]);
 });
@@ -69,11 +69,17 @@ for(var i=0; i<markerpoints.length; i++){
   var infowindow = new google.maps.InfoWindow();
     google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
       return function(){
-        infowindow.setContent(markerpoints[i][0]);
-        infowindow.open(map,marker);
+        infowindow.setContent('<a>'+markerpoints[i][0]+'</a>');
+        infowindow.open(map, marker);
         $('#' + (markerpoints[i][3])).mouseover(function(){
-    google.maps.event.trigger(marker, 'mouseover');});
+       google.maps.event.trigger(marker, 'mouseover');});
       }
+
+    })(marker, i));
+
+    google.maps.event.addListener(marker, (function(marker, i) {
+        $('#' + (markerpoints[i][3])).mouseover(function(){
+       google.maps.event.trigger(marker, 'mouseover');});
 
     })(marker, i));
 
@@ -84,11 +90,8 @@ for(var i=0; i<markerpoints.length; i++){
   google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
       return function(){
         infowindow.close();}}));
-
-
   
 }
-
 
 
 }
