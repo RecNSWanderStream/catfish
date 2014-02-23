@@ -1,4 +1,9 @@
+
+
+
 <%= form_for(@asset) do |f| %>
+
+
   <% if @asset.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
@@ -11,18 +16,18 @@
     </div>
   <% end %>
 
+
   <div class="field">
     <%= f.label :asset_type_id %><br>
-    <%= f.number_field :asset_type_id %>
+    <%= f.collection_select :name, @asset_types,:id,:name %>
   </div>
-  <div class="field">
-    <%= f.label :profile_id %><br>
-    <%= f.number_field :profile_id %>
-  </div>
+<!--
+   comment out region id for now
   <div class="field">
     <%= f.label :region_id %><br>
     <%= f.number_field :region_id %>
   </div>
+  -->
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -39,14 +44,7 @@
     <%= f.label :lng %><br>
     <%= f.text_field :lng %>
   </div>
-  <div class="field">
-    <%= f.label :created_by %><br>
-    <%= f.number_field :created_by %>
-  </div>
-  <div class="field">
-    <%= f.label :updated_by %><br>
-    <%= f.number_field :updated_by %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
