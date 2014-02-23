@@ -43,14 +43,25 @@
 
               </ul>
           </li>
+	  
+          
+	    <% if user_signed_in? %>
+	    <li class="dropdown">
+	      <a href="#">Signed in as <%= current_user.email %></a>
+	    </li>
+	    <li class="dropdown">
+	      <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+	    </li>
+	    <% else %>
+	    <li class="dropdown">
+	      <%= link_to 'Sign up', new_user_registration_path %>
+	    </li>
+	    <li class="dropdown">
+	      <%= link_to 'Sign in', new_user_session_path %>
+	    </li>
+	    <% end %>
+          
 
-          <li class="dropdown">
-              <a href="#" class="">Sign up</a>
-          </li>
-
-          <li class="dropdown">
-              <a href="#" class="">Login </a>
-          </li>
 
           </ul><!--/.nav-list -->
         </div><!--/.nav-collapse -->
@@ -60,7 +71,8 @@
 
 <%= yield %>
 
-
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 <! ========== ABOUT =======>    
 <section id="about-intro" class="">

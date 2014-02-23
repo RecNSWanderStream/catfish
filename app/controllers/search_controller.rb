@@ -4,6 +4,6 @@ class SearchController < ApplicationController
 
   #inital method to querey db by activity type
   def result
-    @results = Asset.search_by_activity_type(params[:q])
+    @results = Asset.search_by_activity_type(params[:q].downcase)
   end
 end
