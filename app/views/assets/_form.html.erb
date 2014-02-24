@@ -19,15 +19,17 @@
 
   <div class="field">
     <%= f.label :asset_type_id %><br>
-    <%= f.collection_select :name, @asset_types,:id,:name %>
+    <%= f.collection_select :asset_type_id, @asset_types, :id, :name %>
   </div>
-<!--
+  
+  <!--
    comment out region id for now
   <div class="field">
     <%= f.label :region_id %><br>
     <%= f.number_field :region_id %>
   </div>
   -->
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>

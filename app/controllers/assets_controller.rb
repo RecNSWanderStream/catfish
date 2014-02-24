@@ -12,6 +12,8 @@ class AssetsController < ApplicationController
   # GET /assets/1
   # GET /assets/1.json
   def show
+    @asset_activity = AssetActivity.new
+    @activity_types = ActivityType.all
   end
 
   # GET /assets/new

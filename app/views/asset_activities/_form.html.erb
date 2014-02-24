@@ -10,14 +10,15 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :asset_id %><br>
-    <%= f.number_field :asset_id %>
-  </div>
+<!--
   <div class="field">
     <%= f.label :activity_type_id %><br>
     <%= f.number_field :activity_type_id %>
+  </div>
+-->
+ <div class="field">
+    <%= f.label :activity_type_id %><br>
+    <%= f.collection_select :activity_type_id, @activity_types, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :duration %><br>
@@ -51,3 +52,5 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+#render :assets 
