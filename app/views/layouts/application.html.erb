@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>WanderStream</title>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRgKhf1Z6SDwvyVXwwVkmd_mXzTBeTJTc&sensor=true"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -71,8 +73,10 @@
 
 <%= yield %>
 
+
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
+
 
 <! ========== ABOUT =======>    
 <section id="about-intro" class="">

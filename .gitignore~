@@ -14,6 +14,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+<<<<<<< HEAD
+=======
 
 #ignore database
 /config/database.yml
+>>>>>>> master

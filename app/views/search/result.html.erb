@@ -22,7 +22,7 @@
   <tbody>
     <% @results.each do |result| %>
        
-      <tr>
+      <tr id='<%= result.id %>'>
         <td class="asset_type_id"><%= result.asset_type_id %></td>
         <td class="profile_id"><%= result.profile_id %></td>
         <td class="region_id"><%= result.region_id %></td>
@@ -42,4 +42,6 @@
  <% end %>
 <br>
 </div>
+
+<div id="map-canvas"></div>
 
