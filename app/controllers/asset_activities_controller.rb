@@ -24,9 +24,12 @@ class AssetActivitiesController < ApplicationController
   # POST /asset_activities
   # POST /asset_activities.json
   def create
+    
+    puts asset_activity_params   
+    
     @asset_activity = AssetActivity.new(asset_activity_params)
-
     respond_to do |format|
+      
       if @asset_activity.save
         format.html { redirect_to @asset_activity, notice: 'Asset activity was successfully created.' }
         format.json { render action: 'show', status: :created, location: @asset_activity }
