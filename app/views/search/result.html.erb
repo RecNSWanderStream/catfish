@@ -22,7 +22,7 @@
   <tbody>
     <% @results.each do |result| %>
        
-      <tr id='<%= result.id %>'>
+      <tr id='<%= result.id %>' data-lat='<%= result.lat %>' data-lng='<%= result.lng %>' data-name='<%= result.name %>'>
         <td class="asset_type_id"><%= result.asset_type_id %></td>
         <td class="profile_id"><%= result.profile_id %></td>
         <td class="region_id"><%= result.region_id %></td>
