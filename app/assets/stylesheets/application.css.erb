@@ -1,17 +1,3 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree .
- */
-
 /* FONTS */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800);
 /*@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700);*/
@@ -22,7 +8,7 @@
 body {
   background-color: #f2f2f2;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 14px;
   color: #555;
 
@@ -38,7 +24,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   color: #666;
 }
-
 
 /* Paragraph & Typographic */
 p {
@@ -99,7 +84,11 @@ hr {
 }
 
 .navbar-brand img {
-  width:49%;
+  width:65%;
+}
+
+.navbar-brand {
+    padding: 8px;
 }
 
 .navbar-fixed-top {
@@ -146,9 +135,7 @@ hr {
 }
 
 
-
 /* ================== HOME ================== */
-
 
 #hero {
   min-height: 500px;
@@ -163,11 +150,11 @@ hr {
 }
 
 
-@keyframes animatedBackground {
+/*@keyframes animatedBackground {
   from { background-position: 0 0; }
   to { background-position: 100% 0; }
 }
-
+*/
 
 /*@-webkit-keyframes animatedBackground{0%{
 
@@ -242,15 +229,15 @@ hr {
           }*/
 
 .bg-ani {
-  width: 100%; 
-  height: 500px; 
+  width: 100%;
+  height: 500px;
   background-image: url(<%= asset_path 'home-collage.jpg' %>);
   background-position: 0px 0px;
   background-repeat: repeat-x;
 
 /*  animation: animatedBackground 160s linear infinite ;*/
 
-  -webkit-transform: translate3d(0, 0, 0);
+/*  -webkit-transform: translate3d(0, 0, 0);
 -moz-transform: translate3d(0, 0, 0);
 -ms-transform: translate3d(0, 0, 0);
 -o-transform: translate3d(0, 0, 0);
@@ -259,14 +246,14 @@ transform: translate3d(0, 0, 0);
 -webkit-animation: animatedBackground 160s linear infinite ;
 -moz-animation: animatedBackground 160s linear infinite ;
 -ms-animation: animatedBackground 160s linear infinite ;
-animation: animatedBackground 160s linear infinite ;
+animation: animatedBackground 160s linear infinite ;*/
 
 
 
 }
 
 .header-bg-home {
-  background: url(<%= asset_path 'home-header2.jpg' %>) no-repeat center top;
+  background: url(<%= asset_path 'home-collage.jpg'%>) no-repeat center top;
   background-attachment: relative;
   background-position: center center;
   min-height: 550px;
@@ -284,7 +271,7 @@ animation: animatedBackground 160s linear infinite ;
 }
 
 #hero .background {
-  background: url(<%= asset_path 'home-header2.jpg' %>) no-repeat center top;
+  background: url(<%= asset_path 'home-header2.jpg'%>) no-repeat center top;
   opacity: 1;
 }
 
@@ -345,11 +332,501 @@ animation: animatedBackground 160s linear infinite ;
     color:#666;
 }
 
-#about-tabs {    
+#about-tabs {
   background: none repeat scroll 0 0 #FBFCFF;
   border-top: 1px solid #F2F2F2;
   padding-bottom:80px;
 }
+
+
+/* ================== EQUATION SEARCH ================== */
+
+#equation-search h3 {
+  margin: 0 0 15px;
+
+}
+
+.equation-search-title {
+    background: none repeat scroll 0 0 #29747F;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 15px 0;
+    font-weight: 400;
+}
+
+.activity-icons, .equation-results-home {
+        background: none repeat scroll 0 0 #FBFCFF;
+    border-bottom: 1px solid #D1D1D1;
+    height: 100%;
+    overflow: auto;
+    padding: 10px 0;
+}
+
+
+.map-home {
+  border-radius: 4px;
+}
+
+.equation-results-home .col-lg-10 > input {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    font-family: 'arvo';
+    font-size: 24px;
+    width: 100%;
+    color: #8B8B8B;
+     margin: 7px 0 0;
+}
+
+.equation-search-lg-btn {
+   border-radius: 3px;
+    font-size: 125%;
+    margin: 0;
+    padding: 12px 20px;
+    text-transform: uppercase;
+     border: 0px;
+    color: #FFFFFF;
+    background: #74ad52;
+
+        -webkit-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  -moz-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  -ms-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  -o-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+}
+
+.equation-search-lg-btn:hover,.equation-search-lg-btn:focus,.equation-search-lg-btn:active {
+    border: 0px;
+    background-color: #619741;
+    color: #FFFFFF;
+
+     -webkit-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  -moz-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  -ms-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  -o-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+}
+
+.activitiy-icons {
+
+}
+
+
+#icons{
+    width:100%;
+    list-style:none;
+    margin:0;
+    margin:0 auto;
+}
+
+#icons li{
+    float:left;
+    margin: 5px 18px;
+}
+
+#icons li a {
+    display:block;
+    text-indent: -9999px;
+    overflow: hidden;
+    height:33px;
+
+        -webkit-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  -moz-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  -ms-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  -o-transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+  transition: color 0.12s ease-in 0.15s, background 0.12s ease-in 0.15s;
+
+}
+
+
+#icons li#camping a{
+    background: url(<%= asset_path 'icon-camping@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+
+#icons li#canoe a{
+    background: url(<%= asset_path 'icon-canoe@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+}
+
+#icons li#climbing a{
+    background: url(<%= asset_path 'icon-climbing@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+
+#icons li#hike a{
+    background: url(<%= asset_path 'icon-hike@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+}
+
+#icons li#kayak a{
+    background: url(<%= asset_path 'icon-kayak@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+
+#icons li#mtb a{
+    background: url(<%= asset_path 'icon-mtb@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+}
+
+#icons li#skate a{
+    background: url(<%= asset_path 'icon-skate@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+
+#icons li#ski a{
+    background: url(<%= asset_path 'icon-ski@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+}
+
+#icons li#snowshoe a{
+    background: url(<%= asset_path 'icon-snowshoe@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+
+#icons li#surf a{
+    background: url(<%= asset_path 'icon-surf@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+}
+#icons li#swim a{
+    background: url(<%= asset_path 'icon-swim@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+
+#icons li#xski a{
+    background: url(<%= asset_path 'icon-xski@2x.png'%>) no-repeat;
+    width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+}
+
+
+/********** Navbar Search  **********/
+
+
+.navbar-search input {
+    float: left;
+    margin: 18px 4px 0 0;
+    width: 210px;
+}
+
+.navbar-search .btn {
+    background: none repeat scroll 0 0 #72AE4D;
+    color: #FFFFFF;
+    margin: 17px 0 0 0;
+    float: left;
+}
+
+.navbar-search .btn:hover {
+    background: none repeat scroll 0 0 #4a8128;
+}
+
+
+
+
+
+/*** Hover Icons ***/
+
+
+
+#icons li#camping a:hover {
+    background: url(<%= asset_path 'hover-icon-camping@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+#icons li#canoe a:hover {
+    background: url(<%= asset_path 'hover-icon-canoe@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+#icons li#climbing a:hover {
+    background: url(<%= asset_path 'hover-icon-climbing@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+#icons li#hike a:hover {
+    background: url(<%= asset_path 'hover-icon-hike@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+#icons li#kayak a:hover {
+    background: url(<%= asset_path 'hover-icon-kayak@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+#icons li#mtb a:hover {
+    background: url(<%= asset_path 'hover-icon-mtb@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+#icons li#skate a:hover {
+    background: url(<%= asset_path 'hover-icon-skate@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+#icons li#ski a:hover {
+    background: url(<%= asset_path 'hover-icon-ski@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+#icons li#snowshoe a:hover {
+    background: url(<%= asset_path 'hover-icon-snowshoe@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+#icons li#surf a:hover {
+    background: url(<%= asset_path 'hover-icon-surf@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+#icons li#swim a:hover {
+    background: url(<%= asset_path 'hover-icon-swim@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+#icons li#xski a:hover {
+    background: url(<%= asset_path 'hover-icon-xski@2x.png'%>) no-repeat;
+        width:55px;
+    height:47px;
+       -webkit-background-size:100%;
+    -moz-background-size:100%;
+    background-size:100%;
+     background-repeat: no-repeat;
+     text-decoration: none;
+}
+
+
+
+.clear{
+    clear:both;
+}
+
+
+/* ================== Search Results Page ================== */
+
+#search-results table img {
+    border-radius: 3px;
+    width: 80px;
+}
+
+#search-results .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    vertical-align: middle;
+}
+
+#search-results .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+  background: #FBFCFF;
+}
+
+#search-results i {
+  color:#bc6b30;
+}
+
+
+/* ================== Asset Header ================== */
+
+
+#page-header {
+  margin-top: 90px;
+  background-color: #2f2f2f;
+  width: 100%;
+}
+
+#page-header h1 {
+    border-left: 4px solid #72AE4D;
+    margin: 10px 0px;
+    padding: 0 0 0 20px;
+    color: #fff;
+}
+
+#page-header h4 {
+    color: #FFFFFF;
+    margin: 15px 5px 0 0;
+    width: auto;
+}
+
+#page-header i {
+    font-size: 24px;
+    margin: 0 5px;
+}
+
+
+#asset-details .col-lg-4 h4 {
+    margin:0 0 15px 5px;
+}
+
+#asset-details .col-lg-4 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+#asset-details .col-lg-4 ul {
+    list-style:none;
+}
+
+#asset-details .col-lg-4 li {
+    padding: 10px 0;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+#asset-details .col-lg-4 span {
+    font-size:12px;
+}
+
+#asset-details .col-lg-4 i {
+    font-size: 14px;
+    margin: 0 5px 0 0;
+}
+
+#asset-details .col-lg-4 .row {
+    margin: 0 0 30px;
+}
+
+#asset-details .progress {
+    background-color: #F5F5F5;
+    border-radius: 0px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+    height: 20px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+#asset-details .progress-bar-theme {
+    background-color: #72AE4D;
+}
+
+#asset-details .tabs {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+#asset-details .tabs h4 {
+    margin:10px 5px;
+}
+
+#asset-details #myTabContent p {
+    margin: 20px 10px 10px;
+}
+
 
 
 /* ================== ACTIVITY TILES ================== */
@@ -372,7 +849,7 @@ animation: animatedBackground 160s linear infinite ;
     box-shadow: 0 -10px 150px 0 #222 inset;
 }
 
-#activity-tiles h2 {
+#activity-tiles h3 {
   margin:0 0 40px;
 }
 
@@ -392,7 +869,7 @@ animation: animatedBackground 160s linear infinite ;
 }
 
 .hiking-bg-cb {
-  background: url(<%= asset_path 'hiking.jpg' %>) no-repeat center top;
+  background: url(<%= asset_path 'hiking.jpg'%>) no-repeat center top;
   background-attachment: relative;
   background-position: center center;
   -webkit-background-size: 100%;
@@ -408,7 +885,7 @@ animation: animatedBackground 160s linear infinite ;
 }
 
 .kayaking-bg-lunenburg {
-  background: url(<%= asset_path 'kayaking.jpg' %>) no-repeat center top;
+  background: url(<%= asset_path 'kayaking.jpg'%>) no-repeat center top;
   background-attachment: relative;
   background-position: center center;
   -webkit-background-size: 100%;
@@ -424,7 +901,7 @@ animation: animatedBackground 160s linear infinite ;
 }
 
 .surfing-bg-lawrencetown {
-  background: url(<%= asset_path 'surfing.jpg' %>) no-repeat center top;
+  background: url(<%= asset_path 'surfing.jpg'%>) no-repeat center top;
   background-attachment: relative;
   background-position: center center;
   -webkit-background-size: 100%;
@@ -440,25 +917,10 @@ animation: animatedBackground 160s linear infinite ;
 }
 
 
-/* ================== 2.0 ================== */
+/* ================== Carousel ================== */
 
+/*.adv-search {
 
-.carousel-inner > .item > img, .carousel-inner > .item > a > img {
-    display: block;
-    height: auto;
-    line-height: 1;
-    overflow: hidden;
-    width: 100%;
-}
-
-.carousel {
-    height: 430px;
-    overflow: hidden;
-    position: relative;
-}
-
-.adv-search {
-   
     margin: 50px 0 0;
     padding: 0px;
     position: absolute;
@@ -473,13 +935,13 @@ animation: animatedBackground 160s linear infinite ;
   text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.4);
 }
 
-.seach-placeholder {
+.search-placeholder {
      border-radius: 5px 5px 0 0;
     margin: 15px auto 0;
     overflow: hidden;
     text-align: center;
     width: 800px;
-}
+}*/
 
 /* Fade transition for carousel items */
 .carousel .item {
@@ -504,6 +966,15 @@ animation: animatedBackground 160s linear infinite ;
     z-index: 2;
 }
 
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    border-radius: 4px;
+}
+
+.carousel-inner {
+  margin-bottom: 35px;
+
+}
+
 /* ================== BASIC CONFIGURATION ================== */
 
 .spacing i {
@@ -514,6 +985,11 @@ animation: animatedBackground 160s linear infinite ;
 .mt {
 	margin-top: 50px;
 	margin-bottom: 50px;
+}
+
+.mt-sm {
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 /* Special Margin for Wrap sections */
@@ -539,7 +1015,7 @@ animation: animatedBackground 160s linear infinite ;
 /* Padding top & bottom */
 .pt {
 	padding-top: 15px;
-	padding-bottom: 15px; 
+	padding-bottom: 15px;
 }
 
 /* Description Styling / Used in portfolio & Blog images footnotes */
@@ -600,13 +1076,13 @@ p.capitalize {
 }
 
 p.capitalize:first-letter {
-	text-transform:capitalize; 
+	text-transform:capitalize;
 	font-size: 30px;
 	font-family: 'Arvo', sans-serif;
 	font-weight: 400;
-	color:white; 
-	padding-left:10px; 
-	padding-right:10px; 
+	color:white;
+	padding-left:10px;
+	padding-right:10px;
 	margin-right:5px;
 }
 
@@ -751,10 +1227,10 @@ p.capitalize:first-letter {
 }
 
 /***** Testimonials Styling *****/
-.testi-container {
+/*.testi-container {
 	width:100%;
 	margin-bottom:14px;
-	padding: 5px 6px 3px 0px; 
+	padding: 5px 6px 3px 0px;
 	background-color:#fafafa;
 	border: solid 1px #ddd;
 	-webkit-border-radius: 5px;
@@ -774,7 +1250,7 @@ p.capitalize:first-letter {
 	z-index:999;
 	left:42px;
 	bottom: 0px;
-	margin-left: -7px;	
+	margin-left: -7px;
 }
 @media \0screen {.testi-container:before {background:none;}}
 
@@ -804,11 +1280,11 @@ p.capitalize:first-letter {
 	margin:0px;
 	padding:10px 14px 0px 14px;
 	font-weight: 200;
-}
+}*/
 
 /* ================== MAIN WRAP SECTIONS ================== */
 
-#headerwrap {
+/*#headerwrap {
 	background: url(<%= asset_path 'home-header2.jpg' %>) no-repeat center top;
 	margin-top: -20px;
 	padding-top:20px;
@@ -816,7 +1292,7 @@ p.capitalize:first-letter {
 	background-position: center center;
 	min-height: 550px;
 	width: 100%;
-	
+
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
@@ -846,9 +1322,9 @@ p.capitalize:first-letter {
 #headerwrap .img-responsive {
 	margin: 0 auto;
 }
-
+*/
 /* Headerwrap 2 Wrap */
-#headerwrap-2 {
+/*#headerwrap-2 {
 	background: url(<%= asset_path 'hwrap2.jpg' %>) no-repeat center top;
 	margin-top: -20px;
 	padding-top:100px;
@@ -857,7 +1333,7 @@ p.capitalize:first-letter {
 	background-position: center center;
 	min-height: 650px;
 	width: 100%;
-	
+
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
@@ -873,11 +1349,11 @@ p.capitalize:first-letter {
 	color: white;
 	font-size: 60px;
 	font-weight: 100;
-}
+}*/
 
 /* Service Wrap */
-#servicewrap {
-	background: url(../images/swrap.jpg) no-repeat center top;
+/*#servicewrap {
+	background: url(<%= asset_path 'swrap.jpg' %>) no-repeat center top;
 	margin-top: -20px;
 	padding-top:110px;
 	text-align:center;
@@ -885,7 +1361,7 @@ p.capitalize:first-letter {
 	background-position: center center;
 	min-height: 400px;
 	width: 100%;
-	
+
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
@@ -902,11 +1378,11 @@ p.capitalize:first-letter {
 	font-size: 60px;
 	font-weight: 400;
 }
-
+*/
 
 /* About Wrap */
-#aboutwrap {
-	background: url(../images/awrap.jpg) no-repeat center top;
+/*#aboutwrap {
+	background: url(<%= asset_path 'awrap.jpg' %>) no-repeat center top;
 	margin-top: -20px;
 	padding-top:110px;
 	text-align:center;
@@ -914,7 +1390,7 @@ p.capitalize:first-letter {
 	background-position: center center;
 	min-height: 400px;
 	width: 100%;
-	
+
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
@@ -931,11 +1407,11 @@ p.capitalize:first-letter {
 	font-size: 60px;
 	font-weight: 400;
 }
-
+*/
 
 /* Offices Wrap */
-#officewrap {
-	background: url(../images/owrap.jpg) no-repeat center top;
+/*#officewrap {
+	background: url(<%= asset_path 'owrap.jpg' %>) no-repeat center top;
 	margin-top: -20px;
 	padding-top:110px;
 	text-align:center;
@@ -943,7 +1419,7 @@ p.capitalize:first-letter {
 	background-position: center center;
 	min-height: 400px;
 	width: 100%;
-	
+
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
@@ -960,10 +1436,10 @@ p.capitalize:first-letter {
 	font-size: 60px;
 	font-weight: 400;
 }
-
+*/
 /* Pricing Wrap */
-#pricewrap {
-	background: url(../images/pwrap.jpg) no-repeat center top;
+/*#pricewrap {
+	background: url(<%= asset_path 'pwrap.jpg' %>) no-repeat center top;
 	margin-top: -20px;
 	padding-top:110px;
 	text-align:center;
@@ -971,7 +1447,7 @@ p.capitalize:first-letter {
 	background-position: center center;
 	min-height: 400px;
 	width: 100%;
-	
+
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
@@ -988,10 +1464,10 @@ p.capitalize:first-letter {
 	font-size: 60px;
 	font-weight: 400;
 }
-
+*/
 /* Full width project Wrap */
-#fullproject {
-	background: url(../images/fullproject.jpg) no-repeat center top;
+/*#fullproject {
+	background: url(<%= asset_path 'fullproject.jpg' %>) no-repeat center top;
 	margin-top: -20px;
 	padding-top:110px;
 	text-align:center;
@@ -999,7 +1475,7 @@ p.capitalize:first-letter {
 	background-position: center center;
 	min-height: 600px;
 	width: 100%;
-	
+
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
@@ -1010,13 +1486,13 @@ p.capitalize:first-letter {
   -o-background-size: cover;
   background-size: cover;
 }
-
-#fullproject h1 {
+*/
+/*#fullproject h1 {
 	color: white;
 	font-size: 60px;
 	font-weight: 400;
 }
-
+*/
 /* Sponsor Logos - Footer */
 #sponsors-logo {
     background-color: #EEEEEE;
@@ -1057,7 +1533,7 @@ p.capitalize:first-letter {
 }
 
 /* Color Wraps */
-#white {
+/*#white {
 	margin-top: 0px;
 	background-color: #ffffff;
 	min-height: 300px;
@@ -1065,42 +1541,36 @@ p.capitalize:first-letter {
 }
 
 #grey {
-	margin-top: 0px;
+	margin-top: 90px;
 	background-color: #f7f7f7;
 	min-height: 300px;
-	width: 100%;	
-}
+	width: 100%;
+}*/
 
-#black {
-	margin-top: 0px;
-	background-color: #2f2f2f;
-	min-height: 300px;
-	width: 100%;	
-}
 
-#black h3 {
+
+/*#green h3 {
 	color: white;
 }
 
-#black h4 {
+#green h4 {
 	color: white;
 	text-transform: uppercase
 }
 
-#black p {
+#green p {
 	color: white;
 	font-size: 16px;
 	font-weight: 400;
 }
 
-#black i {
+#green i {
 	font-size: 35px;
 }
 
-#black h1 {
+#green h1 {
 	color: white;
-	font-size: 70px;
-}
+}*/
 
 /* Map Wrap*/
 
@@ -1116,7 +1586,7 @@ p.capitalize:first-letter {
 
 /* ================== CALL TO ACTION WRAP SECTIONS & HELPERS ================== */
 #cta01 {
-	background: url(../images/cta/cta-home.jpg) no-repeat center top;
+	background: url(<%= asset_path 'cta-home.jpg'%>) no-repeat center top;
 	margin-top: 0px;
 	padding-top:100px;
 	text-align:center;
@@ -1124,7 +1594,7 @@ p.capitalize:first-letter {
 	background-position: center center;
 	min-height: 350px;
 	width: 100%;
-	
+
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
@@ -1158,7 +1628,7 @@ p.capitalize:first-letter {
 
 
 #cta02 {
-	background: url(../images/cta/cta02.jpg) no-repeat center top;
+	background: url(<%= asset_path 'cta02.jpg'%>) no-repeat center top;
 	margin-top: 0px;
 	padding-top:100px;
 	text-align:center;
@@ -1166,7 +1636,7 @@ p.capitalize:first-letter {
 	background-position: center center;
 	min-height: 350px;
 	width: 100%;
-	
+
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
@@ -1186,7 +1656,7 @@ p.capitalize:first-letter {
 
 
 #cta03 {
-	background: url(../images/cta/cta01.jpg) no-repeat center top;
+	background: url(<%= asset_path 'cta01.jpg'%>) no-repeat center top;
 	margin-top: 0px;
 	padding-top:50px;
 	text-align:center;
@@ -1194,7 +1664,7 @@ p.capitalize:first-letter {
 	background-position: center center;
 	min-height: 450px;
 	width: 100%;
-	
+
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
@@ -1224,8 +1694,8 @@ p.capitalize:first-letter {
 }
 
 /* Call To Action - Video */
-#cta-video {
-	background: url(../images/cta/cta-video-bg.jpg) no-repeat center top;
+/*#cta-video {
+	background: url(<%= asset_path 'cta-video-bg.jpg' %>) no-repeat center top;
 	margin-top: 0px;
 	padding-top:130px;
 	text-align:center;
@@ -1233,7 +1703,7 @@ p.capitalize:first-letter {
 	background-position: center center;
 	min-height: 400px;
 	width: 100%;
-	
+
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
@@ -1248,15 +1718,15 @@ p.capitalize:first-letter {
 #cta-video h3 {
 	color: white;
 	margin-bottom: 30px;
-}
+}*/
 
 
 #cta-bar {
 	background: #2a4648;
-	color: white;
+	color: #fff;
 	padding-top: 40px;
 	padding-bottom: 40px;
-	
+
   -webkit-transition: color 0.3s ease-in, background 0.3s ease-in;
   -moz-transition: color 0.3s ease-in, background 0.3s ease-in;
   -ms-transition: color 0.3s ease-in, background 0.3s ease-in;
@@ -1277,7 +1747,7 @@ p.capitalize:first-letter {
 
 
 #cta-bar:hover {
-  background: #5a9238;  
+  background: #5a9238;
 }
 
 #cta-bar h4 {
@@ -1343,11 +1813,11 @@ p.capitalize:first-letter {
 
 /* ================== PORTFOLIO IMAGES HOVER EFFECT ================== */
 /* Effects also are controled by hover.zoom.js */
-.zoom { 
-  display:block; 
-  position:relative; 
-  overflow:hidden; 
-  background:transparent url(../images/loader.gif) no-repeat center;
+.zoom {
+  display:block;
+  position:relative;
+  overflow:hidden;
+  background:transparent url(<%= asset_path 'loader.gif'%>) no-repeat center;
 }
 
 .zoom img { display:none }
@@ -1357,7 +1827,7 @@ p.capitalize:first-letter {
   top:0; left:0;
   bottom:0; right:0;
   display:none;
-  background-image:url(../images/zoom.png);
+  background-image:url(<%= asset_path 'zoom.png'%>);
   background-repeat:no-repeat;
   background-position:center;
 }
@@ -1371,7 +1841,7 @@ p.capitalize:first-letter {
 }
 
 /* ================== TEAM MEMBERS INFORMATION OVER iMAGE ================== */
-.members {
+/*.members {
   width: 302px;
   position: relative;
   float: left;
@@ -1408,12 +1878,12 @@ p.capitalize:first-letter {
 
 .team-description i {
 	margin: 8px;
-}
+}*/
 
 /* Team Member Stats Icons Conf */
-.team-stat i {
+/*.team-stat i {
 	font-size: 28px;
-}
+}*/
 
 /* ================== TWITTER FEED CONFIGURATION ================== */
 #f ul {
@@ -1450,7 +1920,7 @@ p.capitalize:first-letter {
 
 
 /* ================== PRICING TABLE CONFIGURATION ================== */
-.pricing-table-plan {
+/*.pricing-table-plan {
 	height: 100px;
 	width: 100%;
 	background: #2d2d2d;
@@ -1511,7 +1981,7 @@ sup {
 #masonry {
 	width: 100%;
 }
-.mitem { width: 25%; }
+.mitem { width: 25%; }*/
 
 
 /* ==========================================================================
@@ -1519,7 +1989,7 @@ sup {
    ========================================================================== */
    /* Blog Page Zones & Conf*/
 
-   .main-blog {
+ /*  .main-blog {
      padding-top: 90px;
    }
 
@@ -1579,7 +2049,7 @@ sup {
    .blog-post em {
      text-align: left;
      font-size: 22px;
-     color: #767676;	
+     color: #767676;
    }
 
    .blog-post i {
@@ -1610,7 +2080,7 @@ sup {
    letter-spacing: 1px;
    text-align: left;
    font-weight: 700;
- }
+ }*/
 
  /* ========== SIDEBAR CONF ========== */
 
@@ -1636,24 +2106,24 @@ sup {
    font-weight: 700;
  }
 
- .popular-posts { 
+ .popular-posts {
    margin: 0px;
    padding-left: 0px;
  }
 
  .popular-posts li {
-   list-style: none; 
-   margin-bottom: 20px; 
+   list-style: none;
+   margin-bottom: 20px;
    min-height: 70px;
  }
- .popular-posts li a, 
+ .popular-posts li a,
  .popular-posts li a:hover {
-   color:#2f2f2f; 
+   color:#2f2f2f;
    text-decoration: none;
  }
 
  .popular-posts li img {
-   float: left; 
+   float: left;
    margin-right: 20px;
  }
 
@@ -1665,7 +2135,7 @@ sup {
  .popular-posts p {
    line-height: normal;
    margin-bottom: auto;
- }	
+ }
 
  p > tag {
    color:#b1b1b1;
@@ -1737,7 +2207,7 @@ sup {
 
 
 
-    @media (max-width: 600px) { 
+    @media (max-width: 600px) {
 
       #headerwrap-2 h1 {
        font-size: 45px;
@@ -1745,7 +2215,7 @@ sup {
 
      #cta03 {
        background: #2d2d2d;
-     }	
+     }
 
      #wv {
        height: 350px;
@@ -1753,12 +2223,12 @@ sup {
 
    }
 
-   @media (max-width: 900px) { 
+   @media (max-width: 900px) {
 
 
     #cta03 {
      background: #2d2d2d;
-   }	
+   }
  }
 
  @media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {

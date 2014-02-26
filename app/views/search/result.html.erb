@@ -1,47 +1,130 @@
 <div class="results">
-<h1>Listing assets</h1>
-<% if @results.any? %>
-<table>
-  <thead>
-    <tr>
-      <th>Asset type</th>
-      <th>Profile</th>
-      <th>Region</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Lat</th>
-      <th>Lng</th>
-      <th>Created by</th>
-      <th>Updated by</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  <h1>Listing assets</h1>
 
-  <tbody>
-    <% @results.each do |result| %>
-       
-      <tr id='<%= result.id %>'>
-        <td class="asset_type_id"><%= result.asset_type_id %></td>
-        <td class="profile_id"><%= result.profile_id %></td>
-        <td class="region_id"><%= result.region_id %></td>
-        <td class="name"><%= result.name %></td>
-        <td class="description"><%= result.description %></td>
-        <td class="lat"><%= result.lat %></td>
-        <td class="lng"><%= result.lng %></td>
-        <td class="created_by"><%= result.created_by %></td>
-        <td class="updated_by"><%= result.updated_by %></td>
-      </tr>
-      <% end %>
-   
-  </tbody>
-</table>
-<% else %>
-         <h3><%= "Sorry, your search didn't return a result" %></h3>
- <% end %>
-<br>
+  <br>
 </div>
 
-<div id="map-canvas"></div>
 
+
+<section id="page-header" class="margin-50">
+  
+  <div class="container mts">
+    <div class="row mt">
+      <div class="col-lg-8">
+	<h1>Search Results</h1>
+      </div>
+      
+      <div class="col-lg-4">
+	<h4>Share:</h4>
+	
+        <!-- AddThis Button BEGIN -->
+	<div class="addthis_toolbox addthis_default_style ">
+	  <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	  <a class="addthis_button_tweet"></a>
+	  <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+	  <a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=timbereslwebsite"></script>
+	<!-- AddThis Button END -->
+      </div>
+      
+    </div><!-- /row -->
+  </div><!-- /container -->
+  
+</section>  <! ========== / Asset Header ==========>
+
+<! ========== Equation Search =======>
+
+<section id="equation-search" class="margin-50">
+  <div class="container">
+    
+    <div class="row">
+      
+      <div class="activity-icons">
+	
+	<ul id="icons">
+          <li id="camping"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Camping">Wilderness Camping</a></li>
+          <li id="canoe"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Canoeing">Canoeing</a></li>
+          <li id="climbing"><a class="current" href="#" data-toggle="tooltip" data-placement="bottom" title="Climbing">Climbing</a></li>
+          <li id="hike"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Hiking">Hiking</a></li>
+          <li id="kayak"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Kayaking">Kayaking</a></li>
+          <li id="mtb"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Mountain Biking">Mountain Biking</a></li>
+          <li id="skate"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Skating">Skating</a></li>
+          <li id="ski"><a class="current" href="#" data-toggle="tooltip" data-placement="bottom" title="Skiing">Skiing</a></li>
+          <li id="snowshoe"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Snow Shoeing">Snow Shoeing</a></li>
+          <li id="surf"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Surfing">Surfing</a></li>
+          <li id="swim"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Swimming">Swimming</a></li>
+          <li id="xski"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Cross Country Skiing">Cross Country Skiing</a></li>
+	</ul>	
+      </div>
+    </div><!-- /row -->
+    
+    <div class="row">
+      <!-- The Map -->
+      <div id="map-canvas"></div>
+    </div><!-- /row -->
+    
+    
+    <div class="row">
+      <div class="equation-results-home">
+	<div class="col-lg-10">
+	  
+	  <input type="text" class="" placeholder="Hiking + Halifax">
+	</div><!-- /col-lg-10 -->
+	
+	<div class="col-lg-2">
+	  
+	  <button class="btn equation-search-lg-btn"  type="button"> Search <i class="fa fa-long-arrow-right"></i></button>
+	</div><!-- /col-lg-2 -->
+	
+      </div>
+    </div><!-- /row -->
+    
+    
+  </div><!-- /container -->
+</section>  <! ========== / Equation Search ==========>
+
+
+<! ========== Search Results ==========>
+<section id="search-results" class="margin-80">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+	
+	<% if @results.any? %>
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th></th>
+	      <th>Activity Name / Description</th>
+	      <th>Distance</th>
+	      <!-- <th>Rating</th>   Exclude for now -->
+	      <th>Details</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% @results.each do |result| %>
+	    <tr id='<%= result.id %>'>
+	      <!-- need to track images in asset table -->
+              <td><%= image_tag 'hiking.jpg', :class => "img-responsive" %></td>
+              <td><%= link_to result.name + ' - ' + result.description, result %></td>
+              <td>20 mins</td>
+              <!-- <td> Rating will go here </td> -->
+	      <td>More</td>
+	    </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+	<% else %>
+        <h3><%= "Sorry, your search didn't return a result" %></h3>
+	<% end %>
+	
+	
+	
+      </div><!-- /col -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+</section>
+
+<! ========== / Search Results ============>
