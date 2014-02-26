@@ -1,21 +1,171 @@
-<! ========== HEADERWRAP =========>
-    
 <section id="hero" class="bg-ani">
+
+
   <div class="container">
     <div class="row">
-
+      
       <div class="col-lg-10 col-lg-offset-1 centered">
 	
 	<h1 class="slideUp">Search for an outdoor activity in Nova Scotia</h1>
 	
 	<div class="search-main">
-          <%=render 'search_form'%>
-	  <span class=""><a href="#">Advanced Search <i class="fa fa-long-arrow-right"></i></a> |  <a href="#">Browse Activity Directory <i class="fa fa-list-ul"></i> </a></span>
+	  <%=render 'search_form'%>
+	  <span class=""><a href="#">Browse Activity Directory <i class="fa fa-list-ul"></i> </a></span>
 	</div>
 	
       </div><!-- /col -->
     </div><!-- /row -->
   </div><!-- /container -->
+  
 </section>
+
+
+<! ========== ABOUT =======>
+<section id="about-intro" class="margin-50">
+  <div class="container">
+    
+    
+    <div class="row mt">
+      <div class="col-lg-12 centered">
+        <h4>WanderStream</h4>
+        <p>A Wiki of Trails and Outdoor Spaces Across Nova Scotia Built and Maintained By and For The Community.</p>
+        <button class="btn btn-orange" type="button">SIGN UP <i class="fa fa-chevron-right"></i> </button>
+      </div>
+      
+      
+      
+    </div><!-- /row -->
+    
+  </div><!-- /containter -->
+</section>
+
+<! ========== Equation Search =======>
+
+<section id="equation-search" class="margin-50">
+  <div class="container">
+    
+    
+    <div class="row mt-sm">
+      <div class="equation-search-title centered">
+	
+	<div class="col-lg-12">
+          Need help finding an outdoor activity?  Try our 2 step activity search assistant.
+	</div><!-- /col-lg-12 -->
+	
+      </div><!-- /search title -->
+    </div><!-- /row -->
+    
+    <div class="row mt-sm">
+      <h3>1. Choose Activity</h3>
+      <div class="activity-icons">
+	
+	<ul id="icons">
+          <li id="camping"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Camping">Wilderness Camping</a></li>
+          <li id="canoe"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Canoeing">Canoeing</a></li>
+          <li id="climbing"><a class="current" href="#" data-toggle="tooltip" data-placement="bottom" title="Climbing">Climbing</a></li>
+          <li id="hike"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Hiking">Hiking</a></li>
+          <li id="kayak"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Kayaking">Kayaking</a></li>
+          <li id="mtb"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Mountain Biking">Mountain Biking</a></li>
+          <li id="skate"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Skating">Skating</a></li>
+          <li id="ski"><a class="current" href="#" data-toggle="tooltip" data-placement="bottom" title="Skiing">Skiing</a></li>
+          <li id="snowshoe"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Snow Shoeing">Snow Shoeing</a></li>
+          <li id="surf"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Surfing">Surfing</a></li>
+          <li id="swim"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Swimming">Swimming</a></li>
+          <li id="xski"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Cross Country Skiing">Cross Country Skiing</a></li>
+	  
+	</ul>
+	
+      </div>
+    </div><!-- /row -->
+    
+    
+    
+    
+    <div class="row">
+      <h3>2. Choose Location</h3>
+      <iframe width="100%" class="map-home" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ca/maps?q=nova+scotia&amp;ie=UTF8&amp;hq=&amp;hnear=Nova+Scotia&amp;t=p&amp;ll=44.684277,-63.742676&amp;spn=2.733913,1.098633&amp;z=7&amp;iwloc=A&amp;output=embed"></iframe>
+    </div><!-- /row -->
+    
+    
+    <div class="row mt-sm">
+      <div class="equation-results-home">
+	<div class="col-lg-10">
+	  
+	  <input type="text" class="" placeholder="Hiking + Halifax">
+	</div><!-- /col-lg-10 -->
+	
+	<div class="col-lg-2">
+	  
+	  <a href="search-results.html" class="btn equation-search-lg-btn"  type="button">See Results <i class="fa fa-long-arrow-right"></i></a>
+	</div><!-- /col-lg-2 -->
+	
+      </div>
+    </div><!-- /row -->
+    
+    
+  </div><!-- /container -->
+</section>
+
+<! ========== ABOUT - TABS =======>
+
+
+<section id="about-tabs"  class="">
+  
+  <div class="container">
+    <div class="row mt centered ">
+      <div class="col-lg-4 col-lg-offset-4">
+	<h3>About WanderStream</h3>
+	
+      </div><!-- /col-lg-4 -->
+    </div><!-- /row -->
+    
+    <div class="row">
+      
+      <div class="col-lg-3 col-lg-offset-1">
+	<div class="tabbable">
+	  <ul class="nav nav-stacked" id="myTab">
+	    <li class="active"><a href="#tab1">
+		<h4><i class="fa fa-angle-right"></i> Community</h4></a></li>
+	    
+	    <li class=""><a href="#tab2">
+		<h4><i class="fa fa-angle-right"></i> Events</h4></a></li>
+	    
+	    <li class=""><a href="#tab3">
+		<h4><i class="fa fa-angle-right"></i> Stories</h4></a></li>
+	    
+	  </ul> <!-- /tabs -->
+	</div><!-- /tabbable -->
+      </div><!--/col-lg-3 -->
+      
+      <div class="col-lg-7">
+	<div class="tab-content">
+	  <div class="tab-pane active" id="tab1">
+	    <div class="tab-mod">
+	      <p>Join the Outdoor Community here in Nova Scotia.  If you are a visitor, a recent move or someone that has lived here your whole life you will find something on WanderStream for you.  Nova Scotia has a wealth of natural resources and more importantly vibrant community of volunteers and professionals that want to see you out in nature enjoying all of what this Province has to offer.  Sign Up today and get tapped in.</p>
+              <button class="btn btn-orange" type="button">GET STARTED <i class="fa fa-chevron-right"></i> </button>
+	    </div><!-- /tab-mod -->
+	  </div><!--/tab1 -->
+	  
+	  <div class="tab-pane" id="tab2">
+	    <div class="tab-mod">
+	      <p>The rich diversity of natural resources that Nova Scotia has to offer lends itself to be a perfect spot for numerious outdoor events that take place across the Province.  These events range from community driven festivals, walks and games to professional sporting events.</p>
+              <p>WanderStream builds community by encouraging members to host events and partner up to promote and leverage our great assets and genuine Nova Scotian hospitality.</p>
+              <button class="btn btn-orange" type="button">SEE EVENTS <i class="fa fa-chevron-right"></i> </button>
+	    </div><!-- /tab-mod -->
+	  </div><!--/tab1 -->
+	  
+	  <div class="tab-pane" id="tab3">
+	    <div class="tab-mod">
+	      <p>Stories are the way we give meaning to our experiences. They connect us together and connect to the places that together make memories that last a life time</p>
+              <p>Read stories and share your own.  See all of the stories through out time on a timeline.  Contribute to building the History of what we cherish and love, the experiemces we ahve, who we have them with and where we have them.</p>
+              <button class="btn btn-orange" type="button">READ STORIES<i class="fa fa-chevron-right"></i> </button>
+	    </div><!-- /tab-mod -->
+	  </div><!--/tab1 -->
+	</div><!--/Tab-content
+		  </div><!-/col-lg-9-->
+	
+      </div><!--/row -->
+    </div><!-- /container -->
+</section><!-- /white -->
 
 

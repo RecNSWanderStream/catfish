@@ -14,25 +14,10 @@ asset_types = AssetType.create([{name: 'venue' },
 trail = AssetType.find_by name: "trail"
 place = AssetType.find_by name: "place"
 
-activity_categories = ActivityCategory.create([{name: 'hiking', description: 'Activities on trails', asset_type_id: trail.id},
-                                               {name: 'boating', description: 'Activities using boats', asset_type_id: trail.id},
-                                               {name: 'winter sports', description: 'Winter outdoor activities', asset_type_id: place.id},
-                                              ])
-
+activity_categories = ActivityCategory.create([{name: 'recreation', description: 'Generic category for all types', asset_type_id: trail.id},])
 
 types = { 
-  "hiking"         => [
-                       {activity_category_id: -1, name: "trail running", description: "Running on the trail"},
-                       {activity_category_id: -1, name: "snow shoeing", description: "Walking the trail with snowshoes"},
-                       {activity_category_id: -1, name: "walking", description: "Walking the trail"},
-                      ],
-  "boating"       => [
-                      {activity_category_id: -1, name: "canoeing", description: "Boating with a canoe"},
-                      {activity_category_id: -1, name: "kayaking", description: "Boating with a kayak"},
-                     ],
-  "winter sports" => [
-                      {activity_category_id: -1, name: "ice skating", description: "Skating on ice"}
-                     ]
+  "recreation" => [{activity_category_id: -1, name: "hiking", description: "Hiking on a trail"},]
 }
 
 activity_categories.each do |category|
@@ -44,11 +29,11 @@ end
 
 point_pleasant_and_bluff_type = AssetType.find_by name: "trail"
 kejimkujik_type = AssetType.find_by name: "trail"
-the_oval_type = AssetType.find_by name: "place"
+the_oval_type = AssetType.find_by name: "trail"
 
-walking = ActivityType.find_by name: "walking"
-trail_running = ActivityType.find_by name: "trail running"
-ice_skating = ActivityType.find_by name: "ice skating"
+walking = ActivityType.find_by name: "hiking"
+trail_running = ActivityType.find_by name: "hiking"
+ice_skating = ActivityType.find_by name: "hiking"
 
 point_pleasant = Asset.create({asset_type_id: point_pleasant_and_bluff_type.id,
                           profile_id: 0,

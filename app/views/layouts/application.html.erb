@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="assets/images/favicon.png"> <!-- needs railsified -->
+
   <title>WanderStream</title>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRgKhf1Z6SDwvyVXwwVkmd_mXzTBeTJTc&sensor=true"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "colors", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "animations", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "font-awesome.min", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "responsive", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "bootstrap", media: "all", "data-turbolinks-track" => true %>
+
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  
+  <%= javascript_include_tag "hover.zoom", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "hover.zoom.conf", "data-turbolinks-track" => true %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -19,7 +34,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">
-	    <%= image_tag "logo-wanderstream.png", :class => "img-responsive" %>
+	    <%= link_to(image_tag("logo-wanderstream.png", :class => "img-responsive"), search_index_path) %>
 	  </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -380,8 +395,9 @@
 <!-- Bootstrap core JavaScript
      ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/retina.js"></script>
+<%= javascript_include_tag "bootstrap.min", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "retina", "data-turbolinks-track" => true %>
+
 <script>
   $(window).scroll(function() {
   $('.si').each(function(){
