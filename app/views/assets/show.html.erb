@@ -5,7 +5,7 @@
     <div class="container mts">
       <div class="row mt">
         <div class="col-lg-8">
-       <h1>Cape Split</h1>
+       <h1><%= @asset.name %></h1>
         </div>
 
 <div class="col-lg-4">
@@ -63,16 +63,8 @@
 
 
 <div class="row">
-
- <p>Cape Split offers hikers one of Nova Scotia’s most famous costal views and is a great coastal hike. The trail is in good shape and well maintained, but can be a bit muddy in some places, be sure to look for easier/dryer paths around the wet sections. This day hike is 16km return so leave enough time to get out and back before it gets dark.</p>
-
- <p>Recently, the Nova Scotia Government has purchased the land around this trail and is currently developing a park plan and adding more trails. The current trail, known as the Cape Split Trail, starts from the parking lot and follows an old woods road inland. This first section of the trail takes you uphill and then follows along the top of the ridge through the trees.</p>
-
- <p>As you get closer to the point there are great cliff side views of Cobequid Bay. There is no fencing along these cliffs so be sure to keep back away from the eroding edges. Upon reaching Cape Split the woods breaks way to an open grass covered field with spectacular views of the cliffs and rocks below.</p>
-
- <p>The Bay of Fundy is home to some of the highest tides in the world, it’s a good idea to plan your Cape Spit arrival time for when the tides are high or low depending on your preference, either way the view is beautiful. Take some time and explore around the point and then return back on the main trail.</p>
-
- </div><!-- /row -->
+  <%= @asset.description %>
+</div><!-- /row -->
 
 
  <div class="row">
@@ -84,10 +76,7 @@
 
 
     <ul class="nav nav-tabs" id="myTab">
-      <li class="active"><a data-toggle="tab" href="#hiking">Hiking</a></li>
-      <li><a data-toggle="tab" href="#mtb">Mountain Biking</a></li>
-      <li><a data-toggle="tab" href="#camping">Camping</a></li>
-
+      <li class="active"><a data-toggle="tab" href="#hiking">Hiking</a></li>      
     </ul>
     <div class="tab-content" id="myTabContent">
       <div id="hiking" class="tab-pane fade in active">
@@ -170,7 +159,7 @@
         </tbody>
       </table>
 
-       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89773.5264164152!2d-64.44966255647702!3d45.32008610053796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b58eda0e5220eab%3A0xb52b7c7a0637820f!2sCape+Split!5e0!3m2!1sen!2sca!4v1392757846363" width="100%" height="300" frameborder="0" style="border:0"></iframe>
+       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89773.5264164152!2d<%= @asset.lat %>!3d <%= @asset.lng %>!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b58eda0e5220eab%3A0xb52b7c7a0637820f!2sCape+Split!5e0!3m2!1sen!2sca!4v1392757846363" width="100%" height="300" frameborder="0" style="border:0"></iframe>
 
        </div><!-- /row -->
 
@@ -207,54 +196,6 @@
   </div><!-- /row -->
   </div><!-- /container -->
 
-
-  <!-- Ruby bioler plate/scaffold -->
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Asset type:</strong>
-  <%= @asset.asset_type_id %>
-</p>
-
-<p>
-  <strong>Profile:</strong>
-  <%= @asset.profile_id %>
-</p>
-
-<p>
-  <strong>Region:</strong>
-  <%= @asset.region_id %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @asset.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @asset.description %>
-</p>
-
-<p>
-  <strong>Lat:</strong>
-  <%= @asset.lat %>
-</p>
-
-<p>
-  <strong>Lng:</strong>
-  <%= @asset.lng %>
-</p>
-
-<p>
-  <strong>Created by:</strong>
-  <%= @asset.created_by %>
-</p>
-
-<p>
-  <strong>Updated by:</strong>
-  <%= @asset.updated_by %>
-</p>
 
 <%= link_to 'Edit', edit_asset_path(@asset) %> |
 <%= link_to 'Back', assets_path %>
