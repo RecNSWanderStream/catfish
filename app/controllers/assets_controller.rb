@@ -24,6 +24,7 @@ class AssetsController < ApplicationController
 
   # GET /assets/1/edit
   def edit
+    @asset_types =AssetType.all.distinct
   end
 
   # POST /assets
@@ -47,17 +48,16 @@ class AssetsController < ApplicationController
   def update
     respond_to do |format|
       @old_ID = @asset.id
-      @asset.id = nil
-      if @asset.save #prolly going to change this from update to create to override 
+      asset_params[:id] = nil
+      if @asset = Asset.create(asset_params)
         #turn off current revision
         #create rivision record
         #inset new rivision into table
         #keep track of old assetID id for current asset
-        revision_id = before_update(asset)
         format.html { redirect_to @asset, notice: 'Asset was successfully updated.' }
         format.json { head :no_content }
         #create new revision. gonna have to find asset id
-        @old_revision_id = revision.find(:asset_id = @old_ID)
+        @old_revision_id = Revision.find_by(asset_id:  @old_ID)
         @new_revision = Revision.new()
         @new_revision.old_revision_id = @old_revision_id
         @new_revision.asset_id = @asset.id

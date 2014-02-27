@@ -16,7 +16,7 @@ class Asset < ActiveRecord::Base
   end
 
   def self.switch_off
-  	self.update(:is_active = false)
+  	self.update(is_active: false)
 
   end
   
