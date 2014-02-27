@@ -7,6 +7,11 @@ class Asset < ActiveRecord::Base
   def self.search_by_activity_type(activity)
     self.joins(:asset_activities).joins(:activity_types).joins(:activity_categories).where("activity_types.name LIKE '%#{activity}%' OR assets.name LIKE '%#{activity}%' OR activity_categories.name LIKE '%#{activity}%'")
   end
+
+  def self.switch_off
+  	self.update(:is_active = false)
+
+  end
   
 end
 

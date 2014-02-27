@@ -1,5 +1,7 @@
 WanderStream::Application.routes.draw do
 
+  get "wiki/view"
+  get "wiki/edit"
   get "map/index"
   get "search/index"
   get "search/result"
