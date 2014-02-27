@@ -46,9 +46,22 @@ class AssetsController < ApplicationController
   # PATCH/PUT /assets/1.json
   def update
     respond_to do |format|
-      if @asset.update(asset_params)
+      @old_ID = @asset.id
+      @asset.id = nil
+      if @asset.save #prolly going to change this from update to create to override 
+        #turn off current revision
+        #create rivision record
+        #inset new rivision into table
+        #keep track of old assetID id for current asset
+        revision_id = before_update(asset)
         format.html { redirect_to @asset, notice: 'Asset was successfully updated.' }
         format.json { head :no_content }
+        #create new revision. gonna have to find asset id
+        @old_revision_id = revision.find(:asset_id = @old_ID)
+        @new_revision = Revision.new()
+        @new_revision.old_revision_id = @old_revision_id
+        @new_revision.asset_id = @asset.id
+        @new_revision.save()
       else
         format.html { render action: 'edit' }
         format.json { render json: @asset.errors, status: :unprocessable_entity }
