@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+1;3406;0c<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -34,7 +34,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">
-	    <%= link_to(image_tag("logo-wanderstream.png", :class => "img-responsive"), search_index_path) %>
+	    <%= link_to(image_tag("logo-wanderstream.png", :class => "img-responsive"), root_path) %>
 	  </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -236,13 +236,14 @@
 <div id="cta01">
   <div class="container">
     <div class="row">
-    			<div class="col-lg-10 col-lg-offset-1">
-    			  <h2>Where's your favourite trail in Nova Scotia?</h2>
-    			  <button type="button" class="btn btn-green btn-lg">Add it to the directory <i class="fa fa-chevron-right"></i>
-</button></button>
-</div>
-</div><!-- /row -->
-</div><!-- /container -->
+      <div class="col-lg-10 col-lg-offset-1">
+    	<h2>Where's your favourite trail in Nova Scotia?</h2>
+	<%= link_to 'Add it to the directory', new_asset_path, :class => 'btn btn-green btn-lg' %>
+    	<!--<button type="button" class="btn btn-green btn-lg">Add it to the directory <i class="fa fa-chevron-right"></i></button> -->
+	
+      </div>
+    </div><!-- /row -->
+  </div><!-- /container -->
 </div><!--/cta02 -->
 
 <! ========== SPONSORS & SUPPORTERS ==========>    

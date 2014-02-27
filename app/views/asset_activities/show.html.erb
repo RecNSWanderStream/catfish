@@ -1,9 +1,5 @@
+<br /><br /><br /><br /><br /><br /><br /><br /><br />
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Asset:</strong>
-  <%= @asset_activity.asset_id %>
-</p>
 
 <p>
   <strong>Activity type:</strong>
@@ -25,25 +21,6 @@
   <%= @asset_activity.quality %>
 </p>
 
-<p>
-  <strong>Season:</strong>
-  <%= @asset_activity.season %>
-</p>
-
-<p>
-  <strong>General information:</strong>
-  <%= @asset_activity.general_information %>
-</p>
-
-<p>
-  <strong>Safety information:</strong>
-  <%= @asset_activity.safety_information %>
-</p>
-
-<p>
-  <strong>Alerts:</strong>
-  <%= @asset_activity.alerts %>
-</p>
 
 <%= link_to 'Edit', edit_asset_activity_path(@asset_activity) %> |
 <%= link_to 'Back', asset_activities_path %>
