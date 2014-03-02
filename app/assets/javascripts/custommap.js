@@ -6,14 +6,18 @@ var markerpoints= [];
 $(document).ready(function(){
 
 
-$('table > tbody > tr').each(function(){
+$('.mappoint').each(function(){
   var name= $(this).attr('data-name')
   var lat= $(this).attr('data-lat');
   var lng= $(this).attr('data-lng');
   var id= $(this).attr('id');
-  markerpoints.push([name, lat, lng, id]);
-});
-});
+  var zoom= $(this).attr('data-zoom');
+  markerpoints.push([name, lat, lng, id, zoom]);
+  });
+
+
+
+
 
 //Function initializing the map
 function initialize() {
@@ -29,6 +33,8 @@ function initialize() {
 //Create new map
 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
+
+  
 
  //Geolocation Prompt
   if(navigator.geolocation) {
@@ -49,11 +55,14 @@ for(var i=0; i<markerpoints.length; i++){
 //Get latitude and longitude for each marker
   var markerLatlng= new google.maps.LatLng(markerpoints[i][1], markerpoints[i][2]);
 
+
+
 //Create new marker for each iteration
   var marker = new google.maps.Marker({
       position: markerLatlng,
       map: map
     });
+  
   
 
 
@@ -61,7 +70,7 @@ for(var i=0; i<markerpoints.length; i++){
   var infowindow = new google.maps.InfoWindow();
     google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
       return function(){
-        infowindow.setContent('<a href=>'+markerpoints[i][0]+'</a>');
+        infowindow.setContent('<a href="../assets/'+ markerpoints[i][3] +'">'+markerpoints[i][0]+'</a>');
         infowindow.open(map, marker);
         $('#' + (markerpoints[i][3])).mouseover(function(){
        google.maps.event.trigger(marker, 'mouseover');});
@@ -69,28 +78,30 @@ for(var i=0; i<markerpoints.length; i++){
 
     })(marker, i));
 
-    google.maps.event.addListener(marker, (function(marker, i) {
-        $('#' + (markerpoints[i][3])).mouseover(function(){
-       google.maps.event.trigger(marker, 'mouseover');});
-
-    })(marker, i));
-
-
-
   
   //Function to prvent multiple windows
   google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
       return function(){
         infowindow.close();}}));
+
+console.log(markerpoints[0][4]);
+
+if(markerpoints.length < 2 && markerpoints[0][4]=="true"){
+    map.setCenter(new google.maps.LatLng(markerpoints[0][1], markerpoints[0][2]));
+    map.setZoom(10);
+}
   
 }
 
-
 }
+
+
 
 //Launch map
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
+
+});
 
 //End
