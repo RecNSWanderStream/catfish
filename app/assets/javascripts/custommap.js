@@ -101,6 +101,22 @@ if(markerpoints.length < 2 && markerpoints[0][4]=="true"){
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
+$('.activity-icons ul li a').click(function(activity_click){
+    activity_click.preventDefault();
+    var content = $(this).attr('title');
+    if($('.equation-results-home input').val()===''){
+      $('.equation-results-home input').val(content);
+    }else{
+      $('.equation-results-home input').val($('.equation-results-home input').val() +"+"+content);
+    }
+});
+
+/*$('.btn equation-search-lg-btn').click(function(activity_search_click){
+    activity_search_click.preventDefault();
+    $('.region-activity-search').submit();
+});*/
+
+
 
 });
 
