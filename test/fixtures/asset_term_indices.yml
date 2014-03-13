@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  term: 
+  origin_string_size: 
+  asset_id: 1
+
+two:
+  term: 
+  origin_string_size: 
+  asset_id: 1

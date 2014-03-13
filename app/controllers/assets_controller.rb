@@ -34,6 +34,11 @@ class AssetsController < ApplicationController
 
     respond_to do |format|
       if @asset.save
+        tokens = @asset.name.split
+        num_elements = tokens.size
+        tokens.each do |token|
+          AssetTermIndex.create(term: token.downcase, origin_string_size: num_elements, asset_id: @asset.id)
+        end
         format.html { redirect_to @asset, notice: 'Asset was successfully created.' }
         format.json { render action: 'show', status: :created, location: @asset }
       else
