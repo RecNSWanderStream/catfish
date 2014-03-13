@@ -23,11 +23,21 @@ class Asset < ActiveRecord::Base
 
     tokens = params.split
     #in_string = tokens.map!{|t| "'" + t + "'"}.join(',')
-    results = self.find_by_sql(["select * , sum(1/cast(ati.origin_string_size as float)) as match_rating from asset_term_indices ati where ati.term in (?) group by ati.id, ati.asset_id", tokens])
+    results = self.find_by_sql(["select * "+ 
+    ", sum(1/cast(ati.origin_string_size as float)) as match_rating " +
+   "from asset_term_indices ati " +
+    "join assets a " +
+      "on a.id = ati.asset_id " +
+    "left join asset_activities aa " +
+      "on aa.asset_id = a.id " +
+    "left join activity_types at " +
+      "on aa.asset_id = at.id " +
+    "where ati.term in (?) or at.name in (?) " +
+    "group by a.id, ati.id, aa.id, at.id, " +
+    "ati.asset_id order by match_rating", tokens, tokens])
   end
 end
 
 #select * , sum(1/cast(ati.origin_string_size as float)) as match_rating from asset_term_indices ati where ati.term in ('Taco') group by ati.id, ati.asset_id 
-
 
 
