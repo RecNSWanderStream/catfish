@@ -54,6 +54,9 @@ class AssetsController < ApplicationController
     respond_to do |format|
       @old_ID = @asset.id
       asset_params[:id] = nil
+      #get all activities from the asset and update their asset id
+      @asset_activities = @asset.asset_activities
+      @asset_activities_id = @asset.id
       if @asset = Asset.create(asset_params)
         #turn off current revision
         #create rivision record
@@ -67,6 +70,9 @@ class AssetsController < ApplicationController
         @new_revision.old_revision_id = @old_revision_id
         @new_revision.asset_id = @asset.id
         @new_revision.save()
+        #update the activity ID that pretains to the asset ID
+        @asset_activities.update(params[:asset_id], @asset.id)
+
       else
         format.html { render action: 'edit' }
         format.json { render json: @asset.errors, status: :unprocessable_entity }
