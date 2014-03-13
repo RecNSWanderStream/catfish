@@ -1,0 +1,31 @@
+<h1>Listing template_attributes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Asset category template</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @template_attributes.each do |template_attribute| %>
+      <tr>
+        <td><%= template_attribute.asset_category_template_id %></td>
+        <td><%= template_attribute.name %></td>
+        <td><%= template_attribute.type %></td>
+        <td><%= link_to 'Show', template_attribute %></td>
+        <td><%= link_to 'Edit', edit_template_attribute_path(template_attribute) %></td>
+        <td><%= link_to 'Destroy', template_attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Template attribute', new_template_attribute_path %>

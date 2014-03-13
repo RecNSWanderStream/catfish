@@ -1,0 +1,21 @@
+<%= form_for(@asset_category_template) do |f| %>
+  <% if @asset_category_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@asset_category_template.errors.count, "error") %> prohibited this asset_category_template from being saved:</h2>
+
+      <ul>
+      <% @asset_category_template.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :activity_category_id %><br>
+    <%= f.number_field :activity_category_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
