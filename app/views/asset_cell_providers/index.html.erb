@@ -1,0 +1,29 @@
+<h1>Listing asset_cell_providers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Asset</th>
+      <th>Cell provider</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @asset_cell_providers.each do |asset_cell_provider| %>
+      <tr>
+        <td><%= asset_cell_provider.asset_id %></td>
+        <td><%= asset_cell_provider.cell_provider_id %></td>
+        <td><%= link_to 'Show', asset_cell_provider %></td>
+        <td><%= link_to 'Edit', edit_asset_cell_provider_path(asset_cell_provider) %></td>
+        <td><%= link_to 'Destroy', asset_cell_provider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Asset cell provider', new_asset_cell_provider_path %>

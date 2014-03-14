@@ -46,3 +46,6 @@ end
 
 # Use devise
 gem 'devise'
+
+# add postgis adaptor
+gem 'activerecord-postgis-adapter'
