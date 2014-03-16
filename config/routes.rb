@@ -1,5 +1,13 @@
 WanderStream::Application.routes.draw do
 
+  resources :asset_cell_providers
+
+  resources :template_attributes
+
+  resources :asset_category_templates
+
+  resources :cities
+
   get "wiki/view"
   get "wiki/edit"
   get "map/index"

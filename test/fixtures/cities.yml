@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  province_id: 
+  name: 
+  location: 
+
+two:
+  province_id: 
+  name: 
+  location: 

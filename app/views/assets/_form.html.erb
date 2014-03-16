@@ -21,6 +21,8 @@
     <%= f.label :asset_type_id %><br>
     <%= f.collection_select :asset_type_id, @asset_types, :id, :name %>
   </div>
+
+  <%= f.hidden_field 'user_id', :value => current_user.id %>
   
   <!--
    comment out region id for now

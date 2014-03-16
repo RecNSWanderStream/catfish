@@ -47,5 +47,6 @@ end
 # Use devise
 gem 'devise'
 
-#Lets rails to handle gmaps api
-#gem 'gmaps4rails'
+# add postgis adaptor
+gem 'activerecord-postgis-adapter'
+

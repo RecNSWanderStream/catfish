@@ -1,0 +1,1652 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: postgis; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA postgis;
+
+
+ALTER SCHEMA postgis OWNER TO postgres;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- Name: postgis; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA postgis;
+
+
+--
+-- Name: EXTENSION postgis; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: activity_categories; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE activity_categories (
+    id integer NOT NULL,
+    asset_type_id integer,
+    name character varying(255),
+    description text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.activity_categories OWNER TO postgres;
+
+--
+-- Name: activity_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE activity_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.activity_categories_id_seq OWNER TO postgres;
+
+--
+-- Name: activity_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE activity_categories_id_seq OWNED BY activity_categories.id;
+
+
+--
+-- Name: activity_types; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE activity_types (
+    id integer NOT NULL,
+    activity_category_id integer,
+    name character varying(255),
+    description text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.activity_types OWNER TO postgres;
+
+--
+-- Name: activity_types_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE activity_types_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.activity_types_id_seq OWNER TO postgres;
+
+--
+-- Name: activity_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE activity_types_id_seq OWNED BY activity_types.id;
+
+
+--
+-- Name: asset_activities; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE asset_activities (
+    id integer NOT NULL,
+    asset_id integer,
+    activity_type_id integer,
+    duration integer,
+    difficulty character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    user_rating numeric(5,2),
+    difficulty_rating numeric(5,2),
+    is_loop boolean,
+    attributes bytea,
+    distance numeric(5,2)
+);
+
+
+ALTER TABLE public.asset_activities OWNER TO postgres;
+
+--
+-- Name: asset_activities_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE asset_activities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.asset_activities_id_seq OWNER TO postgres;
+
+--
+-- Name: asset_activities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE asset_activities_id_seq OWNED BY asset_activities.id;
+
+
+--
+-- Name: asset_category_templates; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE asset_category_templates (
+    id integer NOT NULL,
+    activity_category_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.asset_category_templates OWNER TO postgres;
+
+--
+-- Name: asset_category_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE asset_category_templates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.asset_category_templates_id_seq OWNER TO postgres;
+
+--
+-- Name: asset_category_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE asset_category_templates_id_seq OWNED BY asset_category_templates.id;
+
+
+--
+-- Name: asset_cell_providers; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE asset_cell_providers (
+    id integer NOT NULL,
+    asset_id integer,
+    cell_provider_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.asset_cell_providers OWNER TO postgres;
+
+--
+-- Name: asset_cell_providers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE asset_cell_providers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.asset_cell_providers_id_seq OWNER TO postgres;
+
+--
+-- Name: asset_cell_providers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE asset_cell_providers_id_seq OWNED BY asset_cell_providers.id;
+
+
+--
+-- Name: asset_types; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE asset_types (
+    id integer NOT NULL,
+    name character varying(255),
+    description text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.asset_types OWNER TO postgres;
+
+--
+-- Name: asset_types_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE asset_types_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.asset_types_id_seq OWNER TO postgres;
+
+--
+-- Name: asset_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE asset_types_id_seq OWNED BY asset_types.id;
+
+
+--
+-- Name: assets; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE assets (
+    id integer NOT NULL,
+    asset_type_id integer,
+    profile_id integer,
+    region_id integer,
+    name character varying(255),
+    description text,
+    lat numeric(9,6),
+    lng numeric(9,6),
+    created_by integer,
+    updated_by integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    is_active boolean,
+    nearest_city_id integer,
+    washrooms boolean,
+    parking boolean,
+    accessibility_access boolean,
+    accessibility_information text,
+    time_open character varying(255),
+    time_closed character varying(255),
+    public_transit boolean,
+    closest_stop_location postgis.geometry,
+    location postgis.geometry
+);
+
+
+ALTER TABLE public.assets OWNER TO postgres;
+
+--
+-- Name: assets_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE assets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.assets_id_seq OWNER TO postgres;
+
+--
+-- Name: assets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE assets_id_seq OWNED BY assets.id;
+
+
+--
+-- Name: cities; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cities (
+    id integer NOT NULL,
+    province_id integer,
+    name character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    location postgis.geometry
+);
+
+
+ALTER TABLE public.cities OWNER TO postgres;
+
+--
+-- Name: cities_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cities_id_seq OWNER TO postgres;
+
+--
+-- Name: cities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cities_id_seq OWNED BY cities.id;
+
+
+--
+-- Name: regions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE regions (
+    id integer NOT NULL,
+    name character varying(255),
+    description text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    shape postgis.geometry
+);
+
+
+ALTER TABLE public.regions OWNER TO postgres;
+
+--
+-- Name: regions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE regions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.regions_id_seq OWNER TO postgres;
+
+--
+-- Name: regions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE regions_id_seq OWNED BY regions.id;
+
+
+--
+-- Name: revisions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE revisions (
+    id integer NOT NULL,
+    asset_id integer,
+    old_revision_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.revisions OWNER TO postgres;
+
+--
+-- Name: revisions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE revisions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.revisions_id_seq OWNER TO postgres;
+
+--
+-- Name: revisions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE revisions_id_seq OWNED BY revisions.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO postgres;
+
+--
+-- Name: template_attributes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE template_attributes (
+    id integer NOT NULL,
+    asset_category_template_id integer,
+    name character varying(255),
+    type character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.template_attributes OWNER TO postgres;
+
+--
+-- Name: template_attributes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE template_attributes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.template_attributes_id_seq OWNER TO postgres;
+
+--
+-- Name: template_attributes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE template_attributes_id_seq OWNED BY template_attributes.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY activity_categories ALTER COLUMN id SET DEFAULT nextval('activity_categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY activity_types ALTER COLUMN id SET DEFAULT nextval('activity_types_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY asset_activities ALTER COLUMN id SET DEFAULT nextval('asset_activities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY asset_category_templates ALTER COLUMN id SET DEFAULT nextval('asset_category_templates_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY asset_cell_providers ALTER COLUMN id SET DEFAULT nextval('asset_cell_providers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY asset_types ALTER COLUMN id SET DEFAULT nextval('asset_types_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY assets ALTER COLUMN id SET DEFAULT nextval('assets_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cities ALTER COLUMN id SET DEFAULT nextval('cities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY regions ALTER COLUMN id SET DEFAULT nextval('regions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY revisions ALTER COLUMN id SET DEFAULT nextval('revisions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY template_attributes ALTER COLUMN id SET DEFAULT nextval('template_attributes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+SET search_path = postgis, pg_catalog;
+
+--
+-- Data for Name: spatial_ref_sys; Type: TABLE DATA; Schema: postgis; Owner: postgres
+--
+
+COPY spatial_ref_sys (srid, auth_name, auth_srid, srtext, proj4text) FROM stdin;
+\.
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- Data for Name: activity_categories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY activity_categories (id, asset_type_id, name, description, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: activity_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('activity_categories_id_seq', 1, false);
+
+
+--
+-- Data for Name: activity_types; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY activity_types (id, activity_category_id, name, description, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: activity_types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('activity_types_id_seq', 1, false);
+
+
+--
+-- Data for Name: asset_activities; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY asset_activities (id, asset_id, activity_type_id, duration, difficulty, created_at, updated_at, user_rating, difficulty_rating, is_loop, attributes, distance) FROM stdin;
+\.
+
+
+--
+-- Name: asset_activities_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('asset_activities_id_seq', 1, false);
+
+
+--
+-- Data for Name: asset_category_templates; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY asset_category_templates (id, activity_category_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: asset_category_templates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('asset_category_templates_id_seq', 1, false);
+
+
+--
+-- Data for Name: asset_cell_providers; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY asset_cell_providers (id, asset_id, cell_provider_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: asset_cell_providers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('asset_cell_providers_id_seq', 1, false);
+
+
+--
+-- Data for Name: asset_types; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY asset_types (id, name, description, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: asset_types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('asset_types_id_seq', 1, false);
+
+
+--
+-- Data for Name: assets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY assets (id, asset_type_id, profile_id, region_id, name, description, lat, lng, created_by, updated_by, created_at, updated_at, is_active, nearest_city_id, washrooms, parking, accessibility_access, accessibility_information, time_open, time_closed, public_transit, closest_stop_location, location) FROM stdin;
+\.
+
+
+--
+-- Name: assets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('assets_id_seq', 1, false);
+
+
+--
+-- Data for Name: cities; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cities (id, province_id, name, created_at, updated_at, location) FROM stdin;
+1	1	Dorchester	\N	\N	01010000003BDF4F8D977E4540C1CAA145B64354C0
+2	1	Lower Woods Harbour	\N	\N	0101000000EEEBC03923C24540098A1F63EE6E50C0
+3	1	Woods Harbour	\N	\N	01010000002497FF907EC34540894160E5D06E50C0
+4	1	Barrington Passage	\N	\N	01010000006B9A779CA2C34540DE02098A1F6750C0
+5	1	Barrington	\N	\N	0101000000C5FEB27BF2C84540BE9F1A2FDD6450C0
+6	1	Port Clyde	\N	\N	0101000000CDCCCCCCCCCC4540C442AD69DE5D50C0
+7	1	Clyde River	\N	\N	0101000000454772F90FD14540098A1F63EE5E50C0
+8	1	West Pubnico	\N	\N	010100000013F241CF66D54540D734EF38457350C0
+9	1	Lockeport	\N	\N	010100000061545227A0D945400F0BB5A6794750C0
+10	1	Pubnico	\N	\N	01010000001973D712F2D94540F5DBD781737250C0
+11	1	Wedgeport	\N	\N	0101000000AC8BDB6800DF4540D712F241CF7E50C0
+12	1	Shelburne	\N	\N	0101000000386744696FE04540EBE2361AC04F50C0
+13	1	Argyle	\N	\N	01010000003CBD529621E64540986E1283C07650C0
+14	1	Jordan Falls	\N	\N	010100000062105839B4E84540BA490C022B4F50C0
+15	1	Arcadia	\N	\N	010100000027A089B0E1E94540B22E6EA3018450C0
+16	1	Yarmouth	\N	\N	0101000000986E1283C0EA4540ECC039234A8750C0
+17	1	Sable River	\N	\N	01010000006ABC749318EC4540401361C3D34350C0
+18	1	Tusket	\N	\N	010100000012143FC6DCED454075931804567E50C0
+19	1	Hebron	\N	\N	0101000000454772F90FF145406FF085C9548550C0
+20	1	Sandford	\N	\N	0101000000E78C28ED0DF6454061C3D32B658950C0
+21	1	Port Mouton	\N	\N	01010000003B70CE88D2F645400A68226C783650C0
+22	1	Maitland	\N	\N	01010000000B24287E8CF94540545227A0898C50C0
+23	1	Port Maitland	\N	\N	01010000000B24287E8CF94540545227A0898C50C0
+24	1	Wellington	\N	\N	010100000051DA1B7C61FA45403BDF4F8D975653C0
+25	1	Liverpool	\N	\N	01010000004D158C4AEA044640925CFE43FA2D50C0
+26	1	Kemptville	\N	\N	010100000003098A1F630646402041F163CC7550C0
+27	1	Salmon River	\N	\N	01010000006666666666064640910F7A36AB8A50C0
+28	1	Brooklyn	\N	\N	0101000000567DAEB66207464024B9FC87F42B50C0
+29	1	Milton	\N	\N	0101000000D5E76A2BF607464095D40968223050C0
+30	1	Port Medway	\N	\N	010100000088855AD3BC0B46404ED1915CFE2350C0
+31	1	Mill Village	\N	\N	010100000076711B0DE00D46408C4AEA04342950C0
+32	1	Meteghan	\N	\N	0101000000EA95B20C711446401E166A4DF38A50C0
+33	1	Meteghan River	\N	\N	0101000000E5F21FD26F174640BA6B09F9A08B50C0
+34	1	Westport	\N	\N	0101000000F7065F984C1D464068B3EA73B59950C0
+35	1	Saulnierville	\N	\N	010100000013F241CF661D464050FC1873D78A50C0
+36	1	Freeport	\N	\N	01010000009E5E29CB101F4640EBE2361AC09750C0
+37	1	Riverport	\N	\N	01010000001D5A643BDF1F4640075F984C151450C0
+38	1	Italy Cross	\N	\N	0101000000000000000020464033333333332350C0
+39	1	La Have	\N	\N	0101000000C74B3789412046400BB5A679C71550C0
+40	1	Camperdown	\N	\N	0101000000EEEBC0392322464066666666662650C0
+41	1	Little Brook	\N	\N	01010000000A68226C78224640C3D32B65198A50C0
+42	1	Greenfield	\N	\N	0101000000DE718A8EE422464092CB7F48BF3550C0
+43	1	East Lahave	\N	\N	010100000066666666662646405DDC4603781750C0
+44	1	Church Point	\N	\N	01010000002D211FF46C264640D26F5F07CE8950C0
+45	1	Clare	\N	\N	01010000002D211FF46C264640D26F5F07CE8950C0
+46	1	West Lahave	\N	\N	0101000000545227A089284640910F7A36AB1A50C0
+47	1	First South	\N	\N	0101000000B537F8C2642A4640295C8FC2F51450C0
+48	1	Pointe-de-l'eglise	\N	\N	0101000000DFE00B93A92A46405DDC4603788750C0
+49	1	Bridgewater	\N	\N	0101000000DE718A8EE42A46402B1895D4092050C0
+50	1	Dayspring	\N	\N	0101000000098A1F63EE2A46401973D712F21D50C0
+51	1	Lunenburg	\N	\N	0101000000CFF753E3A52B464026E4839ECD1250C0
+52	1	Tiverton	\N	\N	01010000009487855AD32C46406ADE718A8E9050C0
+53	1	Caledonia	\N	\N	01010000006688635DDC2E46407B14AE47E14650C0
+54	1	Weymouth	\N	\N	0101000000D7A3703D0A2F464092CB7F48BF8150C0
+55	1	Chelsea	\N	\N	0101000000E5F21FD26F2F4640E3A59BC4203050C0
+56	1	South Brookfield	\N	\N	0101000000B9FC87F4DB2F464075931804563E50C0
+57	1	Little River	\N	\N	0101000000234A7B832F344640D656EC2FBB8B50C0
+58	1	Mahone Bay	\N	\N	010100000014AE47E17A344640107A36AB3E1750C0
+59	1	Terence Bay	\N	\N	01010000000F9C33A2B43746400F9C33A2B4D74FC0
+60	1	Pleasant River	\N	\N	01010000009CC420B0723846408D976E12833850C0
+61	1	Sambro	\N	\N	0101000000FED478E926394640545227A089C84FC0
+62	1	Colpton	\N	\N	01010000009A9999999939464066666666663650C0
+63	1	Blandford	\N	\N	0101000000C364AA60543A46405396218E750550C0
+64	1	Prospect	\N	\N	010100000088855AD3BC3B46406666666666E64FC0
+65	1	Indian Harbour	\N	\N	0101000000D9CEF753E33D46407A36AB3E57F34FC0
+66	1	Western Shore	\N	\N	0101000000D8817346943E46401F85EB51B81250C0
+67	1	Chester	\N	\N	010100000071AC8BDB68404640431CEBE2360E50C0
+68	1	Centreville	\N	\N	01010000000DE02D90A040464082E2C798BB8250C0
+69	1	Upper Northfield	\N	\N	01010000009A779CA223414640401361C3D32750C0
+70	1	Chester Basin	\N	\N	0101000000B29DEFA7C6434640029A081B9E1250C0
+71	1	Bear River	\N	\N	01010000008716D9CEF74346403BDF4F8D976A50C0
+72	1	Hacketts Cove	\N	\N	0101000000787AA52C43444640A7E8482EFFF14FC0
+73	1	Herring Cove	\N	\N	0101000000CB10C7BAB8454640C364AA6054C24FC0
+74	1	New Germany	\N	\N	01010000002BF697DD934746409A999999993150C0
+75	1	Digby	\N	\N	0101000000355EBA490C4A4640A01A2FDD247250C0
+76	1	Mill Cove	\N	\N	0101000000DFE00B93A94A46402AA913D0440450C0
+77	1	Springfield	\N	\N	010100000088635DDC464B46405EBA490C023750C0
+78	1	Beechville	\N	\N	01010000006744696FF04D4640DDB5847CD0D34FC0
+79	1	Cornwallis	\N	\N	0101000000CBA145B6F34D4640AF946588636950C0
+80	1	Eastern Passage	\N	\N	0101000000BBB88D06F04E464012143FC6DCBD4FC0
+81	1	Timberlea	\N	\N	01010000001CEBE2361A504640D122DBF97EDA4FC0
+82	1	Deep Brook	\N	\N	0101000000454772F90F5146409A999999996950C0
+83	1	Hubbards	\N	\N	0101000000454772F90F51464033333333330350C0
+84	1	Lawrencetown	\N	\N	0101000000454772F90F514640CDCCCCCCCCAC4FC0
+85	1	Halifax	\N	\N	01010000003333333333534640CDCCCCCCCCCC4FC0
+86	1	Seaforth	\N	\N	01010000003333333333534640EEEBC03923A24FC0
+87	1	Seal Cove	\N	\N	010100000033333333335346406666666666B650C0
+88	1	Dartmouth	\N	\N	0101000000211FF46C56554640545227A089C84FC0
+89	1	Ingramport	\N	\N	0101000000211FF46C565546409A99999999F94FC0
+90	1	New Ross	\N	\N	010100000061C3D32B655946407FD93D79581C50C0
+91	1	French Village	\N	\N	01010000009A99999999594640454772F90FF14FC0
+92	1	Lake Echo	\N	\N	0101000000265305A3925A4640BE30992A18AD4FC0
+93	1	Porters Lake	\N	\N	0101000000FA7E6ABC745B4640ECC039234AA34FC0
+94	1	Dalhousie East	\N	\N	010100000088855AD3BC5B464033333333333350C0
+95	1	East Chezzetcook	\N	\N	010100000088855AD3BC5B464012143FC6DC9D4FC0
+96	1	Bedford	\N	\N	0101000000F7065F984C5D464030BB270F0BD54FC0
+97	1	Annapolis Royal	\N	\N	010100000012143FC6DC5D4640F775E09C116150C0
+98	1	Dalhousie Road	\N	\N	010100000012143FC6DC5D4640CDCCCCCCCC2C50C0
+99	1	Granville Ferry	\N	\N	01010000000000000000604640F775E09C116150C0
+100	1	Head Of Jeddore	\N	\N	01010000001B9E5E29CB604640083D9B559F834FC0
+101	1	Musquodoboit Harbour	\N	\N	010100000036CD3B4ED1614640DAACFA5C6D8D4FC0
+102	1	Tangier	\N	\N	010100000069006F81046546403480B74082524FC0
+103	1	Lower Sackville	\N	\N	010100000085EB51B81E6546407B14AE47E1DA4FC0
+104	1	Ship Harbour	\N	\N	01010000004CA60A4625654640986E1283C06A4FC0
+105	1	Bridgetown	\N	\N	010100000083C0CAA1456646401E166A4DF35250C0
+106	1	Albany	\N	\N	0101000000666666666666464033333333334350C0
+107	1	Beaver Bank	\N	\N	01010000006666666666664640B81E85EB51D84FC0
+108	1	Vaughan	\N	\N	010100000058CA32C4B1664640B6847CD0B30D50C0
+109	1	Hampton	\N	\N	0101000000BDE3141DC96D46409FCDAACFD55650C0
+110	1	Lake George	\N	\N	0101000000AA8251499D704640E3361AC05B2C50C0
+111	1	Campo Bello	\N	\N	0101000000454772F90F714640CDCCCCCCCCBC50C0
+112	1	Mount Uniacke	\N	\N	0101000000454772F90F714640DFE00B93A9EA4FC0
+113	1	Welshpool	\N	\N	0101000000454772F90F714640CDCCCCCCCCBC50C0
+114	1	Middleton	\N	\N	01010000004260E5D022734640D49AE61DA74450C0
+115	1	Beaver Harbour	\N	\N	01010000003333333333734640211FF46C56354FC0
+116	1	Enfield	\N	\N	0101000000CEAACFD5567446400E4FAF9465C04FC0
+117	1	Sheet Harbour	\N	\N	01010000005BB1BFEC9E744640764F1E166A3D4FC0
+118	1	Meagher Grant	\N	\N	0101000000211FF46C5675464012143FC6DC9D4FC0
+119	1	Meaghers Grant	\N	\N	0101000000211FF46C5675464012143FC6DC9D4FC0
+120	1	Port Dufferin	\N	\N	0101000000211FF46C56754640454772F90F314FC0
+121	1	Elmsdale	\N	\N	0101000000B98D06F0167846400612143FC6BC4FC0
+122	1	Lake Egmont	\N	\N	01010000007E1D386744794640894160E5D0A24FC0
+123	1	Port Lorne	\N	\N	01010000009A999999997946403E7958A8355150C0
+124	1	Port Williams	\N	\N	01010000009A999999997946403E7958A8355150C0
+125	1	Lantz	\N	\N	01010000007C613255307A464052B81E85EBB94FC0
+126	1	Windsor	\N	\N	0101000000986E1283C07A46407E1D3867440950C0
+127	1	New Port Conner	\N	\N	010100000088855AD3BC7B464088855AD3BCFB4FC0
+128	1	Newport Corner	\N	\N	010100000088855AD3BC7B464088855AD3BCFB4FC0
+129	1	Auburn	\N	\N	0101000000E9263108AC7C46401DC9E53FA43750C0
+130	1	Greenwood	\N	\N	010100000012143FC6DC7D46409A999999993950C0
+131	1	Aylesford	\N	\N	010100000003098A1F637E46403D0AD7A3703550C0
+132	1	Kingston	\N	\N	01010000001F85EB51B87E4640CDCCCCCCCC3C50C0
+133	1	Richardson	\N	\N	0101000000C976BE9F1A7F4640E9263108ACBC50C0
+134	1	Margaretsville	\N	\N	010100000064CC5D4BC87F46409C33A2B4374450C0
+135	1	Berwick	\N	\N	0101000000569FABADD87F464074B515FBCB2E50C0
+136	1	Gays River	\N	\N	01010000000E4FAF94658046409A99999999A94FC0
+137	1	Hardwood Lands	\N	\N	0101000000D49AE61DA780464004E78C28EDBD4FC0
+138	1	Nine Mile River	\N	\N	01010000009BE61DA7E8804640D8F0F44A59C64FC0
+139	1	Liscomb	\N	\N	0101000000787AA52C438446400000000000004FC0
+140	1	Kentville	\N	\N	0101000000A1D634EF3885464082734694F61E50C0
+141	1	Coldstream	\N	\N	01010000004C3789416085464007F0164850A44FC0
+142	1	Wolfville	\N	\N	0101000000925CFE43FA854640CAC342AD691650C0
+143	1	L'etete	\N	\N	010100000066666666668646409A99999999B950C0
+144	1	Middle Musquodoboit	\N	\N	01010000006666666666864640454772F90F914FC0
+145	1	Musquodoboit	\N	\N	01010000006666666666864640454772F90F914FC0
+146	1	Shubenacadie	\N	\N	0101000000492EFF21FD86464062105839B4B04FC0
+147	1	Elmsvale	\N	\N	01010000004703780B2488464024B9FC87F4834FC0
+148	1	Lakeville	\N	\N	010100000055C1A8A44E8846403B70CE88D22650C0
+149	1	Cambridge Station	\N	\N	0101000000545227A089884640A323B9FC872850C0
+150	1	Hantsport	\N	\N	0101000000545227A089884640D656EC2FBB0B50C0
+151	1	Mosherville	\N	\N	0101000000545227A0898846409A99999999F94FC0
+152	1	Saint Andrews	\N	\N	0101000000545227A0898846403CBD529621C250C0
+153	1	Weston	\N	\N	0101000000545227A08988464033333333333350C0
+154	1	Wittenburg	\N	\N	01010000006FF085C954894640D3BCE3141D994FC0
+155	1	Pennfield	\N	\N	0101000000273108AC1C8A46402497FF907EAF50C0
+156	1	Gore	\N	\N	0101000000C3F5285C8F8A464029ED0DBE30D94FC0
+157	1	Dipper Harbour	\N	\N	0101000000DFE00B93A98A4640910F7A36AB9A50C0
+158	1	Wolfville	\N	\N	0101000000DFE00B93A98A46405DDC4603781750C0
+159	1	Avonport	\N	\N	0101000000CDCCCCCCCC8C464000000000001050C0
+160	1	Barr Settlement	\N	\N	01010000005BD3BCE3148D46402F6EA301BCCD4FC0
+161	1	Fort Ellis	\N	\N	0101000000F5B9DA8AFD8D464062A1D634EFA84FC0
+162	1	Upper Musquodoboit	\N	\N	0101000000D8817346948E464014D044D8F0744FC0
+163	1	Canning	\N	\N	0101000000492EFF21FD8E4640FB3A70CE881A50C0
+164	1	Cheverie	\N	\N	01010000004850FC18738F4640B6F3FDD4780950C0
+165	1	Saint George	\N	\N	0101000000E3361AC05B904640AA8251499DB450C0
+166	1	Lepreau	\N	\N	010100000038F8C264AA9046404182E2C7989F50C0
+167	1	Sherbrooke	\N	\N	0101000000454772F90F91464012143FC6DCFD4EC0
+168	1	Stewiacke	\N	\N	0101000000454772F90F914640CDCCCCCCCCAC4FC0
+169	1	Pocologan	\N	\N	01010000007DD0B359F59146408E06F01648A850C0
+170	1	Kennetcook	\N	\N	01010000008A8EE4F21F924640D200DE0209DA4FC0
+171	1	Musquash	\N	\N	01010000002575029A08934640508D976E129750C0
+172	1	ChÄverie	\N	\N	01010000003333333333934640910F7A36AB0A50C0
+173	1	Halls Harbour	\N	\N	0101000000ECC039234A934640D7A3703D0A2750C0
+174	1	Prince Of Wales	\N	\N	01010000004ED1915CFE934640C286A757CA9250C0
+175	1	Saint Stephen	\N	\N	010100000005A3923A0195464063EE5A423ED450C0
+176	1	Kingsport	\N	\N	0101000000211FF46C569546405DDC4603781750C0
+177	1	Milltown	\N	\N	0101000000211FF46C569546403333333333D350C0
+178	1	Upper Kennetcook	\N	\N	0101000000DAACFA5C6D9546408D28ED0DBED04FC0
+179	1	Walton	\N	\N	0101000000E5F21FD26F974640BBB88D06F0FE4FC0
+180	1	Goldboro	\N	\N	0101000000ACADD85F769746403333333333D34EC0
+181	1	Oxford Junction	\N	\N	0101000000ACADD85F76974640454772F90FF14FC0
+182	1	New Harbour	\N	\N	0101000000F241CF66D59746403411363CBDB24EC0
+183	1	Waweig	\N	\N	0101000000705F07CE199946405F984C158CCA50C0
+184	1	Oak Bay	\N	\N	0101000000FE65F7E46199464050FC1873D7CE50C0
+185	1	Cambridge	\N	\N	01010000009A999999999946405DDC4603780750C0
+186	1	Petite	\N	\N	010100000088855AD3BC9B4640F775E09C110150C0
+187	1	Tenecape	\N	\N	01010000004D840D4FAF9C4640AE47E17A14EE4FC0
+188	1	Saint John	\N	\N	01010000005AF5B9DA8A9D4640C3D32B65198650C0
+189	1	Whitehead	\N	\N	010100000012143FC6DC9D46409A99999999994EC0
+190	1	Larrys River	\N	\N	01010000009FABADD85F9E46400D71AC8BDBA84EC0
+191	1	Brookfield	\N	\N	01010000000000000000A04640787AA52C43A44FC0
+192	1	South Maitland	\N	\N	01010000000000000000A0464088855AD3BCBB4FC0
+193	1	Scots Bay	\N	\N	0101000000C6DCB5847CA0464029CB10C7BA1850C0
+194	1	Noel	\N	\N	0101000000C5FEB27BF2A04640DBF97E6ABCDC4FC0
+195	1	Grand Bay	\N	\N	0101000000A835CD3B4EA14640CBA145B6F38D50C0
+196	1	Densmores Mills	\N	\N	0101000000273108AC1CA24640E5F21FD26FD74FC0
+197	1	Saint John	\N	\N	0101000000EEEBC03923A246402AA913D0448450C0
+198	1	Hilden	\N	\N	01010000006B9A779CA2A346400B46257502A24FC0
+199	1	Cross Roads Country Harbour	\N	\N	0101000000C05B2041F1A34640FB5C6DC5FEEA4EC0
+200	1	Fairfield	\N	\N	01010000006891ED7C3FA54640DBF97E6ABC6C50C0
+201	1	Moores Mills	\N	\N	0101000000A167B3EA73A54640D3DEE00B93D150C0
+202	1	Aspen	\N	\N	01010000002EFF21FDF6A54640FFB27BF2B0004FC0
+203	1	Saint Martins	\N	\N	01010000001D38674469A746401D386744696350C0
+204	1	Clifton	\N	\N	0101000000ACADD85F76A74640D3DEE00B93B14FC0
+205	1	Tower Hill	\N	\N	0101000000545227A089A84640CDCCCCCCCCCC50C0
+206	1	Black Rock	\N	\N	01010000000AD7A3703DAA4640B6F3FDD4781950C0
+207	1	Advocate Harbour	\N	\N	0101000000DFE00B93A9AA46403CBD5296213250C0
+208	1	Truro	\N	\N	010100000017B7D100DEAA464066666666669E4FC0
+209	1	Nerepis	\N	\N	0101000000A54E401361AB464096218E75719350C0
+210	1	Economy	\N	\N	010100000079E9263108AC464088F4DBD781F34FC0
+211	1	Rothesay	\N	\N	01010000003108AC1C5AAC4640645DDC46038050C0
+212	1	Rollingdam	\N	\N	010100000014AE47E17AAC464004E78C28EDC550C0
+213	1	Westfield Beach	\N	\N	0101000000CDCCCCCCCCAC4640098A1F63EE8E50C0
+214	1	Upper Economy	\N	\N	0101000000BE30992A18AD4640E17A14AE47E94FC0
+215	1	Valley	\N	\N	010100000085EB51B81EAD46404C37894160954FC0
+216	1	Parrsboro	\N	\N	0101000000D95F764F1EAE46408638D6C56D1450C0
+217	1	Diligent River	\N	\N	010100000082E2C798BBAE4640F775E09C111D50C0
+218	1	Canso	\N	\N	0101000000ADFA5C6DC5AE4640B8AF03E78C784EC0
+219	1	Truro	\N	\N	0101000000BBB88D06F0AE46406666666666A64FC0
+220	1	Five Islands	\N	\N	010100000057EC2FBB27AF46402E90A0F8310250C0
+221	1	Bass River	\N	\N	01010000001D5A643BDFAF4640E0BE0E9C33E24FC0
+222	1	Goshen	\N	\N	0101000000454772F90FB1464012143FC6DCFD4EC0
+223	1	Belmont	\N	\N	0101000000D1915CFE43B2464082734694F6AE4FC0
+224	1	Portapique	\N	\N	01010000003333333333B346409A99999999D94FC0
+225	1	Sunnybrae	\N	\N	01010000003333333333B346400000000000404FC0
+226	1	Guysborough	\N	\N	0101000000A4703D0AD7B34640516B9A779CBA4EC0
+227	1	Welsford	\N	\N	010100000040A4DFBE0EB446402CD49AE61D9750C0
+228	1	Quispamsis	\N	\N	010100000014AE47E17AB446403D0AD7A3707D50C0
+229	1	Great Village	\N	\N	0101000000211FF46C56B54640CDCCCCCCCCCC4FC0
+230	1	Port Greville	\N	\N	0101000000211FF46C56B5464033333333332350C0
+231	1	Nauwigewauk	\N	\N	0101000000F54A598638B646408A1F63EE5A7A50C0
+232	1	Lawrence Station	\N	\N	01010000009F3C2CD49AB64640CA54C1A8A4CA50C0
+233	1	Lorne	\N	\N	010100000058CA32C4B1B646407D3F355EBA594FC0
+234	1	Debert	\N	\N	0101000000ACADD85F76B7464088855AD3BCBB4FC0
+235	1	Londonderry	\N	\N	0101000000E3A59BC420B84640ED9E3C2CD4CA4FC0
+236	1	Riversdale	\N	\N	01010000001B2FDD2406B94640C976BE9F1A874FC0
+237	1	Kemptown	\N	\N	0101000000BF7D1D3867BC4640A8C64B3789894FC0
+238	1	Oak Point	\N	\N	0101000000EA95B20C71BC46400A68226C788650C0
+239	1	Hopewell	\N	\N	0101000000A1D634EF38BD464027A089B0E1594FC0
+240	1	Hampton	\N	\N	010100000082734694F6BE464027C286A7577650C0
+241	1	Blue Mountain	\N	\N	010100000065AA605452BF4640E25817B7D1384FC0
+242	1	Enniskillen	\N	\N	0101000000AA60545227C0464029CB10C7BAA050C0
+243	1	Newville	\N	\N	0101000000EEEBC03923C246406FF085C9541550C0
+244	1	Nuttby	\N	\N	01010000008716D9CEF7C346407DD0B359F5994FC0
+245	1	Petit-de-grat	\N	\N	0101000000226C787AA5C4464096438B6CE7734EC0
+246	1	Arichat	\N	\N	0101000000CCEEC9C342C546405C2041F1637C4EC0
+247	1	Folly Lake	\N	\N	01010000006666666666C646406666666666C64FC0
+248	1	Westville	\N	\N	0101000000AC1C5A643BC74640A4DFBE0E9C5B4FC0
+249	1	James River	\N	\N	0101000000E3A59BC420C84640BE30992A180D4FC0
+250	1	Dalhousie Settlement	\N	\N	0101000000545227A089C846400000000000804FC0
+251	1	Stellarton	\N	\N	0101000000545227A089C846403333333333534FC0
+252	1	Hampstead	\N	\N	0101000000454772F90FC9464058A835CD3B8650C0
+253	1	Alma	\N	\N	01010000001973D712F2C94640A857CA32C4614FC0
+254	1	Jeffries Corner	\N	\N	010100000099BB96900FCA46409D11A5BDC15F50C0
+255	1	Earltown	\N	\N	010100000052499D8026CA464036AB3E575B914FC0
+256	1	Marshy Hope	\N	\N	0101000000DFE00B93A9CA4640ACADD85F76174FC0
+257	1	New Glasgow	\N	\N	0101000000DFE00B93A9CA4640454772F90F514FC0
+258	1	Norton	\N	\N	0101000000B30C71AC8BCB46405396218E756D50C0
+259	1	Mcadam	\N	\N	01010000005C8FC2F528CC4640F853E3A59BD450C0
+260	1	Point Tupper	\N	\N	0101000000CDCCCCCCCCCC4640BBB88D06F0AE4EC0
+261	1	Westchester Station	\N	\N	010100000003098A1F63CE4640E17A14AE47C94FC0
+262	1	D'escousse	\N	\N	0101000000F4FDD478E9CE464068226C787A754EC0
+263	1	Antigonish	\N	\N	0101000000BBB88D06F0CE464088855AD3BCFB4EC0
+264	1	Evanston	\N	\N	0101000000BBB88D06F0CE464012143FC6DC9D4EC0
+265	1	Mulgrave	\N	\N	0101000000BBB88D06F0CE46403333333333B34EC0
+266	1	Tracadie	\N	\N	0101000000BBB88D06F0CE46403333333333D34EC0
+267	1	Trenton	\N	\N	0101000000BBB88D06F0CE4640BBB88D06F04E4FC0
+268	1	Fredericton Junction	\N	\N	01010000004850FC1873CF46403108AC1C5AA850C0
+269	1	Port Hawkesbury	\N	\N	0101000000AA60545227D04640E3C798BB96A84EC0
+270	1	Springfield	\N	\N	01010000000DE02D90A0D04640DBF97E6ABC7450C0
+271	1	Merigomish	\N	\N	0101000000E2E995B20CD146401E166A4DF3364FC0
+272	1	Bailey	\N	\N	0101000000454772F90FD146406FF085C954A550C0
+273	1	Central Blissville	\N	\N	0101000000454772F90FD146406FF085C954A550C0
+274	1	Grand River	\N	\N	0101000000454772F90FD14640211FF46C56554EC0
+275	1	Port Hastings	\N	\N	0101000000454772F90FD146403333333333B34EC0
+276	1	Tracy	\N	\N	010100000045D8F0F44AD14640B1E1E995B2AC50C0
+277	1	Queenstown	\N	\N	0101000000C4B12E6EA3D146400EBE30992A8850C0
+278	1	Greenville	\N	\N	0101000000EE5A423EE8D146404A7B832F4CD64FC0
+279	1	West New Annan	\N	\N	01010000001973D712F2D146404A0C022B87AE4FC0
+280	1	Springhill	\N	\N	0101000000894160E5D0D24640B30C71AC8B0350C0
+281	1	Apohaqui	\N	\N	0101000000B459F5B9DAD24640F46C567DAE6650C0
+282	1	Granville	\N	\N	01010000003333333333D3464012143FC6DC9D4EC0
+283	1	Scotsburn	\N	\N	01010000003333333333D34640CDCCCCCCCC6C4FC0
+284	1	Plainfield	\N	\N	01010000005C2041F163D446401FF46C567D764FC0
+285	1	Sussex	\N	\N	01010000002FDD240681D5464061C3D32B656150C0
+286	1	Frankville	\N	\N	0101000000933A014D84D54640744694F606BF4EC0
+287	1	Pictou	\N	\N	0101000000C9E53FA4DFD64640DE9387855A5B4FC0
+288	1	Cork	\N	\N	0101000000ACADD85F76D74640910F7A36ABBA50C0
+289	1	River HÃ©bert	\N	\N	0101000000ACADD85F76D74640A323B9FC871850C0
+290	1	Wentworth Centre	\N	\N	0101000000ACADD85F76D746406666666666C64FC0
+291	1	Cleveland	\N	\N	0101000000C74B378941D8464036AB3E575B994EC0
+292	1	Havre Boucher	\N	\N	010100000071AC8BDB68D846402A3A92CB7FC04EC0
+293	1	Saint Peters	\N	\N	0101000000C6DCB5847CD846407A36AB3E576B4EC0
+294	1	River Hebert	\N	\N	0101000000F1F44A5986D846406ADE718A8E1850C0
+295	1	Beaver Brook	\N	\N	0101000000287E8CB96BD9464058CA32C4B13250C0
+296	1	Joggins	\N	\N	01010000009A99999999D94640D656EC2FBB1B50C0
+297	1	Lismore	\N	\N	01010000009A99999999D94640EEEBC03923224FC0
+298	1	Soldier Cove	\N	\N	01010000009A99999999D9464012143FC6DC5D4EC0
+299	1	Birchwood	\N	\N	010100000035EF384547DA4640228E75711BE54FC0
+300	1	Troy	\N	\N	0101000000FB3A70CE88DA4640CD3B4ED191B44EC0
+301	1	Denmark	\N	\N	01010000005F29CB10C7DA46406A4DF38E53944FC0
+302	1	Tatamagouche	\N	\N	0101000000B3EA73B515DB4640A167B3EA73A54FC0
+303	1	West Bay Road	\N	\N	010100000088855AD3BCDB46400000000000A04EC0
+304	1	Harvey	\N	\N	010100000031992A1895DC4640211FF46C562D50C0
+305	1	Maccan	\N	\N	0101000000143FC6DCB5DC4640B22E6EA3011050C0
+306	1	Berwick	\N	\N	0101000000B003E78C28DD46400A68226C786650C0
+307	1	Harvey Station	\N	\N	01010000006891ED7C3FDD46401CEBE2361AC050C0
+308	1	West Bay	\N	\N	0101000000D93D7958A8DD464052499D8026924EC0
+309	1	Gagetown	\N	\N	010100000012143FC6DCDD46407C613255308A50C0
+310	1	Oxford	\N	\N	0101000000E78C28ED0DDE464011C7BAB88DEE4FC0
+311	1	Riverside	\N	\N	01010000000000000000E04640C442AD69DE2D50C0
+312	1	River John	\N	\N	0101000000B8AF03E78CE0464046B6F3FDD4884FC0
+313	1	Malagash	\N	\N	0101000000FB5C6DC5FEE246408E75711B0DB04FC0
+314	1	Penobsquis	\N	\N	010100000033C4B12E6EE346405C2041F1635850C0
+315	1	Highfield	\N	\N	010100000024287E8CB9E34640D578E926317050C0
+316	1	Jemseg	\N	\N	0101000000234A7B832FE44640083D9B559F8750C0
+317	1	Roberta	\N	\N	0101000000304CA60A46E5464072F90FE9B76F4EC0
+318	1	Pugwash Junction	\N	\N	0101000000933A014D84E54640C66D3480B7D04FC0
+319	1	Upper Gagetown	\N	\N	0101000000933A014D84E546404182E2C7988F50C0
+320	1	Oromocto	\N	\N	01010000002041F163CCE54640516B9A779C9E50C0
+321	1	Elgin	\N	\N	01010000002EFF21FDF6E54640C976BE9F1A4750C0
+322	1	Long Point	\N	\N	01010000006666666666E6464012143FC6DCBD4EC0
+323	1	Mansfield	\N	\N	01010000009FCDAACFD5E646409CA223B9FCF74FC0
+324	1	Wallace	\N	\N	0101000000B9FC87F4DBE74640956588635DBC4FC0
+325	1	Codys	\N	\N	0101000000B6847CD0B3E94640D3BCE3141D7550C0
+326	1	Newtown	\N	\N	0101000000355EBA490CEA4640228E75711B5D50C0
+327	1	Amherst	\N	\N	01010000000AD7A3703DEA46403D0AD7A3700D50C0
+328	1	Gabarus	\N	\N	0101000000DFE00B93A9EA4640454772F90F114EC0
+329	1	River Denys	\N	\N	01010000005EBA490C02EB46401E166A4DF3964EC0
+330	1	Pugwash	\N	\N	010100000014AE47E17AEC464094F6065F98D44FC0
+331	1	Hopewell Cape	\N	\N	0101000000CC5D4BC807ED46405BD3BCE3142550C0
+332	1	Port Howe	\N	\N	0101000000BEC1172653ED4640454772F90FE14FC0
+333	1	Melford	\N	\N	010100000039B4C876BEEF4640D3DEE00B93A14EC0
+334	1	Linden	\N	\N	01010000004694F6065FF0464061C3D32B65E94FC0
+335	1	Canterbury Station	\N	\N	0101000000454772F90FF14640C442AD69DEDD50C0
+336	1	Kingsclear	\N	\N	0101000000454772F90FF146409A99999999B950C0
+337	1	Sheffield	\N	\N	0101000000454772F90FF1464033333333339350C0
+338	1	Judique	\N	\N	01010000005396218E75F146406A4DF38E53BC4EC0
+339	1	Head Of Millstream	\N	\N	0101000000FD87F4DBD7F14640F6285C8FC26150C0
+340	1	Canterbury	\N	\N	0101000000C364AA6054F2464021B0726891DD50C0
+341	1	Sackville	\N	\N	0101000000C1A8A44E40F34640D656EC2FBB1750C0
+342	1	Fredericton	\N	\N	01010000006ADE718A8EF4464052499D8026AA50C0
+343	1	Fredericton	\N	\N	01010000006ADE718A8EF4464052499D8026AA50C0
+344	1	Perry Settlement	\N	\N	010100000094F6065F98F44640789CA223B95C50C0
+345	1	Cornhill	\N	\N	0101000000789CA223B9F4464075029A081B5650C0
+346	1	Prince William	\N	\N	01010000005A643BDF4FF54640C0EC9E3C2CC450C0
+347	1	Louisbourg	\N	\N	0101000000211FF46C56F5464012143FC6DCFD4DC0
+348	1	Hillsborough	\N	\N	0101000000910F7A36ABF6464076E09C11A52950C0
+349	1	Orangedale	\N	\N	0101000000ADFA5C6DC5F64640448B6CE7FB894EC0
+350	1	Petitcodiac	\N	\N	0101000000F2B0506B9AF746405E4BC8073D4B50C0
+351	1	Ripples	\N	\N	0101000000F085C954C1F84640355EBA490C8E50C0
+352	1	Dawson	\N	\N	010100000054742497FFF84640E09C11A5BD3150C0
+353	1	Nackawic	\N	\N	010100000036AB3E575BF94640075F984C15D050C0
+354	1	Fredericton	\N	\N	01010000009A99999999F94640A323B9FC87A850C0
+355	1	Grand Narrows	\N	\N	01010000009A99999999F94640787AA52C43644EC0
+356	1	Saint-jacques	\N	\N	01010000009A99999999F946406FF085C9546552C0
+357	1	Weldon	\N	\N	01010000009A99999999F94640D656EC2FBB2B50C0
+358	1	Keswick	\N	\N	0101000000A52C431CEBFA464021B0726891B550C0
+359	1	Turtle Creek	\N	\N	010100000096218E7571FB4640713D0AD7A33850C0
+360	1	Iona	\N	\N	010100000088855AD3BCFB4640545227A089684EC0
+361	1	Lower Southampton	\N	\N	010100000088855AD3BCFB4640098A1F63EECE50C0
+362	1	Otis	\N	\N	010100000088855AD3BCFB4640098A1F63EECE50C0
+363	1	White Sands	\N	\N	010100000088855AD3BCFB4640545227A089484FC0
+364	1	Cumberland Bay	\N	\N	0101000000D93D7958A8FD4640EBE2361AC07750C0
+365	1	Belle River	\N	\N	01010000009FABADD85FFE4640B3EA73B5156B4FC0
+366	1	Benton	\N	\N	0101000000029A081B9EFE4640BBB88D06F0E650C0
+367	1	Penniac	\N	\N	0101000000910F7A36ABFE464030BB270F0BA550C0
+368	1	Meductic	\N	\N	010100000065AA605452FF46401D38674469DF50C0
+369	1	Whycocomagh	\N	\N	01010000008FC2F5285CFF464012A5BDC1178E4EC0
+370	1	Havelock	\N	\N	0101000000736891ED7CFF4640158C4AEA045450C0
+371	1	Butternut Ridge	\N	\N	010100000000000000000047402AA913D0445450C0
+372	1	Main-Å•-dieu	\N	\N	01010000000000000000004740CDCCCCCCCCEC4DC0
+373	1	Memramcook	\N	\N	0101000000000000000000474033333333332350C0
+374	1	Murray Harbour	\N	\N	010100000037894160E50047403333333333434FC0
+375	1	Temperance Vale	\N	\N	0101000000371AC05B2001474055302AA913D050C0
+376	1	Little Narrows	\N	\N	010100000027A089B0E1014740075F984C157C4EC0
+377	1	Zealand	\N	\N	0101000000FC1873D712024740C05B2041F1BB50C0
+378	1	Beach Point	\N	\N	0101000000EEEBC0392302474012143FC6DC3D4FC0
+379	1	Flat River	\N	\N	0101000000EEEBC03923024740454772F90F714FC0
+380	1	Shenacadie	\N	\N	0101000000EEEBC039230247403333333333534EC0
+381	1	Burtts Corner	\N	\N	0101000000B537F8C2640247400EBE30992AB850C0
+382	1	Murray River	\N	\N	0101000000DF4F8D976E0247401F85EB51B84E4FC0
+383	1	Port Hood	\N	\N	0101000000FB5C6DC5FE024740C3F5285C8FC24EC0
+384	1	Minto	\N	\N	010100000041F163CC5D034740D3BCE3141D8550C0
+385	1	Newcastle Creek	\N	\N	0101000000CE88D2DEE003474001DE02098A8350C0
+386	1	Salisbury	\N	\N	01010000004ED1915CFE0347407B832F4CA64250C0
+387	1	Mira	\N	\N	0101000000787AA52C4304474012143FC6DCFD4DC0
+388	1	Forks	\N	\N	0101000000666666666606474033333333336350C0
+389	1	Riverview	\N	\N	01010000006666666666064740A4703D0AD73350C0
+390	1	Port Elgin	\N	\N	0101000000BB270F0BB506474061545227A00550C0
+391	1	Debec	\N	\N	0101000000545227A089084740D656EC2FBBEB50C0
+392	1	Harewood	\N	\N	0101000000FFB27BF2B00847408D976E12835050C0
+393	1	Durham	\N	\N	01010000006E3480B7400A4740575BB1BFECA650C0
+394	1	Durham Bridge	\N	\N	01010000006E3480B7400A4740575BB1BFECA650C0
+395	1	Homeville	\N	\N	0101000000DFE00B93A90A4740ACADD85F76F74DC0
+396	1	Newcastle Bridge	\N	\N	0101000000DFE00B93A90A474033333333338350C0
+397	1	Mabou	\N	\N	0101000000091B9E5E290B4740736891ED7CAF4EC0
+398	1	Millville	\N	\N	010100000096218E75710B474077BE9F1A2FCD50C0
+399	1	Eldon	\N	\N	01010000006A4DF38E530C4740A7E8482EFF714FC0
+400	1	Moncton	\N	\N	01010000003108AC1C5A0C474089D2DEE00B3350C0
+401	1	Baddeck	\N	\N	0101000000CDCCCCCCCC0C47400000000000604EC0
+402	1	Boisdale	\N	\N	0101000000CDCCCCCCCC0C47400000000000404EC0
+403	1	Dieppe	\N	\N	0101000000CDCCCCCCCC0C474000000000003050C0
+404	1	Lakeburn	\N	\N	0101000000CDCCCCCCCC0C4740910F7A36AB2A50C0
+405	1	Melrose	\N	\N	0101000000CDCCCCCCCC0C4740ACADD85F76F74FC0
+406	1	Hardwood Ridge	\N	\N	010100000069006F81040D4740FB3A70CE888250C0
+407	1	Woodstock	\N	\N	0101000000D95F764F1E0E474061C3D32B65E550C0
+408	1	Berry Mills	\N	\N	0101000000BBB88D06F00E4740CDCCCCCCCC3C50C0
+409	1	Cape Tormentine	\N	\N	0101000000BBB88D06F00E4740787AA52C43E44FC0
+410	1	Coxheath	\N	\N	0101000000BBB88D06F00E474012143FC6DC1D4EC0
+411	1	Southampton	\N	\N	0101000000BBB88D06F00E47409A99999999C950C0
+412	1	Sydney River	\N	\N	0101000000BBB88D06F00E474088855AD3BC1B4EC0
+413	1	Chipman	\N	\N	0101000000C976BE9F1A0F4740956588635D7850C0
+414	1	Cow Bay	\N	\N	0101000000454772F90F114740454772F90FF14DC0
+415	1	Port Morien	\N	\N	0101000000454772F90F114740454772F90FF14DC0
+416	1	Taymouth	\N	\N	0101000000E17A14AE4711474082734694F6A650C0
+417	1	North West Arm	\N	\N	01010000003333333333134740787AA52C43244EC0
+418	1	Sydney	\N	\N	01010000003333333333134740211FF46C56154EC0
+419	1	Newburg	\N	\N	010100000088855AD3BC1347406DC5FEB27BE250C0
+420	1	Bristol	\N	\N	010100000024B9FC87F4134740D5E76A2BF60B50C0
+421	1	Shemogue	\N	\N	010100000024B9FC87F4134740D5E76A2BF60B50C0
+422	1	Scoudouc	\N	\N	0101000000931804560E1547402B8716D9CE2350C0
+423	1	Cherry Valley	\N	\N	0101000000211FF46C56154740211FF46C56754FC0
+424	1	Edwardsville	\N	\N	0101000000211FF46C5615474012143FC6DC1D4EC0
+425	1	Montague	\N	\N	0101000000AF94658863154740C139234A7B534FC0
+426	1	Donkin	\N	\N	0101000000ACADD85F76174740BBB88D06F0EE4DC0
+427	1	Strathlorne	\N	\N	0101000000ACADD85F76174740EEEBC03923A24EC0
+428	1	Vernon	\N	\N	0101000000ACADD85F76174740454772F90F714FC0
+429	1	Vernon Bridge	\N	\N	0101000000ACADD85F76174740454772F90F714FC0
+430	1	Georgetown	\N	\N	010100000072F90FE9B717474007F0164850444FC0
+431	1	Nashwaak Bridge	\N	\N	010100000036AB3E575B194740575BB1BFECA650C0
+432	1	Glace Bay	\N	\N	01010000009A9999999919474088855AD3BCFB4DC0
+433	1	North Sydney	\N	\N	01010000009A999999991947400000000000204EC0
+434	1	Vernon River	\N	\N	01010000005F29CB10C71A4740B459F5B9DA6A4FC0
+435	1	Scotsville	\N	\N	0101000000174850FC181B4740DC4603780B944EC0
+436	1	Cap Pele	\N	\N	0101000000B30C71AC8B1B4740211FF46C561150C0
+437	1	Dominion	\N	\N	010100000088855AD3BC1B4740EEEBC03923024EC0
+438	1	Hampton	\N	\N	010100000088855AD3BC1B474088855AD3BCBB4FC0
+439	1	Victoria	\N	\N	010100000088855AD3BC1B474012143FC6DCBD4FC0
+440	1	Stratford	\N	\N	01010000005C8FC2F5281C4740CDCCCCCCCC8C4FC0
+441	1	Shediac	\N	\N	010100000007F01648501C474026E4839ECD2250C0
+442	1	Bas Cap Pele	\N	\N	0101000000A1F831E6AE1D47403F575BB1BF1050C0
+443	1	Inverness	\N	\N	0101000000BDE3141DC91D4740AC8BDB6800A74EC0
+444	1	Covered Bridge	\N	\N	010100000012143FC6DC1D47405DDC460378A750C0
+445	1	Little Bras D'or	\N	\N	010100000012143FC6DC1D4740787AA52C43244EC0
+446	1	Sydney Mines	\N	\N	010100000012143FC6DC1D474088855AD3BC1B4EC0
+447	1	Stanley	\N	\N	0101000000925CFE43FA1D47406C09F9A067AF50C0
+448	1	Cardigan	\N	\N	010100000075931804561E4740736891ED7C4F4FC0
+449	1	Crapaud	\N	\N	010100000066666666661E4740F38E537424BF4FC0
+450	1	Pointe-du-chÄ™ne	\N	\N	0101000000917EFB3A701E474077BE9F1A2F2150C0
+451	1	Charlottetown	\N	\N	01010000001FF46C567D1E474060E5D022DB914FC0
+452	1	Cornwall	\N	\N	01010000001F85EB51B81E47407B14AE47E19A4FC0
+453	1	Tryon	\N	\N	01010000003B70CE88D21E4740857CD0B359C54FC0
+454	1	Borden-carleton	\N	\N	01010000000000000000204740211FF46C56D54FC0
+455	1	Canaan Station	\N	\N	010100000000000000002047402AA913D0444450C0
+456	1	Carleton	\N	\N	01010000000000000000204740211FF46C56D54FC0
+457	1	Lindsay	\N	\N	01010000000000000000204740D656EC2FBBEB50C0
+458	1	New Waterford	\N	\N	01010000000000000000204740DFE00B93A90A4EC0
+459	1	Port Borden	\N	\N	010100000000000000002047409A99999999D94FC0
+460	1	Saint Ann	\N	\N	01010000000000000000204740BBB88D06F04E4EC0
+461	1	Saint Anns	\N	\N	01010000000000000000204740BBB88D06F04E4EC0
+462	1	Borden	\N	\N	01010000009CC420B0722047401AC05B2041D94FC0
+463	1	Cloverdale	\N	\N	01010000006F8104C58F21474009F9A067B3D650C0
+464	1	Hartland	\N	\N	0101000000A7E8482EFF2147400C93A98251E150C0
+465	1	Cross Creek Station	\N	\N	0101000000EEEBC03923224740A323B9FC87A850C0
+466	1	Sherwood	\N	\N	0101000000787AA52C43244740454772F90F914FC0
+467	1	Milton	\N	\N	0101000000666666666626474088855AD3BC9B4FC0
+468	1	Notre Dame	\N	\N	01010000006666666666264740C442AD69DE2D50C0
+469	1	Peakes	\N	\N	01010000006666666666264740787AA52C43644FC0
+470	1	South West Margaree	\N	\N	0101000000744694F60627474097FF907EFB924EC0
+471	1	Bourgeois	\N	\N	0101000000F2D24D6210284740D93D7958A82150C0
+472	1	Mcgivney	\N	\N	0101000000637FD93D79284740C0EC9E3C2CA450C0
+473	1	Saint Paul	\N	\N	0101000000A857CA32C4294740F0164850FC4050C0
+474	1	Central Bedeque	\N	\N	0101000000FA7E6ABC742B474019E25817B7D94FC0
+475	1	Pisquid	\N	\N	0101000000EC51B81E852B474021B07268916D4FC0
+476	1	Tracadie	\N	\N	0101000000CDCCCCCCCC2C474088855AD3BC7B4FC0
+477	1	Margaree Forks	\N	\N	01010000004D158C4AEA2C4740598638D6C58D4EC0
+478	1	Hunter River	\N	\N	01010000002FDD2406812D47404D840D4FAFAC4FC0
+479	1	Souris	\N	\N	0101000000CB10C7BAB82D4740F241CF66D51F4FC0
+480	1	Astle	\N	\N	010100000004E78C28ED2D474099BB96900F9E50C0
+481	1	Emerald	\N	\N	0101000000BBB88D06F02E47406666666666C64FC0
+482	1	Indian Brook	\N	\N	0101000000BBB88D06F02E4740EEEBC03923424EC0
+483	1	Saint Anthony	\N	\N	0101000000BBB88D06F02E474000000000003050C0
+484	1	Mount Stewart	\N	\N	010100000048BF7D1D382F47403A234A7B836F4FC0
+485	1	Freetown	\N	\N	01010000002B1895D40930474091ED7C3F35CE4FC0
+486	1	Margaree Valley	\N	\N	010100000029CB10C7BA304740CBA145B6F37D4EC0
+487	1	East Margaree	\N	\N	0101000000454772F90F314740545227A089884EC0
+488	1	Margaree	\N	\N	0101000000454772F90F314740545227A089884EC0
+489	1	Centerville	\N	\N	01010000002575029A08334740772D211FF4EC50C0
+490	1	Centreville	\N	\N	01010000002575029A08334740772D211FF4EC50C0
+491	1	Summerside	\N	\N	010100000089D2DEE00B3347405A643BDF4FE54FC0
+492	1	Mount Pleasant	\N	\N	01010000003333333333334740098A1F63EEDE50C0
+493	1	Napadogan	\N	\N	01010000003333333333334740910F7A36ABBA50C0
+494	1	Summerside	\N	\N	01010000003333333333334740787AA52C43E44FC0
+495	1	Boiestown	\N	\N	01010000005DFE43FAED334740E0BE0E9C339A50C0
+496	1	Florenceville	\N	\N	0101000000F8C264AA603447408AB0E1E995E650C0
+497	1	Rustico	\N	\N	0101000000A1D634EF38354740228E75711BA54FC0
+498	1	Saint Eleanors	\N	\N	0101000000211FF46C56354740545227A089E84FC0
+499	1	Selkirk	\N	\N	0101000000211FF46C56354740ACADD85F76374FC0
+500	1	Morell	\N	\N	0101000000A167B3EA733547403480B740825A4FC0
+501	1	Saint Peter	\N	\N	0101000000AF25E4839E354740516B9A779C4A4FC0
+502	1	Saint Peters Bay	\N	\N	0101000000AF25E4839E354740516B9A779C4A4FC0
+503	1	Miscouche	\N	\N	010100000065AA605452374740D734EF3845EF4FC0
+504	1	Kensington	\N	\N	0101000000B9FC87F4DB3747408BFD65F7E4D14FC0
+505	1	Glassville	\N	\N	0101000000613255302A3947408351499D80DA50C0
+506	1	Margaree Harbour	\N	\N	0101000000EF3845477239474029CB10C7BA904EC0
+507	1	Stanley Bridge	\N	\N	01010000009A999999993947409A99999999B94FC0
+508	1	Wellington	\N	\N	0101000000448B6CE7FB39474000000000000050C0
+509	1	Wellington Station	\N	\N	0101000000448B6CE7FB39474000000000000050C0
+510	1	North Rustico	\N	\N	010100000017B7D100DE3A4740AA60545227A84FC0
+511	1	New London	\N	\N	01010000006C09F9A0673B47401A51DA1B7CC14FC0
+512	1	Buctouche	\N	\N	010100000088855AD3BC3B4740098A1F63EE2E50C0
+513	1	Harcourt	\N	\N	010100000088855AD3BC3B474000000000005050C0
+514	1	Bath	\N	\N	0101000000BE9F1A2FDD3C4740462575029AE450C0
+515	1	Holtville	\N	\N	01010000006891ED7C3F3D4740C4B12E6EA39D50C0
+516	1	Shinnickburn	\N	\N	010100000065AA6054523F474045D8F0F44A7550C0
+517	1	Doaktown	\N	\N	01010000000E4FAF94654047408716D9CEF78750C0
+518	1	Richmond	\N	\N	0101000000D42B6519E24047403B70CE88D2FE4FC0
+519	1	Juniper	\N	\N	01010000008C4AEA04344147402FDD240681CD50C0
+520	1	Harmony	\N	\N	0101000000787AA52C4344474033333333330350C0
+521	1	Princetown	\N	\N	0101000000787AA52C43444740ACADD85F76D74FC0
+522	1	Holmesville	\N	\N	010100000085EB51B81E4547406F8104C58FE550C0
+523	1	Weaver Siding	\N	\N	0101000000ABCFD556EC4747408B6CE7FBA97D50C0
+524	1	Tyne Valley	\N	\N	0101000000C4B12E6EA3494740F4FDD478E9F64FC0
+525	1	Kent Junction	\N	\N	0101000000DFE00B93A94A47406FF085C9545550C0
+526	1	River De Chute	\N	\N	0101000000CDCCCCCCCC4C4740098A1F63EEEE50C0
+527	1	Ellerslie	\N	\N	010100000069006F81044D4740D42B6519E2F84FC0
+528	1	Howard	\N	\N	010100000058CA32C4B14E4740E09C11A5BD7150C0
+529	1	Aldouane	\N	\N	0101000000BBB88D06F04E474033333333334350C0
+530	1	ChÃ©ticamp	\N	\N	0101000000BBB88D06F04E4740EEEBC03923824EC0
+531	1	Rexton	\N	\N	0101000000454772F90F5147405DDC4603783750C0
+532	1	Kingston	\N	\N	01010000008A1F63EE5A5247408FE4F21FD23750C0
+533	1	Rexton	\N	\N	01010000008A1F63EE5A5247408FE4F21FD23750C0
+534	1	Bon Accord	\N	\N	010100000033333333335347406FF085C954E550C0
+535	1	Petit-etang	\N	\N	0101000000333333333353474088855AD3BC7B4EC0
+536	1	Upper Blackville	\N	\N	010100000033333333335347405DDC4603787750C0
+537	1	Portage	\N	\N	0101000000211FF46C565547402AA913D0440450C0
+538	1	Blackville	\N	\N	010100000011363CBD52564740DBF97E6ABC7450C0
+539	1	Ingonish	\N	\N	0101000000ACADD85F76574740BBB88D06F02E4EC0
+540	1	Richibucto	\N	\N	010100000072F90FE9B75747406B9A779CA23750C0
+541	1	Coleman	\N	\N	0101000000D49AE61DA7584740E02D90A0F80950C0
+542	1	Perth	\N	\N	01010000000C93A982515947407AA52C431CEB50C0
+543	1	Perth-andover	\N	\N	01010000000C93A982515947407AA52C431CEB50C0
+544	1	O'leary	\N	\N	01010000007B14AE47E15A47403BDF4F8D970E50C0
+545	1	Rogersville	\N	\N	01010000005917B7D1005E4740D6C56D34805B50C0
+546	1	Saint Louis	\N	\N	0101000000E6AE25E4835E4740AE47E17A143E50C0
+547	1	Saint Louis De Kent	\N	\N	0101000000E6AE25E4835E4740AE47E17A143E50C0
+548	1	Aroostook Junction	\N	\N	0101000000D0B359F5B9624740FFB27BF2B0EC50C0
+549	1	Collette	\N	\N	0101000000401361C3D3634740F7065F984C5D50C0
+550	1	Red Rapids	\N	\N	0101000000787AA52C436447400000000000E050C0
+551	1	Saint Almo	\N	\N	0101000000B9FC87F4DB674740857CD0B359D950C0
+552	1	Alberton	\N	\N	0101000000B81E85EB516847408048BF7D1D0450C0
+553	1	Renous	\N	\N	0101000000545227A08968474033333333337350C0
+554	1	Elmsdale	\N	\N	0101000000A835CD3B4E694740454772F90F0950C0
+555	1	Quarryville	\N	\N	0101000000DFE00B93A96A47403CBD5296217250C0
+556	1	Plaster Rock	\N	\N	010100000075931804566E4740FB5C6DC5FED650C0
+557	1	Mckinleyville	\N	\N	01010000009E5E29CB106F474026E4839ECD6A50C0
+558	1	Montrose	\N	\N	01010000008FC2F5285C6F47405C8FC2F5280450C0
+559	1	Barnaby	\N	\N	0101000000454772F90F714740F775E09C116150C0
+560	1	Barnaby River	\N	\N	0101000000454772F90F714740F775E09C116150C0
+561	1	Miminegash	\N	\N	01010000006FF085C95471474098DD9387850E50C0
+562	1	Saint Louis	\N	\N	01010000007D3F355EBA71474014D044D8F00850C0
+563	1	Limestone	\N	\N	0101000000A7E8482EFF714740ACADD85F76EB50C0
+564	1	Dingwall	\N	\N	0101000000333333333373474088855AD3BC3B4EC0
+565	1	Millerton	\N	\N	01010000003333333333734740A323B9FC876850C0
+566	1	Saint Margaret Bay	\N	\N	01010000003333333333734740D656EC2FBB4B50C0
+567	1	Whitney	\N	\N	01010000008638D6C56D744740F54A5986386E50C0
+568	1	Saint Margarets	\N	\N	010100000094F6065F98744740B1E1E995B24C50C0
+569	1	Exmoor	\N	\N	0101000000E6AE25E483764740EA95B20C717450C0
+570	1	Tignish	\N	\N	0101000000EEEBC039237A47401904560E2D0250C0
+571	1	Pointe Au Sapin	\N	\N	01010000006ABC7493187C47407E1D3867443550C0
+572	1	Pointe-sapin	\N	\N	01010000006ABC7493187C47407E1D3867443550C0
+573	1	Black River	\N	\N	0101000000956588635D7C4740228E75711B5550C0
+574	1	South Nelson	\N	\N	010100000012143FC6DC7D474033333333336350C0
+575	1	Newcastle	\N	\N	01010000001D5A643BDF7F4740956588635D6450C0
+576	1	Grand Falls	\N	\N	0101000000705F07CE198147401361C3D32BED50C0
+577	1	Grand-sault	\N	\N	0101000000705F07CE198147401361C3D32BED50C0
+578	1	Oxbow	\N	\N	0101000000D34D6210588147409E5E29CB10D350C0
+579	1	Chatham	\N	\N	0101000000787AA52C43844740D656EC2FBB5B50C0
+580	1	Miramichi	\N	\N	0101000000A323B9FC87844740107A36AB3E4B50C0
+581	1	Saint Andre	\N	\N	0101000000AAF1D24D62884740D95F764F1EEE50C0
+582	1	Escuminac	\N	\N	01010000000B24287E8C8947404A7B832F4C3A50C0
+583	1	Bellefond	\N	\N	01010000003C4ED1915C8E4740E10B93A9826950C0
+584	1	Saint Leonard	\N	\N	01010000001AC05B204191474039D6C56D34F850C0
+585	1	Barryville	\N	\N	0101000000F9A067B3EA934740A4703D0AD74F50C0
+586	1	Siegas	\N	\N	01010000008126C286A797474033C4B12E6EFB50C0
+587	1	Burnt Church	\N	\N	01010000009A081B9E5E994740053411363C4950C0
+588	1	Lavillette	\N	\N	0101000000C4B12E6EA3994740386744696F5450C0
+589	1	Neguac	\N	\N	01010000009031772D219F4740FC1873D7124650C0
+590	1	Clair	\N	\N	010100000046B6F3FDD4A04740E5D022DBF92651C0
+591	1	Fairisle	\N	\N	0101000000A52C431CEBA24740B1506B9A774850C0
+592	1	Bartibog	\N	\N	0101000000787AA52C43A447405DDC4603786750C0
+593	1	Saint-hilaire	\N	\N	010100000068B3EA73B5A547404B598638D61951C0
+594	1	Lac Baker	\N	\N	01010000005F984C158CAA474070CE88D2DE2851C0
+595	1	Saint Basile	\N	\N	010100000012A5BDC117AE4740D734EF38450F51C0
+596	1	Saint-basile	\N	\N	010100000012A5BDC117AE4740D734EF38450F51C0
+597	1	Edmundston	\N	\N	01010000009FABADD85FAE4740F0164850FC1451C0
+598	1	Brantville	\N	\N	0101000000AB3E575BB1AF4740A7E8482EFF3D50C0
+599	1	Saint Jacques	\N	\N	0101000000D712F241CFB64740DBF97E6ABC1851C0
+600	1	Saint-jacques	\N	\N	0101000000D712F241CFB64740DBF97E6ABC1851C0
+601	1	Allardville	\N	\N	0101000000789CA223B9BC47402497FF907E5F50C0
+602	1	Sheila	\N	\N	01010000005A643BDF4FBD47409FCDAACFD53A50C0
+603	1	Saint Quentin	\N	\N	01010000000000000000C04740A323B9FC87D850C0
+604	1	Saint Quentin	\N	\N	01010000000B24287E8CC1474085EB51B81ED950C0
+605	1	Saint-quentin	\N	\N	01010000000B24287E8CC1474085EB51B81ED950C0
+606	1	Tracadie	\N	\N	0101000000FD87F4DBD7C147409FABADD85F3A50C0
+607	1	Tilley Road	\N	\N	0101000000DD24068195C3474096218E75714350C0
+608	1	Saint Isidore	\N	\N	010100000002BC051214C7474088635DDC464350C0
+609	1	Bathurst	\N	\N	01010000000F0BB5A679C74740BC749318046A50C0
+610	1	Duguayville	\N	\N	01010000004CA60A4625CD47400DE02D90A04450C0
+611	1	Val Doucet	\N	\N	010100000091ED7C3F35CE4740B515FBCBEE4D50C0
+612	1	Kedgwick	\N	\N	01010000006D567DAEB6D247408A1F63EE5AD650C0
+613	1	Saint-andrÃ©	\N	\N	0101000000211FF46C56D54740098A1F63EE6E51C0
+614	1	Paquetville	\N	\N	0101000000857CD0B359D54740E5D022DBF94650C0
+615	1	Inkerman	\N	\N	010100000013F241CF66D54740772D211FF43450C0
+616	1	Janeville	\N	\N	0101000000ACADD85F76D74740D656EC2FBB5B50C0
+617	1	Robertville	\N	\N	0101000000A9A44E4013D947400B24287E8C7150C0
+618	1	Burnsville	\N	\N	01010000009A99999999D94740910F7A36AB4A50C0
+619	1	Nickadow	\N	\N	010100000012143FC6DCDD4740C442AD69DE6D50C0
+620	1	Chiasson	\N	\N	0101000000E6AE25E483DE4740956588635D2850C0
+621	1	Caraquet	\N	\N	01010000005B423EE8D9E447405B423EE8D93C50C0
+622	1	Petit Rocher	\N	\N	0101000000CC7F48BF7DE547402D211FF46C6E50C0
+623	1	Nigadoo	\N	\N	01010000006744696FF0E54740098A1F63EE6E50C0
+624	1	Pokesudie	\N	\N	010100000066F7E461A1E64740FED478E9263150C0
+625	1	Grande Anse	\N	\N	0101000000545227A089E84740D656EC2FBB4B50C0
+626	1	Upsalquitch	\N	\N	0101000000545227A089E84740A323B9FC87B850C0
+627	1	Maisonnette	\N	\N	01010000008CB96B09F9E847402AA913D0444050C0
+628	1	Green Point	\N	\N	0101000000CDCCCCCCCCEC4740F775E09C117150C0
+629	1	Pointe Verte	\N	\N	0101000000E9482EFF21ED47404CA60A46257150C0
+630	1	Petite-riviere-de-l'ile	\N	\N	0101000000D6C56D3480EF47401B9E5E29CB2850C0
+631	1	Lorne	\N	\N	010100000039B4C876BEEF4740075F984C158850C0
+632	1	Belledune	\N	\N	0101000000D3BCE3141DF147408048BF7D1D7450C0
+633	1	Jacquet River	\N	\N	0101000000211FF46C56F5474000000000008050C0
+634	1	Nash Creek	\N	\N	010100000020D26F5F07F6474069006F81048550C0
+635	1	Matapedia	\N	\N	010100000088855AD3BCFB4740D656EC2FBBBB50C0
+636	1	River Charlo	\N	\N	010100000088855AD3BCFB47403CBD5296219250C0
+637	1	New Mills	\N	\N	010100000032772D211FFC4740B1BFEC9E3C8C50C0
+638	1	Balmoral	\N	\N	0101000000A323B9FC87FC47403F355EBA499C50C0
+639	1	Tidehead	\N	\N	0101000000AEB6627FD9FD474068B3EA73B5B150C0
+640	1	Dalhousie	\N	\N	01010000000EBE30992A0048401361C3D32B9550C0
+641	1	Campbellton	\N	\N	01010000009C33A2B437004840EC51B81E85AB50C0
+642	1	Dalhousie Junction	\N	\N	010100000005C58F31770548405EBA490C029F50C0
+643	1	Thunder Bay	\N	\N	01010000003333333333334840098A1F63EE4E56C0
+644	1	JonquiÄre	\N	\N	0101000000211FF46C563548400000000000D051C0
+645	1	Frederickton	\N	\N	0101000000211FF46C56B54840BBB88D06F02E4BC0
+646	1	Winnipeg	\N	\N	0101000000454772F90FF14840910F7A36AB4A58C0
+647	1	Edmonton	\N	\N	01010000006666666666C64A400000000000605CC0
+\.
+
+
+--
+-- Name: cities_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cities_id_seq', 647, true);
+
+
+--
+-- Data for Name: regions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY regions (id, name, description, created_at, updated_at, shape) FROM stdin;
+27	Yarmouth	\N	\N	\N	01030000000100000008000000C0380B0F4E15464000000000005950C030FADD3731E2454000000000726E50C0D5B021D17CD5454000000000F67150C0C0ADCE8113BF4540000000003C7750C0D5BD93C053CC4540000000003E8450C06B143B1A39E4454000000000A08B50C0E23B1BF48CFC454000000000AE8C50C0C0380B0F4E15464000000000005950C0
+28	Kings	\N	\N	\N	0103000000010000000800000032E3186D1656464000000000F22A50C0A2B5B86FED86464000000000240850C0E2CD218A24A7464000000000641350C098CED7758BAF464000000000362350C078FFF770ABA4464000000000062650C0807655B3439B464000000000543250C0B421EFB8E28C464000000000D44850C032E3186D1656464000000000F22A50C0
+29	Lunenburg	\N	\N	\N	01030000000100000008000000CF5B688D3FF8454000000000AB3550C0966CB413F328464000000000854C50C07622B32B1364464000000000201B50C0228E27C01550464000000000920350C06FDA7FAAC032464000000000E4FB4FC055A6260490FD454000000000691D50C040AD11AFB0F3454000000000E42950C0CF5B688D3FF8454000000000AB3550C0
+30	Halifax	\N	\N	\N	01030000000100000017000000228E27C015504640000000002A0250C091EAD2D79362464000000000D20E50C04CB1907251674640000000005EEB4FC05F6C9A37CB6F464000000000EEE24FC06CD26551C575464000000000E6DB4FC015794F13C377464000000000E4CE4FC021F08E9A0179464000000000E2C14FC04F178209358246400000000094B54FC069809970AA88464000000000AC9D4FC0E31796B8B28346400000000066984FC02CED7D2DFB7D46400000000066984FC021F08E9A017946400000000098A24FC0502C447E4278464000000000AC9D4FC0D0D0FD51CA704640000000009E9C4FC0DD0D7A810D6D46400000000074994FC0BC35605E1069464000000000C6924FC0507B11701461464000000000C6924FC0355E4B4C1659464000000000B2974FC098CD69FE5551464000000000449C4FC0287E1E55782C4640000000001AC64FC0825914B1B82C464000000000C0F24FC07779C54AC5364640000000004CFD4FC0228E27C015504640000000002A0250C0
+31	Hants	\N	\N	\N	0103000000010000001A000000507B117014614640000000004B0E50C0D0D0FD51CA70464000000000B51C50C0ADB58C46B7804640000000009A0A50C0E140940EA58B464000000000E30C50C0A5A44F603C9E464000000000D50B50C0A6EDADCF6EA3464000000000840250C06A3A864BA0A846400000000020ED4FC071E5AB9297AB4640000000001CD34FC01C95C74F58AB46400000000036C84FC054B5B03E5BAA4640000000005EBE4FC09D9E907A2FA3464000000000DABA4FC0914578C07B9E46400000000026BA4FC09DC73F248A984640000000002CB44FC01F0CF34997924640000000005CB14FC0A168B84BA18D46400000000094B54FC0795E6CE8F68046400000000004BE4FC0231E0014407A4640000000004AC34FC0365CE1B1C0794640000000003ECF4FC0039EC536C47646400000000040DC4FC0DA3C35170A714640000000000AE54FC0A0E9A9154E6C4640000000008EE84FC04D416A26D16746400000000096EF4FC04CB19072516746400000000052F74FC0FCA781BCD166464000000000B4FE4FC08A62140D5364464000000000730450C0507B117014614640000000004B0E50C0
+32	Colchester	\N	\N	\N	0103000000010000000A00000086D23D6CD65546400000000088944FC03CB38C1F6989464000000000529D4FC0EB25AA7B859A464000000000AA364FC02C407E5327A64640000000000C114FC0DAF8735752AD46400000000062F74EC04C78CA839AAA4640000000005AF04EC002681E5237A046400000000090E74EC0E5AF02C6618D46400000000016CB4EC05A5F35099651464000000000906E4FC086D23D6CD65546400000000088944FC0
+33	Cumberland	\N	\N	\N	01030000000100000017000000C77B4D8A8EAE46400000000020ED4FC02F904DD251C0464000000000C6EC4FC08E05DF2CA5CB4640000000005AD14FC02A5CBE25B9C64640000000007AC04FC06968E8118CD146400000000062AB4FC005BF555320E846400000000074994FC0C0F23B094603474000000000A30150C0A43D005BF2FB464000000000650350C028A695A569FD464000000000C70A50C0DE1423ED10EB464000000000291250C0014F07F97CE2464000000000B51C50C0DBEF7215B5D64640000000002B1F50C08E05DF2CA5CB4640000000000E2D50C0FA1DD88FC7B04640000000000A4050C0CB2A5A80C29B464000000000344350C06D184870B3A1464000000000CD3150C025F64C3DE5A6464000000000222850C0C77B4D8A8EAE464000000000822250C02589B79894AC4640000000007A1B50C0A09509F91BAA464000000000291250C06A3A864BA0A846400000000090F54FC06A3A864BA0A8464000000000C6EC4FC0C77B4D8A8EAE46400000000020ED4FC0
+34	Pictou	\N	\N	\N	01030000000100000007000000AC6FD2C79DE8464000000000EA9B4FC00C10F9EB09D2464000000000E88E4FC024F9F64ED7BE4640000000006E724FC004FD589D46C34640000000007E534FC004FD589D46C3464000000000D4394FC0844A6DAB86E046400000000052434FC0AC6FD2C79DE8464000000000EA9B4FC0
+35	Antigonish	\N	\N	\N	0103000000010000000B000000E26FF2A968D946400000000090414FC02DD902D5D6AB4640000000000A314FC096FF4985D3CF464000000000B8B04EC09DE0D89F20DB4640000000007CBF4EC0F77D8078EFD7464000000000F6DB4EC0014F07F97CE2464000000000BAEA4EC092AB3DF5C4F8464000000000D0F24EC025CCA3DCA2E74640000000001A124FC0A680C7F494DD4640000000001E2C4FC0CD68F82156DD46400000000028404FC0E26FF2A968D946400000000090414FC0
+36	Richmond	\N	\N	\N	01030000000100000009000000D1B4F1031FCD46400000000012B14EC0924391308DC1464000000000FA9B4EC03C3E9C09E9B9464000000000DE994EC05A581E9394BF464000000000AC624EC06EC7AD60E6D94640000000004E1B4EC0BC27CD3E79EF46400000000012574EC000F6AA0C43E1464000000000B4694EC099580B9CF5E346400000000042814EC0D1B4F1031FCD46400000000012B14EC0
+37	Inverness	\N	\N	\N	01030000000100000008000000E92224C798CE464000000000A4B54EC021B54732F1F046400000000040744EC0E998029F5F09474000000000546F4EC037BD004A0F874740000000008C464EC070E135CA488D4740000000000C5D4EC0ECBC360B530B4740000000002CD34EC07E96BC6325E746400000000008CA4EC0E92224C798CE464000000000A4B54EC0
+38	Guysborough	\N	\N	\N	010300000001000000050000003FC6A1B6559346400000000058974FC0F81A391A954D464000000000485C4FC09D9E907A2FA346400000000018514EC05FA12E3376D6464000000000C0B74EC03FC6A1B6559346400000000058974FC0
+39	Queens	\N	\N	\N	01030000000100000005000000D994A2BEFEF7454000000000EA2350C053F3E0D3FB2E464000000000664D50C0FDD004E32505464000000000545F50C070B95448B9C6454000000000584C50C0D994A2BEFEF7454000000000EA2350C0
+40	Digby	\N	\N	\N	01030000000100000006000000D40A4BABD518464000000000E45650C020B17B4B08FB454000000000D88F50C086D1414CE721464000000000B2A650C09044DB239246464000000000388A50C075E8A5C1792D464000000000FA5E50C0D40A4BABD518464000000000E45650C0
+41	Annapolis	\N	\N	\N	0103000000010000000600000040611BDBDB1B464000000000685A50C05C9A34807C2F4640000000000C4D50C0C8A9A26696574640000000008A2950C0B845CD00EA884640000000004A4B50C0E215A6E091664640000000006C7450C040611BDBDB1B464000000000685A50C0
+42	Shelbourne	\N	\N	\N	0103000000010000000A0000005505A7354CE94540000000002C3C50C0BB44C8B85619464000000000A65850C01A49C239AFE1454000000000E06950C02C01DD2DEDD14540000000006A6750C0DADD5F3F4ACA4540000000009C7150C05D9B5B3D50B24540000000009C7150C0BE7A166C9FA9454000000000B66650C0BE7A166C9FA94540000000006E5450C016A04E07C3C8454000000000E84350C05505A7354CE94540000000002C3C50C0
+43	Victoria	\N	\N	\N	01030000000100000005000000FA788C87448247400000000038404EC0B7A393BF9B25474000000000386D4EC05D5312B44C0C474000000000285F4EC09397A4DD4930474000000000202B4EC0FA788C87448247400000000038404EC0
+44	Cape Breton	\N	\N	\N	010300000001000000050000002D82CB13A1CC464000000000B0A94EC029E8550C19AB464000000000A0414EC0E998029F5F0947400000000000B54DC0C7033E7CD33E474000000000401A4EC02D82CB13A1CC464000000000B0A94EC0
+\.
+
+
+--
+-- Name: regions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('regions_id_seq', 44, true);
+
+
+--
+-- Data for Name: revisions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY revisions (id, asset_id, old_revision_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('revisions_id_seq', 1, false);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY schema_migrations (version) FROM stdin;
+20140121181435
+20140128153325
+20140128201503
+20140202224418
+20140203092814
+20140203093023
+20140203100532
+20140227172720
+20140227202850
+20140310005028
+20140310123442
+20140313231816
+20140313232348
+20140313233455
+20140313234808
+20140313234923
+20140313235100
+\.
+
+
+--
+-- Data for Name: template_attributes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY template_attributes (id, asset_category_template_id, name, type, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: template_attributes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('template_attributes_id_seq', 1, false);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at) FROM stdin;
+1	richard.pannell@gmail.com	$2a$10$lGp5HTyTy9gVptFyz9dKT.73eJRa1/XiTa/Jb7jMyZLwTxAxhTvUq	\N	\N	\N	1	2014-03-16 19:50:54.19034	2014-03-16 19:50:54.19034	127.0.0.1	127.0.0.1	2014-03-16 19:50:53.981869	2014-03-16 19:50:54.192621
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_id_seq', 1, true);
+
+
+--
+-- Name: activity_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY activity_categories
+    ADD CONSTRAINT activity_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: activity_types_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY activity_types
+    ADD CONSTRAINT activity_types_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: asset_activities_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY asset_activities
+    ADD CONSTRAINT asset_activities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: asset_category_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY asset_category_templates
+    ADD CONSTRAINT asset_category_templates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: asset_cell_providers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY asset_cell_providers
+    ADD CONSTRAINT asset_cell_providers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: asset_types_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY asset_types
+    ADD CONSTRAINT asset_types_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: assets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY assets
+    ADD CONSTRAINT assets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cities_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cities
+    ADD CONSTRAINT cities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: regions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY regions
+    ADD CONSTRAINT regions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: revisions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY revisions
+    ADD CONSTRAINT revisions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: template_attributes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY template_attributes
+    ADD CONSTRAINT template_attributes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_activity_categories_on_name; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_activity_categories_on_name ON activity_categories USING btree (name);
+
+
+--
+-- Name: index_activity_types_on_name; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_activity_types_on_name ON activity_types USING btree (name);
+
+
+--
+-- Name: index_asset_types_on_name; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_asset_types_on_name ON asset_types USING btree (name);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

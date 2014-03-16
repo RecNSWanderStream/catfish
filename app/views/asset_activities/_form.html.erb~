@@ -16,8 +16,7 @@
     <%= f.number_field :activity_type_id %>
   </div>
 -->
-
-<%= f.hidden_field 'asset_id', :value => @asset.id %>
+<%= f.hidden_field_tag(:asset_id, @asset.id) %>
  <div class="field">
     <%= f.label :activity_type_id %><br>
     <%= f.collection_select :activity_type_id, @activity_types, :id, :name %>

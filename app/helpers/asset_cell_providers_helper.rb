@@ -1,0 +1,2 @@
+module AssetCellProvidersHelper
+end
