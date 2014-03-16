@@ -105,7 +105,7 @@
 	    <tr class="mappoint" id='<%= result.id %>' data-lat='<%= result.lat %>' data-lng='<%= result.lng %>' data-name='<%= result.name %>' data-zoom=false>
 	      <!-- need to track images in asset table -->
               <td><%= image_tag 'hiking.jpg', :class => "img-responsive" %></td>
-              <td><%= link_to result.name + ' - ' + result.description, result %></td>
+              <td><%= link_to result.name + ' - ' + result.description, result, 'data-no-turbolink' => true %></td>
               <td>20 mins</td>
               <!-- <td> Rating will go here </td> -->
 	      <td>More</td>
