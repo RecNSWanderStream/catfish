@@ -18,7 +18,7 @@
     <%= f.collection_select :asset_type_id, @asset_types, :id, :name %>
   </div>
 
-  <%= f.hidden_field 'created_by', :value => current_user.id %>
+  <%= f.hidden_field :created_by, :value => current_user.id %>
   
   <div class="field">
     <%= f.label :region_id, "Select a county" %><br>
@@ -45,9 +45,10 @@
     <%= f.text_field :lng %>
   </div>
   <div class="field">
-    <%= f.label :washrooms, "Has washrooms?" %>
+    <%= f.label :washrooms, 'Has washrooms?' %>
     <%= f.check_box :washrooms %>
   </div>
+
   <div class="field">
     <%= f.label :parking, "Has parking?" %>
     <%= f.check_box :parking %>
@@ -72,7 +73,9 @@
     <%= f.label :time_closed, 'Closes: ' %>
     <%= f.time_field :time_closed %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>

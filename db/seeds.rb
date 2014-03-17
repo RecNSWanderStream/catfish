@@ -37,21 +37,23 @@ ice_skating = ActivityType.find_by name: "hiking"
 
 point_pleasant = Asset.create({asset_type_id: point_pleasant_and_bluff_type.id,
                           profile_id: 0,
-                          region_id: 0,
+                          region_id: 1,
                           name: "Point pleasant park",
                           description: "A nice view of the Atlantic.  Easy to get around.  Great place to let your dog run free.",
                           lat: '44.626902',
                           lng: '-63.571645',
                           created_by: 0,
-                          updated_by: 0
+                          updated_by: 0,
+                          washrooms: 1,
+                          parking: 1
                         })
 
 
-point_pleasant.asset_activities.create({activity_type_id: walking.id, duration: 3600, difficulty: "easy", quality: "excellent", season: "all"})
+point_pleasant.asset_activities.create({activity_type_id: walking.id, duration: 3600, difficulty: "easy"})
 
 kejimkujik = Asset.create({asset_type_id: kejimkujik_type.id,
                           profile_id: 0,
-                          region_id: 0,
+                          region_id: 1,
                           name: "Kejimkujik",
                           description: "A nice camping and hiking area.",
                           lat: '44.343523',
@@ -60,11 +62,11 @@ kejimkujik = Asset.create({asset_type_id: kejimkujik_type.id,
                           updated_by: 0
                         })
 
-kejimkujik.asset_activities.create({activity_type_id: walking.id, duration: 4500, difficulty: "easy", quality: "great", season: "summer"})
+kejimkujik.asset_activities.create({activity_type_id: walking.id, duration: 4500, difficulty: "easy"})
 
 the_oval = Asset.create({asset_type_id: the_oval_type.id,
                           profile_id: 0,
-                          region_id: 0,
+                          region_id: 1,
                           name: "The oval",
                           description: "The oval is pretty cool, you can ice skate in the winter or roller blade in the summer.",
                           lat: '44.649179',
@@ -74,11 +76,11 @@ the_oval = Asset.create({asset_type_id: the_oval_type.id,
                         })
 
 
-the_oval.asset_activities.create({activity_type_id: ice_skating.id, duration: 7200, difficulty: "medium", quality: "excellent", season: "winter"})
+the_oval.asset_activities.create({activity_type_id: ice_skating.id, duration: 7200, difficulty: "medium"})
 
 the_halifax_forum = Asset.create({asset_type_id: the_oval.id,
                           profile_id: 0,
-                          region_id: 0,
+                          region_id: 2,
                           name: "Halifax Forum",
                           description: "The Halifax Forum is a place to skate.",
                           lat: '44.655031',
@@ -86,13 +88,13 @@ the_halifax_forum = Asset.create({asset_type_id: the_oval.id,
                           created_by: 0,
                           updated_by: 0
                         })
-the_halifax_forum.asset_activities.create({activity_type_id: ice_skating.id, duration: 7200, difficulty: "medium", quality: "excellent", season: "winter"})
+the_halifax_forum.asset_activities.create({activity_type_id: ice_skating.id, duration: 7200, difficulty: "medium"})
 
 
 
 bluff_wilderness = Asset.create({asset_type_id: point_pleasant_and_bluff_type.id,
                           profile_id: 0,
-                          region_id: 0,
+                          region_id: 2,
                           name: "Bluff Wilderness",
                           description: "Rugged and littered with ancient granite lakes formed by glaciers in the early Holocene.",
                           lat: '44.74783',
@@ -102,5 +104,5 @@ bluff_wilderness = Asset.create({asset_type_id: point_pleasant_and_bluff_type.id
                         })
 
 
-bluff_wilderness.asset_activities.create({activity_type_id: trail_running.id, duration: 7200, difficulty: "hard", quality: "rugged", season: "all"})
+bluff_wilderness.asset_activities.create({activity_type_id: trail_running.id, duration: 7200, difficulty: "hard"})
 
