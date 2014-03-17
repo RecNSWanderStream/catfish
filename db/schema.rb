@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313235100) do
+ActiveRecord::Schema.define(version: 20140316233621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(version: 20140313235100) do
     t.string   "difficulty"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "user_rating",       precision: 5, scale: 2
-    t.decimal  "difficulty_rating", precision: 5, scale: 2
+    t.decimal  "user_rating",        precision: 5, scale: 2
+    t.decimal  "difficulty_rating",  precision: 5, scale: 2
     t.boolean  "is_loop"
-    t.binary   "attributes"
-    t.decimal  "distance",          precision: 5, scale: 2
+    t.decimal  "distance",           precision: 5, scale: 2
+    t.binary   "dynamic_attributes"
   end
 
   create_table "asset_category_templates", force: true do |t|

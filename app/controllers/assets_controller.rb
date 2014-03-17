@@ -20,6 +20,8 @@ class AssetsController < ApplicationController
   def new
     @asset = Asset.new
     @asset_types =AssetType.all.distinct
+    @regions = Region.all.distinct
+    @cities = City.all.distinct
   end
 
   # GET /assets/1/edit

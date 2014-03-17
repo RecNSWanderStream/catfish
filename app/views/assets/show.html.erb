@@ -203,4 +203,4 @@
 <%= link_to 'Edit', edit_asset_path(@asset) %> |
 <%= link_to 'Back', assets_path %>
 
-<%= render :partial => 'asset_activities/form' %>
+<%= render :partial => 'asset_activities/form', locals: {asset_activity: @asset_activity} %>
