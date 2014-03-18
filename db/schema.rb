@@ -84,13 +84,6 @@ ActiveRecord::Schema.define(version: 20140302205900) do
     t.boolean  "is_active"
   end
 
-  create_table "revisions", force: true do |t|
-    t.integer  "prev_revision_id"
-    t.integer  "asset_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
