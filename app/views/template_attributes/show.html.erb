@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Asset category template:</strong>
+  <%= @template_attribute.asset_category_template_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @template_attribute.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @template_attribute.type %>
+</p>
+
+<%= link_to 'Edit', edit_template_attribute_path(@template_attribute) %> |
+<%= link_to 'Back', template_attributes_path %>

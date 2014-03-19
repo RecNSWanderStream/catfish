@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Asset:</strong>
+  <%= @asset_cell_provider.asset_id %>
+</p>
+
+<p>
+  <strong>Cell provider:</strong>
+  <%= @asset_cell_provider.cell_provider_id %>
+</p>
+
+<%= link_to 'Edit', edit_asset_cell_provider_path(@asset_cell_provider) %> |
+<%= link_to 'Back', asset_cell_providers_path %>

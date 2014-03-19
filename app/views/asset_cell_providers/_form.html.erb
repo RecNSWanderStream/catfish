@@ -1,0 +1,25 @@
+<%= form_for(@asset_cell_provider) do |f| %>
+  <% if @asset_cell_provider.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@asset_cell_provider.errors.count, "error") %> prohibited this asset_cell_provider from being saved:</h2>
+
+      <ul>
+      <% @asset_cell_provider.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :asset_id %><br>
+    <%= f.number_field :asset_id %>
+  </div>
+  <div class="field">
+    <%= f.label :cell_provider_id %><br>
+    <%= f.number_field :cell_provider_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

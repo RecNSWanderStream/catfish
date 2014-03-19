@@ -1,4 +1,4 @@
-1;3406;0c<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -10,6 +10,7 @@
 
   <title>WanderStream</title>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRgKhf1Z6SDwvyVXwwVkmd_mXzTBeTJTc&sensor=true"></script>
+  
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag    "colors", media: "all", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag    "animations", media: "all", "data-turbolinks-track" => true %>
@@ -34,7 +35,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">
-	    <%= link_to(image_tag("logo-wanderstream.png", :class => "img-responsive"), root_path) %>
+	    <%= link_to(image_tag("logo-wanderstream.png", :class => "img-responsive"), root_path, 'data-no-turbolink' => true) %>
 	  </a>
         </div>
         <div class="navbar-collapse collapse">

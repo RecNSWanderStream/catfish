@@ -1,0 +1,27 @@
+<h1>Listing asset_category_templates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Activity category</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @asset_category_templates.each do |asset_category_template| %>
+      <tr>
+        <td><%= asset_category_template.activity_category_id %></td>
+        <td><%= link_to 'Show', asset_category_template %></td>
+        <td><%= link_to 'Edit', edit_asset_category_template_path(asset_category_template) %></td>
+        <td><%= link_to 'Destroy', asset_category_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Asset category template', new_asset_category_template_path %>

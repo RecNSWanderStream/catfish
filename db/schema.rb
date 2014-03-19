@@ -11,10 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302205900) do
+
+ActiveRecord::Schema.define(version: 20140316233621) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "activity_categories", force: true do |t|
     t.integer  "asset_type_id"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140302205900) do
     t.datetime "updated_at"
   end
 
-  add_index "activity_categories", ["name"], name: "index_activity_categories_on_name", unique: true, using: :btree
+  add_index "activity_categories", ["name"], :name => "index_activity_categories_on_name", :unique => true
 
   create_table "activity_types", force: true do |t|
     t.integer  "activity_category_id"
@@ -34,18 +37,31 @@ ActiveRecord::Schema.define(version: 20140302205900) do
     t.datetime "updated_at"
   end
 
-  add_index "activity_types", ["name"], name: "index_activity_types_on_name", unique: true, using: :btree
+  add_index "activity_types", ["name"], :name => "index_activity_types_on_name", :unique => true
 
   create_table "asset_activities", force: true do |t|
     t.integer  "asset_id"
     t.integer  "activity_type_id"
     t.integer  "duration"
     t.string   "difficulty"
-    t.text     "quality"
-    t.string   "season"
-    t.text     "general_information"
-    t.text     "safety_information"
-    t.text     "alerts"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "user_rating",        precision: 5, scale: 2
+    t.decimal  "difficulty_rating",  precision: 5, scale: 2
+    t.boolean  "is_loop"
+    t.decimal  "distance",           precision: 5, scale: 2
+    t.binary   "dynamic_attributes"
+  end
+
+  create_table "asset_category_templates", force: true do |t|
+    t.integer  "activity_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "asset_cell_providers", force: true do |t|
+    t.integer  "asset_id"
+    t.integer  "cell_provider_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,7 +83,7 @@ ActiveRecord::Schema.define(version: 20140302205900) do
     t.datetime "updated_at"
   end
 
-  add_index "asset_types", ["name"], name: "index_asset_types_on_name", unique: true, using: :btree
+  add_index "asset_types", ["name"], :name => "index_asset_types_on_name", :unique => true
 
   create_table "assets", force: true do |t|
     t.integer  "asset_type_id"
@@ -75,15 +91,59 @@ ActiveRecord::Schema.define(version: 20140302205900) do
     t.integer  "region_id"
     t.string   "name"
     t.text     "description"
-    t.decimal  "lat",           precision: 9, scale: 6
-    t.decimal  "lng",           precision: 9, scale: 6
+    t.decimal  "lat",                                                             precision: 9, scale: 6
+    t.decimal  "lng",                                                             precision: 9, scale: 6
     t.integer  "created_by"
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_active"
+    t.integer  "nearest_city_id"
+    t.boolean  "washrooms"
+    t.boolean  "parking"
+    t.boolean  "accessibility_access"
+    t.text     "accessibility_information"
+    t.string   "time_open"
+    t.string   "time_closed"
+    t.boolean  "public_transit"
+    t.spatial  "closest_stop_location",     limit: {:srid=>0, :type=>"geometry"}
+    t.spatial  "location",                  limit: {:srid=>0, :type=>"geometry"}
   end
 
+  create_table "cities", force: true do |t|
+    t.integer  "province_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.spatial  "location",    limit: {:srid=>0, :type=>"geometry"}
+  end
+
+  create_table "regions", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.spatial  "shape",       limit: {:srid=>0, :type=>"geometry"}
+  end
+
+<<<<<<< HEAD
+=======
+  create_table "revisions", force: true do |t|
+    t.integer  "asset_id"
+    t.integer  "old_revision_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "template_attributes", force: true do |t|
+    t.integer  "asset_category_template_id"
+    t.string   "name"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+>>>>>>> master
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -99,7 +159,7 @@ ActiveRecord::Schema.define(version: 20140302205900) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

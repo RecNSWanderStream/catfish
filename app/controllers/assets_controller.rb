@@ -1,6 +1,5 @@
 class AssetsController < ApplicationController
-  before_action :set_asset, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_asset, only: [:show, :edit, :update, :destroy]  
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   
   # GET /assets
@@ -20,6 +19,8 @@ class AssetsController < ApplicationController
   def new
     @asset = Asset.new
     @asset_types =AssetType.all.distinct
+    @regions = Region.all.distinct
+    @cities = City.all.distinct
   end
 
   # GET /assets/1/edit
@@ -98,6 +99,6 @@ class AssetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asset_params
-      params.require(:asset).permit(:asset_type_id, :profile_id, :region_id, :name, :description, :lat, :lng, :created_by, :updated_by)
+      params.require(:asset).permit(:asset_type_id, :profile_id, :region_id, :name, :description, :lat, :lng, :created_by, :updated_by, :nearest_city_id, :washrooms, :parking, :accessibility_access, :accessibility_information, :time_open, :time_closed, :public_transit, :closest_stop_location, :location)
     end
 end

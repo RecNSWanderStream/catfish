@@ -1,4 +1,5 @@
 <%= form_for(@asset_activity) do |f| %>
+
   <% if @asset_activity.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@asset_activity.errors.count, "error") %> prohibited this asset_activity from being saved:</h2>
@@ -10,20 +11,14 @@
       </ul>
     </div>
   <% end %>
-<!--
-  <div class="field">
-    <%= f.label :activity_type_id %><br>
-    <%= f.number_field :activity_type_id %>
-  </div>
--->
 
-<%= f.hidden_field 'asset_id', :value => @asset.id %>
- <div class="field">
+  <%= f.hidden_field 'asset_id', :value => @asset.id %>
+  <div class="field">
     <%= f.label :activity_type_id %><br>
     <%= f.collection_select :activity_type_id, @activity_types, :id, :name %>
   </div>
   <div class="field">
-    <%= f.label :duration , 'Total Trail Distance'%><br>
+    <%= f.label :duration, 'Total Time'%><br>
     <%= f.text_field :duration %>
   </div>
   <div class="field">
@@ -31,28 +26,22 @@
     <%= f.text_field :difficulty %>
   </div>
   <div class="field">
-    <%= f.label :quality, 'Trail Surface'%><br>
-    <%= f.text_area :quality %>
-  </div>
-<!--
-  <div class="field">
-    <%= f.label :season %><br>
-    <%= f.text_field :season %>
+    <%= f.label :user_rating %><br>
+    <%= f.text_field :user_rating %>
   </div>
   <div class="field">
-    <%= f.label :general_information %><br>
-    <%= f.text_area :general_information %>
+    <%= f.label :difficulty_rating %><br>
+    <%= f.text_field :difficulty_rating %>
   </div>
   <div class="field">
-    <%= f.label :safety_information %><br>
-    <%= f.text_area :safety_information %>
+    <%= f.label :is_loop %><br>
+    <%= f.check_box :is_loop %>
   </div>
   <div class="field">
-    <%= f.label :alerts %><br>
-    <%= f.text_area :alerts %>
+    <%= f.label :distance, "How far?" %><br>
+    <%= f.text_field :distance %>
   </div>
--->
   <div class="actions">
     <%= f.submit %>
-  </div>
+  </div> 
 <% end %>
