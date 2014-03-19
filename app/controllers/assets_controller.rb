@@ -26,6 +26,8 @@ class AssetsController < ApplicationController
   # GET /assets/1/edit
   def edit
     @asset_types =AssetType.all.distinct
+    @regions = Region.all.distinct
+    @cities = City.all.distinct
   end
 
   # POST /assets
@@ -52,22 +54,22 @@ class AssetsController < ApplicationController
       asset_params[:id] = nil
       #get all activities from the asset and update their asset id
       @asset_activities = @asset.asset_activities
-      @asset_activities_id = @asset.id
-      if @asset = Asset.create(asset_params)
-        #turn off current revision
-        #create rivision record
-        #inset new rivision into table
+      if @asset = Asset.create(asset_params)       
         #keep track of old assetID id for current asset
         format.html { redirect_to @asset, notice: 'Asset was successfully updated.' }
         format.json { head :no_content }
         #create new revision. gonna have to find asset id
+        
+        #turn off current revision
         @old_revision_id = Revision.find_by(asset_id:  @old_ID)
+        #create rivision record
         @new_revision = Revision.new()
+        #inset new rivision into table
         @new_revision.old_revision_id = @old_revision_id
         @new_revision.asset_id = @asset.id
         @new_revision.save()
         #update the activity ID that pretains to the asset ID
-        @asset_activities.update(params[:asset_id], @asset.id)
+        @asset_activities.update_all(:asset_id => @asset.id)
 
       else
         format.html { render action: 'edit' }
