@@ -21,8 +21,8 @@ development:
   encoding: unicode
   database: wander_stream_development
   pool: 5
-  username: railsdev
-  password: railsdev
+  username: postgres
+  password: Jennifer1
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -52,8 +52,8 @@ test:
   encoding: unicode
   database: wander_stream_test
   pool: 5
-  username: railsdev
-  password: railsdev
+  username: postgres
+  password: Jennifer1
 
 production:
   adapter: postgis
@@ -62,5 +62,5 @@ production:
   encoding: unicode
   database: wander_stream_production
   pool: 5
-  username: railsdev
-  password: railsdev
+  username: postgres
+  password: Jennifer1

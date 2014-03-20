@@ -18,7 +18,7 @@ class AssetsController < ApplicationController
   # GET /assets/new
   def new
     @asset = Asset.new
-    @asset_types =AssetType.all.distinct
+    @asset_types =AssetType.all.distinct.order(:name)
     @regions = Region.all.distinct
     @cities = City.all.distinct
   end

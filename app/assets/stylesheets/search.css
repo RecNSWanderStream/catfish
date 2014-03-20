@@ -1,12 +1,3 @@
-table, tr, td, th
-{
+.results {
     border-collapse:collapse;
-}
-tr.field
-{
-    cursor:pointer;
-}
-th.field
-{
-    cursor:pointer;
 }
