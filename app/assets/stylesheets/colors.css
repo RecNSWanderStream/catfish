@@ -3,7 +3,7 @@
 .btn-primary {
     background-color: rgba( 63, 19, 94, 0.75);
     border: 0px;   
-    color: #FFFFFF;
+    color: #000000;
 }
 
 .btn-primary:hover,.btn-primary:focus,.btn-primary:active {
