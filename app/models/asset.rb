@@ -2,6 +2,8 @@ class Asset < ActiveRecord::Base
   has_many :asset_activities
   has_many :activity_types, :through => :asset_activities
   has_many :activity_categories, :through => :activity_types
+  belongs_to :city , :foreign_key => "nearest_city_id", :primary_key => "id"
+  belongs_to :region
 #<-- 
 #  #validation for adding long and lat
 #  validates :lat, format: { with: /\A-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}/, message: "Must be valid latitude value with 1-6 decimals of precision"}

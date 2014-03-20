@@ -102,13 +102,72 @@
 	  </thead>
 	  <tbody>
 	    <% @results.each do |result| %>
+	    <% @activities=result.asset_activities %>
 	    <tr class="mappoint" id='<%= result.id %>' data-lat='<%= result.lat %>' data-lng='<%= result.lng %>' data-name='<%= result.name %>' data-zoom=false>
 	      <!-- need to track images in asset table -->
               <td><%= image_tag 'hiking.jpg', :class => "img-responsive" %></td>
               <td><%= link_to result.name + ' - ' + result.description, result, 'data-no-turbolink' => true %></td>
               <td>20 mins</td>
               <!-- <td> Rating will go here </td> -->
-	      <td>More</td>
+	      <td class="field_more" colspan="2">More <span>-<span></td>
+	    </tr>
+	    
+	    <tr class="field_more" id='<%= result.id %>' >
+	      <td></td>
+		 <td id='more_info_field'> 
+		   <li>Time Open: <%= result.time_open %></li> 
+		   <li>Time Closed: <%= result.time_closed %></li>
+		   
+		   <% if (result.washrooms?) %>
+		   <li>Washrooms: Yes</li>
+		   <% else %>
+		   <li>Washrooms: No</li>
+		   <% end %>
+
+		   <% if (result.parking?) %>
+		   <li>Parking: Yes</li>
+		   <% else %>
+		   <li>Parking: No</li>
+		   <% end %>
+
+		  <% if (result.public_transit?) %>
+		   <li>Public Transit: Yes</li>
+		   <% else %>
+		   <li>Public Transit: No</li>
+		   <% end %> 
+		   
+		   <% if (result.is_active?) %>
+		   <li>Active: Yes</li>
+		   <% else %>
+		   <li>Active: No</li>
+		   <% end %>
+		   
+		   <% if (result.accessibility_access?) %>
+		   <li>Accessibility: Yes</li>
+		   <li>Accessibility Information: <%= result.accessibility_information%></li>
+		   <% else %>
+		   <li>Accessibility: No</li>
+		   <% end %>
+		
+		  <!--<li>City: <%= result.city(:name) %></li> NOT WORKING-->
+		<% @activities.each do |activity| %>
+		<% @activity_type=activity.activity_type%>
+		  <li>Activity Name: <%= @activity_type.name %></li>
+		  <li>Total Time: <%= activity.duration %></li>
+		  <li>Difficulty: <%= activity.difficulty %></li>
+		  <li>User Rating: <%= activity.user_rating %></li>
+		  <li>Difficulty Rating: <%= activity.difficulty_rating %></li>
+		  
+		  <% if (activity.is_loop?) %>
+		   <li>Is Loop: Yes</li>
+		   <% else %>
+		   <li>Is Loop: No</li>
+		   <% end %>
+		   
+		  <li>How far? <%= activity.distance %></li>
+
+		<% end %>  
+		</td>
 	    </tr>
 	    <% end %>
 	  </tbody>

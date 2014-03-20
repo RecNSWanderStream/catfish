@@ -72,6 +72,6 @@ class AssetActivitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asset_activity_params
-      params.require(:asset_activity).permit(:asset_id, :activity_type_id, :duration, :difficulty, :quality, :season, :general_information, :safety_information, :alerts)
+      params.require(:asset_activity).permit(:asset_id, :activity_type_id, :duration, :difficulty, :quality, :season, :general_information, :safety_information, :alerts, :user_rating, :difficulty_rating, :distance  )
     end
 end
