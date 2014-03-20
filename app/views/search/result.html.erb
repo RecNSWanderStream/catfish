@@ -152,6 +152,7 @@
 		  <!--<li>City: <%= result.city(:name) %></li> NOT WORKING-->
 		<% @activities.each do |activity| %>
 		<% @activity_type=activity.activity_type%>
+		  
 		  <li>Activity Name: <%= @activity_type.name %></li>
 		  <li>Total Time: <%= activity.duration %></li>
 		  <li>Difficulty: <%= activity.difficulty %></li>
@@ -163,10 +164,10 @@
 		   <% else %>
 		   <li>Is Loop: No</li>
 		   <% end %>
-		   
-		  <li>How far? <%= activity.distance %></li>
 
+		  <li>How far? <%= activity.distance %></li>
 		<% end %>  
+
 		</td>
 	    </tr>
 	    <% end %>
