@@ -59,7 +59,7 @@ var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions)
 
 
 
-/**************************************************************************************************/  
+/**************************************Regions************************************************************/  
   var wkt = new Wkt.Wkt();
 
   var nsregions = [];
@@ -159,7 +159,7 @@ var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions)
   
 
 
-/**************************************************************************************************/
+/*******************************************Markers*******************************************************/
   //Loops through all of markerpoints array
   for(var i=0; i<markerpoints.length; i++){
 
