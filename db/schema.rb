@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140316233621) do
-
+ActiveRecord::Schema.define(version: 20140318224502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,11 +44,20 @@ ActiveRecord::Schema.define(version: 20140316233621) do
     t.string   "difficulty"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "user_rating",        precision: 5, scale: 2
-    t.decimal  "difficulty_rating",  precision: 5, scale: 2
+    t.decimal  "user_rating",                     precision: 5, scale: 2
+    t.decimal  "difficulty_rating",               precision: 5, scale: 2
     t.boolean  "is_loop"
-    t.decimal  "distance",           precision: 5, scale: 2
+    t.decimal  "distance",                        precision: 5, scale: 2
     t.binary   "dynamic_attributes"
+    t.string   "gpx_link"
+    t.string   "topo_link"
+    t.decimal  "min_altitude",                    precision: 6, scale: 2
+    t.decimal  "max_altitude",                    precision: 6, scale: 2
+    t.text     "nearest_public_transit_location"
+    t.text     "trail_surface"
+    t.text     "level_of_maintenance"
+    t.date     "last_maintenance_date"
+    t.string   "maintained_by"
   end
 
   create_table "asset_category_templates", force: true do |t|
@@ -74,7 +81,7 @@ ActiveRecord::Schema.define(version: 20140316233621) do
     t.datetime "updated_at"
   end
 
-  add_index "asset_term_indices", ["term"], name: "index_asset_term_indices_on_term", using: :btree
+  add_index "asset_term_indices", ["term"], :name => "index_asset_term_indices_on_term"
 
   create_table "asset_types", force: true do |t|
     t.string   "name"
@@ -108,6 +115,8 @@ ActiveRecord::Schema.define(version: 20140316233621) do
     t.boolean  "public_transit"
     t.spatial  "closest_stop_location",     limit: {:srid=>0, :type=>"geometry"}
     t.spatial  "location",                  limit: {:srid=>0, :type=>"geometry"}
+    t.text     "rentals"
+    t.text     "food"
   end
 
   create_table "cities", force: true do |t|
@@ -126,15 +135,6 @@ ActiveRecord::Schema.define(version: 20140316233621) do
     t.spatial  "shape",       limit: {:srid=>0, :type=>"geometry"}
   end
 
-<<<<<<< HEAD
-=======
-  create_table "revisions", force: true do |t|
-    t.integer  "asset_id"
-    t.integer  "old_revision_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "template_attributes", force: true do |t|
     t.integer  "asset_category_template_id"
     t.string   "name"
@@ -143,7 +143,6 @@ ActiveRecord::Schema.define(version: 20140316233621) do
     t.datetime "updated_at"
   end
 
->>>>>>> master
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
