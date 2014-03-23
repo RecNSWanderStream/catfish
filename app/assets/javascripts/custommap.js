@@ -220,13 +220,13 @@ $('.activity-icons ul li a').click(function(activity_click){
     if($('.equation-results-home input').val()===''){
       $('.equation-results-home input').val(content);
     }else{
-      $('.equation-results-home input').val($('.equation-results-home input').val() +"+"+content);
+      $('.equation-results-home input').val($('.equation-results-home input').val() +" "+content);
     }
 
     if($('#q').val()===''){
       $('#q').val(content);
     }else{
-      $('#q').val($('#q').val() +"+"+content);
+      $('#q').val($('#q').val() +" "+content);
     }
 });
 
@@ -244,16 +244,17 @@ function polyClick(name){
       if($('.equation-results-home input').val()===''){
         $('.equation-results-home input').val(name);
       }else{
-        $('.equation-results-home input').val($('.equation-results-home input').val() +"+"+name);
+        $('.equation-results-home input').val($('.equation-results-home input').val() +" "+name);
       }
 
       if($('#q').val()===''){
        $('#q').val(name);
       }else{
-        $('#q').val($('#q').val() +"+"+name);
+        $('#q').val($('#q').val() +" "+name);
       }        
     };
 
 //Load function for maps
 $(document).ready(initialize_page);
+$(document).on('page:load', initialize_page);
 //End
