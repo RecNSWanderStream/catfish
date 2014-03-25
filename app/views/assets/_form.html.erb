@@ -15,18 +15,18 @@
   <!-- Please note that geometries are available in database for nearest public transit stop and location, for now leaving it with lat and lng -->
   <div class="field">
     <%= f.label :asset_type_id %><br>
-    <%= f.collection_select :asset_type_id, @asset_types, :id, :name %>
+    <%= f.collection_select :asset_type_id, @asset_types, :id, :name_for_select %>
   </div>
 
   <%= f.hidden_field :created_by, :value => current_user.id %>
   
   <div class="field">
     <%= f.label :region_id, "Select a county" %><br>
-    <%= f.collection_select :region_id, @regions, :id, :name %>
+    <%= f.collection_select :region_id, @regions, :id, :name_for_select %>
   </div>
   <div class="field">
     <%= f.label :city_id, "Select nerest city" %><br>
-    <%= f.collection_select :nearest_city_id, @cities, :id, :name %>
+    <%= f.collection_select :nearest_city_id, @cities, :id, :name_for_select %>
   </div>
   <div class="field">
     <%= f.label :name %><br>

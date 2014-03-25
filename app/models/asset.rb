@@ -22,16 +22,10 @@ class Asset < ActiveRecord::Base
   end
 
   def self.search(params)
-    #print for debugging
-    p params
-
     tokens = params.split
     in_string = tokens.map!{|t|  t.downcase }
-
-    #print for debuggging
-    p in_string
   
-    results = self.find_by_sql([ "select distinct a.name,a.id,a.description,at.name, a.lat,a.lng,r.id, r.name,a.is_active,a.washrooms,a.parking,a.accessibility_access, a.accessibility_information,a.time_open,a.time_closed,a.public_transit,a.nearest_city_id,aa.difficulty,aa.user_rating,aa.difficulty_rating,aa.is_loop,aa.distance " +  
+    results = self.find_by_sql([ "select distinct a.id as asset_id, a.name as asset_name, a.description, a.lat,a.lng, r.name as region_name,a.is_active,a.washrooms,a.parking,a.accessibility_access, a.accessibility_information,a.time_open,a.time_closed,a.public_transit,a.nearest_city_id " +  
      ", sum((case when r.name in (?) then 1 else 0 end)+(case when at.name in (?) then 1 else 0 end) + (1/cast(ati.origin_string_size as float))) as match_rating " +    
      "from asset_term_indices ati " +     
      "join assets a " +     
@@ -43,7 +37,9 @@ class Asset < ActiveRecord::Base
      "left join regions r " +
      "on a.region_id = r.id " +   
      "where ati.term in (?) or at.name in (?) or r.name in (?) " +     
-     "group by a.id, at.name,r.id,r.name,aa.difficulty,aa.user_rating,aa.difficulty_rating,aa.is_loop,aa.distance order by match_rating ", in_string,in_string,in_string,in_string,in_string])
+     "group by r.name, a.id order by match_rating ", in_string,in_string,in_string,in_string,in_string])
+  
+    return results
   end
 end
 

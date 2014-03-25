@@ -1,3 +1,7 @@
 class City < ActiveRecord::Base
-	#has_one :asset, :foreign_key => "nearest_city_id", :primary_key => "id"
+
+  def name_for_select
+    name.titleize
+  end
+
 end
