@@ -78,9 +78,18 @@ if($('#map-canvas').attr('data-main')){
         strokeOpacity: 0.0,
         strokeWeight: 3,
         fillColor: '#00FF00',
-        fillOpacity: 0.35
+        fillOpacity: 0.0
       });
       nsregions[i].setMap(map);
+
+      google.maps.event.addListener(nsregions[i], 'mouseover',function(){
+        this.setOptions({fillOpacity:0.4});
+      });
+
+      google.maps.event.addListener(nsregions[i], 'mouseout',function(){
+        this.setOptions({fillOpacity:0.0});
+      });
+
     }
 
     //The polygon clicking functions
@@ -255,6 +264,9 @@ function polyClick(name){
     };
 
 //Load function for maps
-$(document).ready(initialize_page);
-$(document).on('page:load', initialize_page);
+  //Without turbolinks
+  $(document).ready(initialize_page);
+
+  //With turbolinks
+  $(document).on('page:load', initialize_page);
 //End
