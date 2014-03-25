@@ -78,9 +78,18 @@ if($('#map-canvas').attr('data-main')){
         strokeOpacity: 0.0,
         strokeWeight: 3,
         fillColor: '#00FF00',
-        fillOpacity: 0.35
+        fillOpacity: 0.0
       });
       nsregions[i].setMap(map);
+
+      google.maps.event.addListener(nsregions[i], 'mouseover',function(){
+        this.setOptions({fillOpacity:0.4});
+      });
+
+      google.maps.event.addListener(nsregions[i], 'mouseout',function(){
+        this.setOptions({fillOpacity:0.0});
+      });
+
     }
 
     //The polygon clicking functions
@@ -220,13 +229,13 @@ $('.activity-icons ul li a').click(function(activity_click){
     if($('.equation-results-home input').val()===''){
       $('.equation-results-home input').val(content);
     }else{
-      $('.equation-results-home input').val($('.equation-results-home input').val() +"+"+content);
+      $('.equation-results-home input').val($('.equation-results-home input').val() +" "+content);
     }
 
     if($('#q').val()===''){
       $('#q').val(content);
     }else{
-      $('#q').val($('#q').val() +"+"+content);
+      $('#q').val($('#q').val() +" "+content);
     }
 });
 
@@ -244,16 +253,20 @@ function polyClick(name){
       if($('.equation-results-home input').val()===''){
         $('.equation-results-home input').val(name);
       }else{
-        $('.equation-results-home input').val($('.equation-results-home input').val() +"+"+name);
+        $('.equation-results-home input').val($('.equation-results-home input').val() +" "+name);
       }
 
       if($('#q').val()===''){
        $('#q').val(name);
       }else{
-        $('#q').val($('#q').val() +"+"+name);
+        $('#q').val($('#q').val() +" "+name);
       }        
     };
 
 //Load function for maps
-$(document).ready(initialize_page);
+  //Without turbolinks
+  $(document).ready(initialize_page);
+
+  //With turbolinks
+  $(document).on('page:load', initialize_page);
 //End
