@@ -25,7 +25,7 @@ class Asset < ActiveRecord::Base
     tokens = params.split
     in_string = tokens.map!{|t|  t.downcase }
   
-    results = self.find_by_sql([ "select distinct a.id as asset_id, a.name as asset_name, a.description, a.lat,a.lng, r.name as region_name,a.is_active,a.washrooms,a.parking,a.accessibility_access, a.accessibility_information,a.time_open,a.time_closed,a.public_transit,a.nearest_city_id " +  
+    results = self.find_by_sql([ "select distinct a.id as asset_id, a.id, a.name as asset_name, a.description, a.lat,a.lng, r.name as region_name,a.is_active,a.washrooms,a.parking,a.accessibility_access, a.accessibility_information,a.time_open,a.time_closed,a.public_transit,a.nearest_city_id " +  
      ", sum((case when r.name in (?) then 1 else 0 end)+(case when at.name in (?) then 1 else 0 end) + (1/cast(ati.origin_string_size as float))) as match_rating " +    
      "from asset_term_indices ati " +     
      "join assets a " +     
