@@ -12,6 +12,12 @@ class Asset < ActiveRecord::Base
   	self.update(is_active: false)
   end
 
+  
+  #This is the main search method for the application. It accepts a string, tokenizes it into an array.
+  #Search Results are returened.
+  #The array is used to find search results by name, activity type, and region name.
+
+  
   def self.search(params)
     tokens = params.split
     in_string = tokens.map!{|t|  t.downcase }
