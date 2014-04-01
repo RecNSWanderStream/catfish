@@ -53,6 +53,13 @@ class AssetsController < ApplicationController
 
   # PATCH/PUT /assets/1
   # PATCH/PUT /assets/1.json
+  #This method invokes the wiki functionality of this project
+  #each time update is called it creates a completely new asset with the updated info
+  #this is in order to preserve the old asset in case the update removed relevant data or
+  #tampered with the asset in any way
+  #The new asset gets a new revision number and that revision number is set to be the active one
+  #to ensure that the pre-updated version does not show up in searches
+  #this essentially sets the updated asset to 'active' and 'deactivates' the pre-update asset.
   def update
     respond_to do |format|
       @old_ID = @asset.id
@@ -62,18 +69,16 @@ class AssetsController < ApplicationController
       if @asset = Asset.create(asset_params)       
         #keep track of old assetID id for current asset
         format.html { redirect_to @asset, notice: 'Asset was successfully updated.' }
-        format.json { head :no_content }
-        #create new revision. gonna have to find asset id
-        
+        format.json { head :no_content }        
         #turn off current revision
         @old_revision_id = Revision.find_by(asset_id:  @old_ID)
-        #create rivision record
+        #create revision record
         @new_revision = Revision.new()
-        #inset new rivision into table
+        #inset new revision into table
         @new_revision.old_revision_id = @old_revision_id
         @new_revision.asset_id = @asset.id
         @new_revision.save()
-        #update the activity ID that pretains to the asset ID
+        #update the activity ID that pertains to the asset ID
         @asset_activities.update_all(:asset_id => @asset.id)
 
       else
